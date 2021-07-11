@@ -6,15 +6,15 @@
   
   <title>拷贝 | Note</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="数据类型数据分为基本数据类型(String, Number, Boolean, Null, Undefined，Symbol(new in ES 6)和 引用数据类型（统称为 Object 类型，细分的话有：Object 、Array 、Date 、RegExp、Function… ）。   基本类型：直接存储在栈(stack)中的数据 引用数据类型：存储的是该对象在栈中引用，真实的数据存放在堆内">
+  <meta name="description" content="数据类型 基本类型：直接存储在栈(stack)中的数据(String, Number, Boolean, Null, Undefined，Symbol(new in ES 6) 引用数据类型：存储的是该对象在栈中引用，真实的数据存放在堆内存里（统称为 Object 类型，细分的话有：Object 、Array 、Date 、RegExp、Function… ）  浅拷贝与深拷贝深拷贝与浅拷贝是只针">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拷贝">
 <meta property="og:url" content="http://tyy-hub.github.io/blog/2021/07/11/%E6%8B%B7%E8%B4%9D/index.html">
 <meta property="og:site_name" content="Note">
-<meta property="og:description" content="数据类型数据分为基本数据类型(String, Number, Boolean, Null, Undefined，Symbol(new in ES 6)和 引用数据类型（统称为 Object 类型，细分的话有：Object 、Array 、Date 、RegExp、Function… ）。   基本类型：直接存储在栈(stack)中的数据 引用数据类型：存储的是该对象在栈中引用，真实的数据存放在堆内">
+<meta property="og:description" content="数据类型 基本类型：直接存储在栈(stack)中的数据(String, Number, Boolean, Null, Undefined，Symbol(new in ES 6) 引用数据类型：存储的是该对象在栈中引用，真实的数据存放在堆内存里（统称为 Object 类型，细分的话有：Object 、Array 、Date 、RegExp、Function… ）  浅拷贝与深拷贝深拷贝与浅拷贝是只针">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-11T03:44:54.000Z">
-<meta property="article:modified_time" content="2021-07-11T11:27:49.604Z">
+<meta property="article:modified_time" content="2021-07-11T11:33:44.463Z">
 <meta property="article:author" content="Tyy">
 <meta name="twitter:card" content="summary">
   
@@ -95,14 +95,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><pre><code>数据分为基本数据类型(String, Number, Boolean, Null, Undefined，Symbol(new in ES 6)和 引用数据类型（统称为 Object 类型，细分的话有：Object 、Array 、Date 、RegExp、Function… ）。
-</code></pre>
-<ul>
-<li>基本类型：直接存储在栈(stack)中的数据</li>
-<li>引用数据类型：存储的是该对象在栈中引用，真实的数据存放在堆内存里</li>
+        <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li>基本类型：直接存储在栈(stack)中的数据(String, Number, Boolean, Null, Undefined，Symbol(new in ES 6)</li>
+<li>引用数据类型：存储的是该对象在栈中引用，真实的数据存放在堆内存里（统称为 Object 类型，细分的话有：Object 、Array 、Date 、RegExp、Function… ）</li>
 </ul>
-<h2 id="浅拷贝与深拷贝"><a href="#浅拷贝与深拷贝" class="headerlink" title="浅拷贝与深拷贝"></a>浅拷贝与深拷贝</h2><pre><code>深拷贝与浅拷贝是只针对Object和Array这样的引用数据类型的。
-</code></pre>
+<h2 id="浅拷贝与深拷贝"><a href="#浅拷贝与深拷贝" class="headerlink" title="浅拷贝与深拷贝"></a>浅拷贝与深拷贝</h2><p>深拷贝与浅拷贝是只针对 Object 和 Array 这样的引用数据类型的。</p>
 <ul>
 <li>浅拷贝：只复制指向某个对象的指针而不复制对象本身，新旧对象还是共享同一块内存。</li>
 <li>深拷贝：会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。</li>
@@ -138,7 +135,7 @@
 
 <p><em>这种方法虽然可以实现数组或对象深拷贝,但不能处理函数</em></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">3</span>, &#123; <span class="attr">username</span>: <span class="string">&quot; kobe&quot;</span> &#125;, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr4 = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(arr));</span><br><span class="line">arr4[<span class="number">2</span>].username = <span class="string">&quot;duncan&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [1, 3, &#123;…&#125;, ƒ]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr4); <span class="comment">// [1, 3, &#123;…&#125;, null]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这是因为JSON.stringify() 方法是将一个JavaScript值(对象或者数组)转换为一个 JSON字符串，不能接受函数</span></span><br></pre></td></tr></table></figure></li>
-<li><p><strong>手写递归方法</strong><br>递归方法实现深度克隆原理：遍历对象、数组直到里边都是基本数据类型，然后再去复制，就是深度拷贝<br><em>这个我还没研究，等心情好的时候再说</em></p>
+<li><p><strong>手写递归方法</strong><br>递归方法实现深度克隆原理：遍历对象、数组直到里边都是基本数据类型，然后再去复制，就是深度拷贝<br><em>这个我还没研究，等回头儿再说吧</em></p>
 </li>
 <li><p><strong>函数库 lodash</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _ = <span class="built_in">require</span>(<span class="string">&quot;lodash&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: &#123; <span class="attr">f</span>: &#123; <span class="attr">g</span>: <span class="number">1</span> &#125; &#125;,</span><br><span class="line">  <span class="attr">c</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = _.cloneDeep(obj1);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj1.b.f === obj2.b.f);</span><br><span class="line"></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
