@@ -71,6 +71,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-事件委托" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/11/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="article-date">
+  <time class="dt-published" datetime="2021-07-11T00:59:21.000Z" itemprop="datePublished">2021-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/11/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">事件委托</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>官方解释<br>事件委托也叫事件代理, javaScript 高级程序设计上讲：事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。(很官方)</p>
+</li>
+<li><p>简单理解：<br>即是把原本需要绑定在子元素的响应事件(click、keydown…)委托给父元素，让父元素担当事件监听的职务。事件代理的原理是 DOM 元素的事件冒泡。</p>
+</li>
+<li><p>事件委托的作用：</p>
+<ol>
+<li>绑定的事件越多，浏览器内存占用越大，严重影响性能。</li>
+<li>ajax 的出现，局部刷新的盛行，导致每次加载完，都要重新绑定事件。</li>
+<li>部分浏览器移除元素时，绑定的事件并没有被及时移除，导致的内存泄漏，严重影响性能。</li>
+<li>大部分 ajax 局部刷新的只是显示的数据，而操作却是大部分相同的，重复绑定会导致代码的耦合性过大，严重影响后期的维护。</li>
+</ol>
+</li>
+<li><p>优点：</p>
+<ol>
+<li>可以大量节省内存占用</li>
+<li>动态生成的 DOM 也可以触发事件</li>
+</ol>
+</li>
+<li><p>举例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> father = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.father&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> son = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.son&quot;</span>);</span><br><span class="line"></span><br><span class="line">father.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e.target);</span><br><span class="line">  <span class="comment">// 事件绑定给父元素点击子标签也可执行事件</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每次捕捉到事件的时候都会获得一个 event 对象，这个对象中有一个 target 属性，也就是我们产生交互的具体目标。</span></span><br><span class="line"><span class="comment">// 只要把这个 e.target 的 NodeName 或者 class 拿来做判断，得到一个我们想要的目标，才触发相应的事件，这就算完成了。</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" data-id="ckqyibe470000m4w9284s31ik" data-title="事件委托" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-事件流" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/" class="article-date">
@@ -124,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/" data-id="ckqxw77kp00006ww92puw56xt" data-title="事件流" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/" data-id="ckqyibe4k0001m4w91crdgk0u" data-title="事件流" class="article-share-link">Share</a>
       
       
       
@@ -165,6 +227,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/blog/2021/07/11/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">事件委托</a>
+          </li>
         
           <li>
             <a href="/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/">事件流</a>
