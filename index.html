@@ -97,31 +97,34 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><pre><code>**用户触发事件过于频繁，只要最后一次事件的操作**
+        <ol>
+<li><p>防抖</p>
+<p><strong>用户触发事件过于频繁，只要最后一次事件的操作</strong></p>
+<ul>
+<li><p>基本操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> inp = <span class="built_in">document</span>.querySelector(<span class="string">&quot;input&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> t = <span class="literal">null</span>;</span><br><span class="line">inp.oninput = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (t !== <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">clearTimeout</span>(t);</span><br><span class="line">    <span class="comment">// 将之前的操作清除掉</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 只留下最后一次操作</span></span><br><span class="line">  t = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.value);</span><br><span class="line">  &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-- 基本操作
-
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> inp = <span class="built_in">document</span>.querySelector(<span class="string">&quot;input&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> t = <span class="literal">null</span></span><br><span class="line">inp.oninput = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (t !== <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="built_in">clearTimeout</span>(t)</span><br><span class="line">        <span class="comment">// 将之前的操作清除掉</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 只留下最后一次操作</span></span><br><span class="line">    t = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.value)</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-    在input中只要输入就会触发该函数，为防止不必要的操作可利用计时器来实现防抖操作
-
-- 借助闭包实现防抖
-
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> inp = <span class="built_in">document</span>.querySelector(<span class="string">&quot;input&quot;</span>)</span><br><span class="line"></span><br><span class="line">inp.oninput = debounce(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.value)</span><br><span class="line">    <span class="comment">// 此处的 this 指向 Window, 需要借助 call 改变 this 指向</span></span><br><span class="line">&#125;, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (t !== <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="built_in">clearTimeout</span>(t)</span><br><span class="line">        &#125;</span><br><span class="line">        t = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            fn.call(<span class="built_in">this</span>)</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre>
-<h2 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h2><pre><code>**控制调频事件执行次数**
-
-- 基本操作
-
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flag = <span class="literal">true</span></span><br><span class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line">            flag = <span class="literal">true</span></span><br><span class="line">        &#125;, <span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    flag = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-- 封装
-
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onscroll = throttle(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line">&#125;, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> flag = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                fn()</span><br><span class="line">                flag = <span class="literal">true</span></span><br><span class="line">            &#125;, <span class="number">500</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        flag = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre>
+<p>在 input 中只要输入就会触发该函数，为防止不必要的操作可利用计时器来实现防抖操作</p>
+</li>
+<li><p>借助闭包实现防抖</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> inp = <span class="built_in">document</span>.querySelector(<span class="string">&quot;input&quot;</span>);</span><br><span class="line"></span><br><span class="line">inp.oninput = debounce(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.value);</span><br><span class="line">  <span class="comment">// 此处的 this 指向 Window, 需要借助 call 改变 this 指向</span></span><br><span class="line">&#125;, <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> t = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (t !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(t);</span><br><span class="line">    &#125;</span><br><span class="line">    t = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.call(<span class="built_in">this</span>);</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>节流</p>
+<p><strong>控制调频事件执行次数</strong></p>
+<ul>
+<li><p>基本操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flag = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">      flag = <span class="literal">true</span>;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  flag = <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>封装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onscroll = throttle(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">&#125;, <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> flag = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        fn();</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">      &#125;, <span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    flag = <span class="literal">false</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr02lo7y000nykw9hlrjbm6u" data-title="防抖与节流" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr02utg6000ogcw90t1aeicv" data-title="防抖与节流" class="article-share-link">Share</a>
       
       
       
@@ -164,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckr02lo7q000aykw915diei35" data-title="清除浮动" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckr02utfx000agcw97ubg4lep" data-title="清除浮动" class="article-share-link">Share</a>
       
       
       
@@ -236,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/undefined%E4%B8%8Enull/" data-id="ckr02lo7e0001ykw9ghcpe5yq" data-title="undefined与null" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/undefined%E4%B8%8Enull/" data-id="ckr02utfp0003gcw9ehfb3eqh" data-title="undefined与null" class="article-share-link">Share</a>
       
       
       
@@ -278,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/js%E7%BB%A7%E6%89%BF/" data-id="ckr02lo7m0006ykw92xfcguuk" data-title="js继承" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/js%E7%BB%A7%E6%89%BF/" data-id="ckr02utfl0001gcw9h9eqft0v" data-title="js继承" class="article-share-link">Share</a>
       
       
       
@@ -320,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E5%8E%9F%E5%9E%8B%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B/" data-id="ckr02lo7n0007ykw99qmu8mp9" data-title="原型、构造函数、实例" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E5%8E%9F%E5%9E%8B%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B/" data-id="ckr02utft0006gcw95qwe1wfg" data-title="原型、构造函数、实例" class="article-share-link">Share</a>
       
       
       
@@ -407,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%8B%B7%E8%B4%9D/" data-id="ckr02lo7l0005ykw993hna8bo" data-title="拷贝" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%8B%B7%E8%B4%9D/" data-id="ckr02utfw0009gcw9fodn61ht" data-title="拷贝" class="article-share-link">Share</a>
       
       
       
@@ -488,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E9%97%AD%E5%8C%85/" data-id="ckr02lo7p0009ykw9edby6bzb" data-title="闭包" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E9%97%AD%E5%8C%85/" data-id="ckr02utfz000fgcw906zi46zb" data-title="闭包" class="article-share-link">Share</a>
       
       
       
@@ -578,7 +581,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81/" data-id="ckr02lo7x000mykw9d3v95cu8" data-title="重绘和回流" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81/" data-id="ckr02utfy000dgcw96mcngjr0" data-title="重绘和回流" class="article-share-link">Share</a>
       
       
       
@@ -644,7 +647,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" data-id="ckr02lo7i0003ykw91ri260i2" data-title="事件委托" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" data-id="ckr02utfu0007gcw94lg3g562" data-title="事件委托" class="article-share-link">Share</a>
       
       
       
@@ -713,7 +716,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/" data-id="ckr02lo7r000dykw9ez5r7kh6" data-title="事件流" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/" data-id="ckr02utfs0005gcw93o0keb0s" data-title="事件流" class="article-share-link">Share</a>
       
       
       
