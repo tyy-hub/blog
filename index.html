@@ -139,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckr0pcuvs0003bsw9gllr6qac" data-title="HTTP状态码" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckr0qchct0001kkw90qomed9i" data-title="HTTP状态码" class="article-share-link">Share</a>
       
       
       
@@ -204,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckr0pcuvn0001bsw9dh49abto" data-title="get请求与post请求" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckr0qchd00005kkw97fuo6bsi" data-title="get请求与post请求" class="article-share-link">Share</a>
       
       
       
@@ -222,6 +222,10 @@
   <time class="dt-published" datetime="2021-07-12T04:19:20.000Z" itemprop="datePublished">2021-07-12</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -238,11 +242,62 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <ol>
+<li><p>什么是跨域<br>当一个请求 url 的协议、域名、端口三者之间任意一个与当前页面 url 不同即为跨域</p>
+<table>
+<thead>
+<tr>
+<th>当前页面 url</th>
+<th>被请求页面 url</th>
+<th>是否跨域</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/index.html">http://www.test.com/index.html</a></td>
+<td>否</td>
+<td>同源（协议、域名、端口号相同）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.test.com/index.html">https://www.test.com/index.html</a></td>
+<td>跨域</td>
+<td>协议不同（http/https）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com/</a></td>
+<td>跨域</td>
+<td>主域名不同（test/baidu）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
+<td><a target="_blank" rel="noopener" href="http://blog.test.com/">http://blog.test.com/</a></td>
+<td>跨域</td>
+<td>子域名不同（www/blog）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com:8080/">http://www.test.com:8080/</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.test.com:7001/">http://www.test.com:7001/</a></td>
+<td>跨域</td>
+<td>端口号不同（8080/7001）</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>为什么会产生跨域</p>
+<p>它是由浏览器的同源策略造成的，是浏览器对 javascript 施加的安全限制。</p>
+<p>(同源策略/SOP（Same origin policy）是一种约定，由 Netscape 公司 1995 年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到 XSS、CSFR 等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个 ip 地址，也非同源。)</p>
+<p>例如：a 页面想获取 b 页面资源，如果 a、b 页面的协议、域名、端口、子域名不同，所进行的访问行动都是跨域的，而浏览器为了安全问题一般都限制了跨域访问，也就是不允许跨域请求资源。注意：跨域限制访问，其实是浏览器的限制。理解这一点很重要！！！</p>
+</li>
+<li><p>解决方法<br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011145364">https://segmentfault.com/a/1190000011145364</a></p>
+</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckr0pcuwa000ibsw962mf59ow" data-title="跨域" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckr0qchdb000jkkw9ae9b1vw2" data-title="跨域" class="article-share-link">Share</a>
       
       
       
@@ -384,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckr0pcuw4000dbsw9e0na8qq8" data-title="本地缓存机制" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckr0qchd9000hkkw9hi78hc1l" data-title="本地缓存机制" class="article-share-link">Share</a>
       
       
       
@@ -444,7 +499,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" data-id="ckr0pcuwb000lbsw9a1yza709" data-title="选择器优先级" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" data-id="ckr0qchdd000okkw9aby1b20x" data-title="选择器优先级" class="article-share-link">Share</a>
       
       
       
@@ -509,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr0pcuwf000sbsw90n7wffsi" data-title="防抖与节流" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr0qchdi000zkkw90kar01r4" data-title="防抖与节流" class="article-share-link">Share</a>
       
       
       
@@ -552,7 +607,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckr0pcuw5000ebsw94nbp9lgt" data-title="清除浮动" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckr0qchd7000ekkw91hse8d7o" data-title="清除浮动" class="article-share-link">Share</a>
       
       
       
@@ -624,7 +679,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/undefined%E4%B8%8Enull/" data-id="ckr0pcuvy0007bsw91ys9anzp" data-title="undefined与null" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/undefined%E4%B8%8Enull/" data-id="ckr0qchd20007kkw9efikhzho" data-title="undefined与null" class="article-share-link">Share</a>
       
       
       
@@ -666,7 +721,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/js%E7%BB%A7%E6%89%BF/" data-id="ckr0pcuvw0005bsw920qxh3zl" data-title="js继承" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/js%E7%BB%A7%E6%89%BF/" data-id="ckr0qchcx0003kkw95dpm9za5" data-title="js继承" class="article-share-link">Share</a>
       
       
       
@@ -708,7 +763,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E5%8E%9F%E5%9E%8B%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B/" data-id="ckr0pcuw20009bsw9b95ldc2r" data-title="原型、构造函数、实例" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E5%8E%9F%E5%9E%8B%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B/" data-id="ckr0qchd4000akkw9ex6ldigh" data-title="原型、构造函数、实例" class="article-share-link">Share</a>
       
       
       
