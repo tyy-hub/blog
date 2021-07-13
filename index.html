@@ -71,6 +71,157 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-原型对象" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time class="dt-published" datetime="2021-07-13T09:34:07.000Z" itemprop="datePublished">2021-07-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/">原型对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p><strong>原型的基本概念</strong></p>
+<ul>
+<li><p>什么是原型<br>每个对象都有他的原型对象，他可以使用自己原型对象上的所有属性和方法</p>
+</li>
+<li><p>获取原型的方法</p>
+<ul>
+<li><p>通过对象的__proto__获取</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line">cat.__proto__.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;吃鱼&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">cat.eat();</span><br></pre></td></tr></table></figure></li>
+<li><p>通过构造函数的 prototype 属性获取(ES5)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// es5 中创建构造函数通过 function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.prototype.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;吃鱼&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Cat(<span class="string">&quot;喵喵&quot;</span>, <span class="number">2</span>);</span><br><span class="line">cat.eat();</span><br></pre></td></tr></table></figure></li>
+<li><p>通过类的 prototype(ES6)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// es6 中创建构造函数通过 class</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name, age</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.prototype.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;吃鱼&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Cat(<span class="string">&quot;喵喵&quot;</span>, <span class="number">2</span>);</span><br><span class="line">cat.eat();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>原型、构造函数与实例之间的关系<br>实例.__proto__===原型<br>原型.constructor===构造函数<br>构造函数.prototype===原型</p>
+</li>
+</ul>
+</li>
+<li><p><strong>类与继承</strong></p>
+<ul>
+<li><p>什么是继承<br>JavaScript 中继承是一种允许我们在已有类的基础上创建新类的机制；它为子类提供了灵活性，可以重用父类的方法和变量。子类可以使用父类的所有功能，并且对这些功能进行扩展。继承的过程，就是从一般到特殊的过程。</p>
+</li>
+<li><p>举例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">username, password</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.username = username;</span><br><span class="line">    <span class="built_in">this</span>.password = password;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">login</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;登录&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin</span> <span class="keyword">extends</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">deletePerson</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;删除一个人&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> admin = <span class="keyword">new</span> Admin(<span class="string">&quot;admin&quot;</span>, <span class="string">&quot;123456&quot;</span>);</span><br><span class="line">admin.login();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>原型继承与原型链</strong></p>
+<ul>
+<li><p>原型继承</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">username, password</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.username = username;</span><br><span class="line">  <span class="built_in">this</span>.password = password;</span><br><span class="line">  <span class="built_in">this</span>.login = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;登录&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Admin</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.deletePerson = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;删除一个人&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现原型继承</span></span><br><span class="line">Admin.prototype = <span class="keyword">new</span> User();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> admin = <span class="keyword">new</span> Admin();</span><br><span class="line">admin.login();</span><br></pre></td></tr></table></figure></li>
+<li><p>原型链<br>admin 的原型为 prototype，prototype 是一个对象，既然 prototype 是一个对象那么它就有原型，它的原型还会有原型……，尽头为 Object.prototype</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">username, password</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.username = username;</span><br><span class="line">  <span class="built_in">this</span>.password = password;</span><br><span class="line">  <span class="comment">// this.login = function () &#123;</span></span><br><span class="line">  <span class="comment">//     console.log(&quot;登录&quot;)</span></span><br><span class="line">  <span class="comment">// &#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.prototype.login = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;Object登录&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Admin</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.deletePerson = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;删除一个人&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现原型继承</span></span><br><span class="line">Admin.prototype = <span class="keyword">new</span> User();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> admin = <span class="keyword">new</span> Admin();</span><br><span class="line"></span><br><span class="line"><span class="comment">// admin中不存在login，继承的User中也不存在，直至尽头 Object 中存在</span></span><br><span class="line">admin.login();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" data-id="ckr1wmjyk00093ww95rrmd58d" data-title="原型对象" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-call、bind、apply" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" class="article-date">
+  <time class="dt-published" datetime="2021-07-13T03:01:08.000Z" itemprop="datePublished">2021-07-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/">call、bind、apply</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>相似处</p>
+<ul>
+<li>都是用来改变 this 指向的</li>
+<li>call 、bind 、 apply 这三个函数的第一个参数都是 this 的指向对象</li>
+</ul>
+</li>
+<li><p>不同处</p>
+<ul>
+<li>call 的参数是直接放进去的，第二第三第 n 个参数全都用逗号分隔，直接放到后面 obj.myFun.call(db,’成都’, … ,’string’ )。</li>
+<li>apply 的所有参数都必须放在一个数组里面传进去 obj.myFun.apply(db,[‘成都’, …, ‘string’ ])。</li>
+<li>bind 除了返回是函数以外，它 的参数和 call 一样。</li>
+</ul>
+</li>
+<li><p>举例</p>
+<ul>
+<li><p><strong>call</strong></p>
+<ul>
+<li><p>基本使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 指向小 cat</span></span><br><span class="line">  <span class="built_in">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;喵&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 指向小 cat</span></span><br><span class="line">  Animal.call(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line">cat.say();</span><br></pre></td></tr></table></figure></li>
+<li><p>传参</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;旺财&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我是&quot;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params">food1, food2</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我喜欢吃&quot;</span> + food1 + food2);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">dog.eat.call(cat, <span class="string">&quot;鱼&quot;</span>, <span class="string">&quot;肉&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>apply</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;旺财&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我是&quot;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params">food1, food2</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我喜欢吃&quot;</span> + food1 + food2);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">dog.eat.apply(cat, [<span class="string">&quot;鱼&quot;</span>, <span class="string">&quot;肉&quot;</span>]);</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>bind</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;旺财&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我是&quot;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params">food1, food2</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我喜欢吃&quot;</span> + food1 + food2);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bind 会返回一个函数, 可多次调用</span></span><br><span class="line"><span class="keyword">let</span> res = dog.eat.bind(cat, <span class="string">&quot;鱼&quot;</span>, <span class="string">&quot;肉&quot;</span>);</span><br><span class="line">res();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckr1wmjye00033ww9gslz035f" data-title="call、bind、apply" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-HTTP状态码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" class="article-date">
@@ -139,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckr0qchct0001kkw90qomed9i" data-title="HTTP状态码" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckr1wmjy900013ww9d9dgafbn" data-title="HTTP状态码" class="article-share-link">Share</a>
       
       
       
@@ -204,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckr0qchd00005kkw97fuo6bsi" data-title="get请求与post请求" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckr1wmjyh00053ww9018b82x3" data-title="get请求与post请求" class="article-share-link">Share</a>
       
       
       
@@ -297,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckr0qchdb000jkkw9ae9b1vw2" data-title="跨域" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckr1wmjyt000j3ww95p1y41dq" data-title="跨域" class="article-share-link">Share</a>
       
       
       
@@ -439,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckr0qchd9000hkkw9hi78hc1l" data-title="本地缓存机制" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckr1wmjyp000e3ww94zna8jpp" data-title="本地缓存机制" class="article-share-link">Share</a>
       
       
       
@@ -499,7 +650,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" data-id="ckr0qchdd000okkw9aby1b20x" data-title="选择器优先级" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" data-id="ckr1wmjyu000m3ww9e95544j5" data-title="选择器优先级" class="article-share-link">Share</a>
       
       
       
@@ -564,7 +715,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr0qchdi000zkkw90kar01r4" data-title="防抖与节流" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr1wmjz400113ww9gjc58kdl" data-title="防抖与节流" class="article-share-link">Share</a>
       
       
       
@@ -607,7 +758,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckr0qchd7000ekkw91hse8d7o" data-title="清除浮动" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckr1wmjyr000h3ww90zlc303l" data-title="清除浮动" class="article-share-link">Share</a>
       
       
       
@@ -679,91 +830,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/undefined%E4%B8%8Enull/" data-id="ckr0qchd20007kkw9efikhzho" data-title="undefined与null" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-js继承" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/11/js%E7%BB%A7%E6%89%BF/" class="article-date">
-  <time class="dt-published" datetime="2021-07-11T03:45:37.000Z" itemprop="datePublished">2021-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/11/js%E7%BB%A7%E6%89%BF/">js继承</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/js%E7%BB%A7%E6%89%BF/" data-id="ckr0qchcx0003kkw95dpm9za5" data-title="js继承" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-原型、构造函数、实例" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/11/%E5%8E%9F%E5%9E%8B%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B/" class="article-date">
-  <time class="dt-published" datetime="2021-07-11T03:45:14.000Z" itemprop="datePublished">2021-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/11/%E5%8E%9F%E5%9E%8B%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B/">原型、构造函数、实例</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E5%8E%9F%E5%9E%8B%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%9E%E4%BE%8B/" data-id="ckr0qchd4000akkw9ex6ldigh" data-title="原型、构造函数、实例" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/undefined%E4%B8%8Enull/" data-id="ckr1wmjyj00073ww9gf6f3i98" data-title="undefined与null" class="article-share-link">Share</a>
       
       
       
@@ -818,6 +885,14 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/">原型对象</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/">call、bind、apply</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/">HTTP状态码</a>
           </li>
         
@@ -827,14 +902,6 @@
         
           <li>
             <a href="/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/">跨域</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">本地缓存机制</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/">选择器优先级</a>
           </li>
         
       </ul>
