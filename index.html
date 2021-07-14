@@ -71,6 +71,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-visibility、opacity、display" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/" class="article-date">
+  <time class="dt-published" datetime="2021-07-14T08:07:51.000Z" itemprop="datePublished">2021-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/">visibility、opacity、display</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p><strong>display: none</strong></p>
+<ul>
+<li>会让元素完全从渲染树中消失，渲染的时候不占据任何空间, 不能点击</li>
+<li>是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示</li>
+<li>修改元素会造成文档回流,读屏器不会读取 display: none 元素内容，性能消耗较大</li>
+</ul>
+</li>
+<li><p><strong>visibility: hidden</strong></p>
+<ul>
+<li>不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，不能点击</li>
+<li>是继承属性，子孙节点消失由于继承了 hidden，通过设置 visibility: visible;可以让子孙节点显式。</li>
+<li>修改元素只会造成本元素的重绘,性能消耗较少</li>
+</ul>
+</li>
+<li><p><strong>opacity: 0</strong></p>
+<ul>
+<li>不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，可以点击</li>
+<li>修改元素会造成重绘，性能消耗较少</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/" data-id="ckr3881sj0007y4w9ahk1fdqu" data-title="visibility、opacity、display" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-水平垂直居中" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" class="article-date">
@@ -151,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" data-id="ckr3727nh000hc0w94dkp6cfq" data-title="水平垂直居中" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" data-id="ckr3881sr000jy4w99yy69ivc" data-title="水平垂直居中" class="article-share-link">Share</a>
       
       
       
@@ -229,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" data-id="ckr3727nf000dc0w99sxc3s3z" data-title="原型对象" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" data-id="ckr3881sn000dy4w966r08ziz" data-title="原型对象" class="article-share-link">Share</a>
       
       
       
@@ -302,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckr3727n80005c0w954et4um3" data-title="call、bind、apply" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckr3881sd0003y4w935lg3vpg" data-title="call、bind、apply" class="article-share-link">Share</a>
       
       
       
@@ -382,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckr3727n20001c0w99sybghb1" data-title="HTTP状态码" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckr3881s90001y4w9gmrfdqf6" data-title="HTTP状态码" class="article-share-link">Share</a>
       
       
       
@@ -447,7 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckr3727n50003c0w9882f90gb" data-title="get请求与post请求" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckr3881sh0005y4w9a9g7d9cp" data-title="get请求与post请求" class="article-share-link">Share</a>
       
       
       
@@ -540,7 +604,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckr3727nk000lc0w9c0w40e9c" data-title="跨域" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckr3881su000oy4w9g4j885az" data-title="跨域" class="article-share-link">Share</a>
       
       
       
@@ -682,7 +746,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckr3727ng000ec0w97h35dnub" data-title="本地缓存机制" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckr3881sq000hy4w9eqk0fmw4" data-title="本地缓存机制" class="article-share-link">Share</a>
       
       
       
@@ -742,7 +806,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" data-id="ckr3727nl000nc0w93c4dfnz7" data-title="选择器优先级" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" data-id="ckr3881sw000ry4w9ha30gyll" data-title="选择器优先级" class="article-share-link">Share</a>
       
       
       
@@ -807,80 +871,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr3727nm000qc0w95yq5cqrz" data-title="防抖与节流" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-清除浮动" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" class="article-date">
-  <time class="dt-published" datetime="2021-07-11T13:12:08.000Z" itemprop="datePublished">2021-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/">清除浮动</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p><strong>为什么会产生浮动</strong><br> 当父元素不给高度的时候，内部元素不浮动时会撑开，而浮动的时候，父元素变成一条线</p>
-</li>
-<li><p><strong>清除浮动的方法</strong></p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;fahter&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;big&quot;</span>&gt;</span>big<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;small&quot;</span>&gt;</span>small<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;clear&quot;</span>&gt;</span>额外标签法<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>额外标签法(不推荐)</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fahter</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid deeppink;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.big</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: darkorange;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.small</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">120px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">120px</span>;</span><br><span class="line">  <span class="attribute">background</span>: darkmagenta;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clear</span> &#123;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>优点：通俗易懂，方便</p>
-<p>缺点：添加无意义标签，语义化差</p>
-</li>
-<li><p>父元素添加 overflow: hidden(不推荐)</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fahter</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid deeppink;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>优点：代码简洁<br>缺点：内容增多的时候容易造成不会自动换行导致内容被隐藏掉，无法显示要溢出的元素</p>
-</li>
-<li><p>after 伪元素(推荐)</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>:after &#123;</span><br><span class="line">  /*伪元素是行内元素 正常浏览器清除浮动方法*/</span><br><span class="line">  content: <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">  *zoom: <span class="number">1</span>; <span class="comment">/*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>优点：符合闭合浮动思想，结构语义化正确<br>缺点：ie6-7 不支持伪元素：after，使用 zoom:1 触发 hasLayout.</p>
-</li>
-<li><p>使用 before 和 after 双伪元素清除浮动</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>:after,</span><br><span class="line">.clearfix:before &#123;</span><br><span class="line">  content: <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="attribute">display</span>: table;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span>:after &#123;</span><br><span class="line">  clear: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">  *zoom: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>优点：代码更简洁<br>缺点：用 zoom:1 触发 hasLayout.</p>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckr3727nj000ic0w9hpln0y18" data-title="清除浮动" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr3881sy000wy4w93jlyg3ej" data-title="防抖与节流" class="article-share-link">Share</a>
       
       
       
@@ -935,6 +926,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/">visibility、opacity、display</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">水平垂直居中</a>
           </li>
         
@@ -948,10 +943,6 @@
         
           <li>
             <a href="/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/">HTTP状态码</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/">get请求与post请求</a>
           </li>
         
       </ul>
