@@ -71,6 +71,98 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-水平垂直居中" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" class="article-date">
+  <time class="dt-published" datetime="2021-07-14T07:25:30.000Z" itemprop="datePublished">2021-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">水平垂直居中</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p><strong>水平居中</strong></p>
+<ul>
+<li><p>margin:auto</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* **************************功能实现*********************** */</span></span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="comment">/* top: 0; */</span></span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="comment">/* bottom: 0; */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>定位为上下左右为 0，margin：0 可以实现脱离文档流的居中.</p>
+</li>
+<li><p>margin 负值法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* **************************功能实现*********************** */</span></span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>补充：其实这里也可以将 margin-left 负值替换成 transform: translateX(-50%)</p>
+</li>
+<li><p>flex 布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* **************************功能实现*********************** */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>垂直居中</strong></p>
+<ul>
+<li><p>margin:auto</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* **************************功能实现*********************** */</span></span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>定位为上下左右为 0，margin：0 可以实现脱离文档流的居中.</p>
+</li>
+<li><p>margin 负值法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* **************************功能实现*********************** */</span></span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>补充：其实这里也可以将 margin-top 负值替换成 transform: translateY(-50%)</p>
+</li>
+<li><p>flex 布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* **************************功能实现*********************** */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>table-cell(未脱离文档流的)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">display</span>: table-cell;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" data-id="ckr3727nh000hc0w94dkp6cfq" data-title="水平垂直居中" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-原型对象" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" class="article-date">
@@ -137,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" data-id="ckr2wsdov000akww9awdbecfq" data-title="原型对象" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" data-id="ckr3727nf000dc0w99sxc3s3z" data-title="原型对象" class="article-share-link">Share</a>
       
       
       
@@ -210,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckr2wsdos0006kww95dt18o25" data-title="call、bind、apply" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckr3727n80005c0w954et4um3" data-title="call、bind、apply" class="article-share-link">Share</a>
       
       
       
@@ -290,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckr2wsdok0001kww98b2p67jd" data-title="HTTP状态码" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckr3727n20001c0w99sybghb1" data-title="HTTP状态码" class="article-share-link">Share</a>
       
       
       
@@ -355,7 +447,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckr2wsdor0005kww95gf6dbbb" data-title="get请求与post请求" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckr3727n50003c0w9882f90gb" data-title="get请求与post请求" class="article-share-link">Share</a>
       
       
       
@@ -448,7 +540,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckr2wsdp0000hkww933gn2b6g" data-title="跨域" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckr3727nk000lc0w9c0w40e9c" data-title="跨域" class="article-share-link">Share</a>
       
       
       
@@ -590,7 +682,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckr2wsdoz000ekww9d23n34xh" data-title="本地缓存机制" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckr3727ng000ec0w97h35dnub" data-title="本地缓存机制" class="article-share-link">Share</a>
       
       
       
@@ -650,7 +742,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" data-id="ckr2wsdpb000rkww9hdnw7a5y" data-title="选择器优先级" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" data-id="ckr3727nl000nc0w93c4dfnz7" data-title="选择器优先级" class="article-share-link">Share</a>
       
       
       
@@ -715,7 +807,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr2wsdpe000wkww95oc745bc" data-title="防抖与节流" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckr3727nm000qc0w95yq5cqrz" data-title="防抖与节流" class="article-share-link">Share</a>
       
       
       
@@ -788,79 +880,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckr2wsdpb000skww9523tf5vk" data-title="清除浮动" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-undefined与null" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/11/undefined%E4%B8%8Enull/" class="article-date">
-  <time class="dt-published" datetime="2021-07-11T11:36:32.000Z" itemprop="datePublished">2021-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/11/undefined%E4%B8%8Enull/">undefined与null</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>相似性<br>在 JavaScript 中，将一个变量赋值为 undefined 或 null，老实说，几乎没区别。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="literal">null</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a == b); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a === b); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<p>undefined 与 null 转换为布尔值同为 false，相等运算符直接报告两者相等</p>
-</li>
-<li><p>最初设计</p>
-<ul>
-<li>null 转为数值时为 0</li>
-<li>undefined 转为数值时为 NaN</li>
-</ul>
-</li>
-<li><p>目前用法</p>
-<ul>
-<li><p>null 表示”没有对象”，即该处不应该有值。典型用法是：</p>
-<ul>
-<li>作为函数的参数，表示该函数的参数不是对象。</li>
-<li>作为对象原型链的终点<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="built_in">Object</span>.prototype);</span><br><span class="line"><span class="comment">// null</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>undefined 表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：</p>
-<ul>
-<li>声明未赋值</li>
-<li>调用函数时，应该提供的参数没有提供，该参数等于 undefined。</li>
-<li>对象没有赋值的属性，该属性的值为 undefined。</li>
-<li>函数没有返回值时，默认返回 undefined。</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i;</span><br><span class="line">i; <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line">f(); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.p; <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = f();</span><br><span class="line">x; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/undefined%E4%B8%8Enull/" data-id="ckr2wsdoo0003kww97qln3gmk" data-title="undefined与null" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckr3727nj000ic0w9hpln0y18" data-title="清除浮动" class="article-share-link">Share</a>
       
       
       
@@ -915,6 +935,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">水平垂直居中</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/">原型对象</a>
           </li>
         
@@ -928,10 +952,6 @@
         
           <li>
             <a href="/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/">get请求与post请求</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/">跨域</a>
           </li>
         
       </ul>
