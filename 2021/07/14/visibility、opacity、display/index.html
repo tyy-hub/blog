@@ -6,15 +6,15 @@
   
   <title>visibility、opacity、display | Note</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="display: none  会让元素完全从渲染树中消失，渲染的时候不占据任何空间, 不能点击 是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示 修改元素会造成文档回流,读屏器不会读取 display: none 元素内容，性能消耗较大   visibility: hidden  不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，不能点击 是继承属性，">
+  <meta name="description" content="display: none  会让元素完全从页面中消失，但 dom 节点依然存在, 不能点击 是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示 修改元素会造成文档回流,读屏器不会读取 display: none 元素内容，性能消耗较大   visibility: hidden  不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，不能点击 是继承属性，子">
 <meta property="og:type" content="article">
 <meta property="og:title" content="visibility、opacity、display">
 <meta property="og:url" content="http://tyy-hub.github.io/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/index.html">
 <meta property="og:site_name" content="Note">
-<meta property="og:description" content="display: none  会让元素完全从渲染树中消失，渲染的时候不占据任何空间, 不能点击 是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示 修改元素会造成文档回流,读屏器不会读取 display: none 元素内容，性能消耗较大   visibility: hidden  不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，不能点击 是继承属性，">
+<meta property="og:description" content="display: none  会让元素完全从页面中消失，但 dom 节点依然存在, 不能点击 是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示 修改元素会造成文档回流,读屏器不会读取 display: none 元素内容，性能消耗较大   visibility: hidden  不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，不能点击 是继承属性，子">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-14T08:07:51.000Z">
-<meta property="article:modified_time" content="2021-07-14T08:26:38.720Z">
+<meta property="article:modified_time" content="2021-09-05T07:29:59.714Z">
 <meta property="article:author" content="Tyy">
 <meta name="twitter:card" content="summary">
   
@@ -102,7 +102,7 @@
         <ol>
 <li><p><strong>display: none</strong></p>
 <ul>
-<li>会让元素完全从渲染树中消失，渲染的时候不占据任何空间, 不能点击</li>
+<li>会让元素完全从页面中消失，但 dom 节点依然存在, 不能点击</li>
 <li>是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示</li>
 <li>修改元素会造成文档回流,读屏器不会读取 display: none 元素内容，性能消耗较大</li>
 </ul>
