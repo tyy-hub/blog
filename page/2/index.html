@@ -248,13 +248,17 @@
 </li>
 <li><p>目前用法</p>
 <ul>
-<li><p>null 表示”没有对象”，即该处不应该有值。典型用法是：</p>
+<li><p>null 表示”没有对象”，即该处不应该有值，不占内存。典型用法是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>); <span class="comment">// object</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>作为函数的参数，表示该函数的参数不是对象。</li>
-<li>作为对象原型链的终点<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="built_in">Object</span>.prototype);</span><br><span class="line"><span class="comment">// null</span></span><br></pre></td></tr></table></figure></li>
+<li>作为对象原型链的终点</li>
 </ul>
-</li>
-<li><p>undefined 表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="built_in">Object</span>.prototype);</span><br><span class="line"><span class="comment">// null</span></span><br></pre></td></tr></table></figure></li>
+<li><p>undefined 表示”缺少值”，就是此处应该有一个值，但是还没有定义，占内存。典型用法是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>); <span class="comment">// object</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>声明未赋值</li>
 <li>调用函数时，应该提供的参数没有提供，该参数等于 undefined。</li>
