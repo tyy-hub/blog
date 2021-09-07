@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>溢出显示省略号 | Note</title>
+  <title>css优化，提高性能 | Note</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="单行溢出 12345678.box &amp;#123;  width: 100px;  overflow: hidden;  text-overflow: ellipsis;  &#x2F;* nowrap 不换行 *&#x2F;  white-space: nowrap;  background-color: #ccc;&amp;#125;">
+  <meta name="description" content="首推的是合并 css 文件，如果页面加载 10 个 css 文件，每个文件 1k，那么也要比只加载一个 100k 的 css 文件慢。  减少 css 嵌套，最好不要套三层以上。  不要在 ID 选择器前面进行嵌套，ID 本来就是唯一的而且人家权值那么大，嵌套完全是浪费性能。  建立公共样式类，把相同样式提取出来作为公共类使用，比如我们常用的清除浮动等。  减少通配符*或者类似[hidden&#x3D;”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="溢出显示省略号">
-<meta property="og:url" content="http://tyy-hub.github.io/blog/2021/07/14/%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/index.html">
+<meta property="og:title" content="css优化，提高性能">
+<meta property="og:url" content="http://tyy-hub.github.io/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/index.html">
 <meta property="og:site_name" content="Note">
-<meta property="og:description" content="单行溢出 12345678.box &amp;#123;  width: 100px;  overflow: hidden;  text-overflow: ellipsis;  &#x2F;* nowrap 不换行 *&#x2F;  white-space: nowrap;  background-color: #ccc;&amp;#125;">
+<meta property="og:description" content="首推的是合并 css 文件，如果页面加载 10 个 css 文件，每个文件 1k，那么也要比只加载一个 100k 的 css 文件慢。  减少 css 嵌套，最好不要套三层以上。  不要在 ID 选择器前面进行嵌套，ID 本来就是唯一的而且人家权值那么大，嵌套完全是浪费性能。  建立公共样式类，把相同样式提取出来作为公共类使用，比如我们常用的清除浮动等。  减少通配符*或者类似[hidden&#x3D;”">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-07-14T14:32:40.000Z">
-<meta property="article:modified_time" content="2021-07-14T14:41:11.122Z">
+<meta property="article:published_time" content="2021-09-07T02:46:20.000Z">
+<meta property="article:modified_time" content="2021-09-07T02:48:16.388Z">
 <meta property="article:author" content="Tyy">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-溢出显示省略号" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-css优化，提高性能" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/07/14/%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/" class="article-date">
-  <time class="dt-published" datetime="2021-07-14T14:32:40.000Z" itemprop="datePublished">2021-07-14</time>
+    <a href="/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" class="article-date">
+  <time class="dt-published" datetime="2021-09-07T02:46:20.000Z" itemprop="datePublished">2021-09-07</time>
 </a>
     
   <div class="article-category">
@@ -91,7 +91,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      溢出显示省略号
+      css优化，提高性能
     </h1>
   
 
@@ -99,13 +99,31 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><strong>单行溢出</strong></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="comment">/* nowrap 不换行 */</span></span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <ul>
+<li><p>首推的是合并 css 文件，如果页面加载 10 个 css 文件，每个文件 1k，那么也要比只加载一个 100k 的 css 文件慢。</p>
+</li>
+<li><p>减少 css 嵌套，最好不要套三层以上。</p>
+</li>
+<li><p>不要在 ID 选择器前面进行嵌套，ID 本来就是唯一的而且人家权值那么大，嵌套完全是浪费性能。</p>
+</li>
+<li><p>建立公共样式类，把相同样式提取出来作为公共类使用，比如我们常用的清除浮动等。</p>
+</li>
+<li><p>减少通配符*或者类似[hidden=”true”]这类选择器的使用，挨个查找所有…这性能能好吗？当然重置样式这些必须 的东西是不能少的。</p>
+</li>
+<li><p>巧妙运用 css 的继承机制，如果父节点定义了，子节点就无需定义。</p>
+</li>
+<li><p>拆分出公共 css 文件，对于比较大的项目我们可以将大部分页面的公共结构的样式提取出来放到单独 css 文件里， 这样一次下载后就放到缓存里，当然这种做法会增加请求，具体做法应以实际情况而定。</p>
+</li>
+<li><p>不用 css 表达式，表达式只是让你的代码显得更加炫酷，但是他对性能的浪费可能是超乎你的想象的。</p>
+</li>
+<li><p>cssSprite，合成所有 icon 图片，用宽高加上 bacgroud-position 的背景图方式显现出我们要的 icon 图，这是一种 十分实用的技巧，极大减少了 http 请求。</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/" data-id="ckt9fd0u6000zccw915r92y03" data-title="溢出显示省略号" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" data-id="ckt9h8ogs0000ksw9cj9f8fl1" data-title="css优化，提高性能" class="article-share-link">Share</a>
       
       
       
@@ -115,19 +133,19 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2021/09/07/%E9%80%89%E6%8B%A9%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2021/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          选择器
+          css选择器的解析过程
         
       </div>
     </a>
   
   
-    <a href="/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/2021/09/07/%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">visibility、opacity、display</div>
+      <div class="article-nav-title">纯css创建一个三角形的原理是什么</div>
     </a>
   
 </nav>

@@ -71,6 +71,160 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-call、bind、apply" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" class="article-date">
+  <time class="dt-published" datetime="2021-07-13T03:01:08.000Z" itemprop="datePublished">2021-07-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/">call、bind、apply</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>相似处</p>
+<ul>
+<li>都是用来改变 this 指向的</li>
+<li>call 、bind 、 apply 这三个函数的第一个参数都是 this 的指向对象</li>
+</ul>
+</li>
+<li><p>不同处</p>
+<ul>
+<li>call 的参数是直接放进去的，第二第三第 n 个参数全都用逗号分隔，直接放到后面 obj.myFun.call(db,’成都’, … ,’string’ )。</li>
+<li>apply 的所有参数都必须放在一个数组里面传进去 obj.myFun.apply(db,[‘成都’, …, ‘string’ ])。</li>
+<li>bind 除了返回是函数以外，它 的参数和 call 一样。</li>
+</ul>
+</li>
+<li><p>举例</p>
+<ul>
+<li><p><strong>call</strong></p>
+<ul>
+<li><p>基本使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 指向小 cat</span></span><br><span class="line">  <span class="built_in">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;喵&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 指向小 cat</span></span><br><span class="line">  Animal.call(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line">cat.say();</span><br></pre></td></tr></table></figure></li>
+<li><p>传参</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;旺财&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我是&quot;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params">food1, food2</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;喜欢吃&quot;</span> + food1 + food2); <span class="comment">// 喵喵喜欢吃鱼肉</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">dog.eat.call(cat, <span class="string">&quot;鱼&quot;</span>, <span class="string">&quot;肉&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>apply</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;旺财&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我是&quot;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params">food1, food2</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我喜欢吃&quot;</span> + food1 + food2);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">dog.eat.apply(cat, [<span class="string">&quot;鱼&quot;</span>, <span class="string">&quot;肉&quot;</span>]);</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>bind</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;旺财&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我是&quot;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params">food1, food2</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我喜欢吃&quot;</span> + food1 + food2);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bind 会返回一个函数, 可多次调用</span></span><br><span class="line"><span class="keyword">let</span> res = dog.eat.bind(cat, <span class="string">&quot;鱼&quot;</span>, <span class="string">&quot;肉&quot;</span>);</span><br><span class="line">res();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckt9fd0s90003ccw9aqi07cud" data-title="call、bind、apply" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-HTTP状态码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" class="article-date">
+  <time class="dt-published" datetime="2021-07-12T04:26:15.000Z" itemprop="datePublished">2021-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/">HTTP状态码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>常见的状态码<ul>
+<li>200 请求成功</li>
+<li>301 资源(网页等)被永久转移到其它 URL</li>
+<li>304 如果客户端发送了一个带条件的GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个304状态码。简单的表达就是：服务端已经执行了GET，但文件未变化。</li>
+<li>404 请求的资源(网页等)不存在</li>
+<li>500 内部服务器错误</li>
+</ul>
+</li>
+<li>状态码分类<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>分类描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1**</td>
+<td>信息，服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td>2**</td>
+<td>成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td>3**</td>
+<td>重定向，需要进一步的操作以完成请求</td>
+</tr>
+<tr>
+<td>4**</td>
+<td>客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td>5**</td>
+<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckt9fd0rw0001ccw93vwwbe3f" data-title="HTTP状态码" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-get请求与post请求" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" class="article-date">
@@ -741,180 +895,6 @@
 
 
   
-    <article id="post-闭包" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/11/%E9%97%AD%E5%8C%85/" class="article-date">
-  <time class="dt-published" datetime="2021-07-11T02:58:14.000Z" itemprop="datePublished">2021-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/11/%E9%97%AD%E5%8C%85/">闭包</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>了解闭包</p>
-<ul>
-<li><p>概念<br>我们都知道，js 的作用域分两种，全局和局部，基于我们所熟悉的作用域链相关知识，我们知道在 js 作用域环境中访问变量的权利是由内向外的，内部作用域可以获得当前作用域下的变量并且可以获得当前包含当前作用域的外层作用域下的变量，反之则不能，也就是说在外层作用域下无法获取内层作用域下的变量，同样在不同的函数作用域中也是不能相互访问彼此变量的，那么我们想在一个函数内部也有限权访问另一个函数内部的变量该怎么办呢？闭包就是用来解决这一需求的，闭包的本质就是在一个函数内部创建另一个函数。</p>
-</li>
-<li><p>闭包有 3 个特性：</p>
-<ul>
-<li>闭包是一个函数，而且存在于另一个函数当中</li>
-<li>函数内部可以引用函数外部的参数和变量</li>
-<li>参数和变量不会被垃圾回收机制回收</li>
-</ul>
-</li>
-<li><p>举例</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&quot;有鱼&quot;</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">cat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> cat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> per = person(); <span class="comment">// per的值就是return后的结果，即cat函数</span></span><br><span class="line">per(); <span class="comment">// 有鱼 per()就相当于cat()</span></span><br><span class="line">per(); <span class="comment">// 有鱼 同上，而且变量name没有销毁，一直存在内存中，供函数cat调用</span></span><br><span class="line">per(); <span class="comment">// 有鱼</span></span><br></pre></td></tr></table></figure></li>
-<li><p>闭包的原理<br>闭包的实现原理，其实是利用了作用域链的特性，我们都知道作用域链就是在当前执行环境下访问某个变量时，如果不存在就一直向外层寻找，最终寻找到最外层也就是全局作用域，这样就形成了一个链条。</p>
-</li>
-</ul>
-</li>
-<li><p>闭包的好处与坏处</p>
-<ul>
-<li>好处<ul>
-<li>隐藏变量，避免全局污染</li>
-<li>可以读取函数内部的变量</li>
-</ul>
-</li>
-<li>坏处<ul>
-<li>导致变量不会被垃圾回收机制回收，造成内存消耗</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>闭包的应用<br>需求：实现变量 a 的自增</p>
-<ul>
-<li><p>通过全局变量，可以实现，但会污染其他程序</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Add</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  a++;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br><span class="line">Add(); <span class="comment">// 11</span></span><br><span class="line">Add(); <span class="comment">// 12</span></span><br><span class="line">Add(); <span class="comment">// 13</span></span><br></pre></td></tr></table></figure></li>
-<li><p>定义一个局部变量，不污染全局，但是实现不了递增</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Add2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">  a++;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br><span class="line">Add2(); <span class="comment">// 11</span></span><br><span class="line">Add2(); <span class="comment">// 11</span></span><br><span class="line">Add2(); <span class="comment">// 11</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure></li>
-<li><p>通过闭包，可以是函数内部局部变量递增，不会影响全部变量</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Add3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    a++;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cc = Add3(); <span class="comment">// 此处将返回的函数存储(即将变量a存在到了内存)</span></span><br><span class="line"><span class="built_in">console</span>.log(cc()); <span class="comment">// 11</span></span><br><span class="line"><span class="built_in">console</span>.log(cc()); <span class="comment">// 12</span></span><br><span class="line"><span class="built_in">console</span>.log(cc()); <span class="comment">// 13</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 若为以下写法相当于每次调用了Add3函数，每次都给a重新赋值</span></span><br><span class="line"><span class="built_in">console</span>.log(Add3()());</span><br><span class="line"><span class="built_in">console</span>.log(Add3()());</span><br><span class="line"><span class="built_in">console</span>.log(Add3()());</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E9%97%AD%E5%8C%85/" data-id="ckt9fd0uj0019ccw955q33y2w" data-title="闭包" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-重绘和回流" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/11/%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81/" class="article-date">
-  <time class="dt-published" datetime="2021-07-11T01:32:37.000Z" itemprop="datePublished">2021-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/11/%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81/">重绘和回流</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>重绘和回流都是渲染步骤中的一小节，但是这两个步骤对于性能的影响很大。</p>
-<ul>
-<li><p>概念</p>
-<ul>
-<li>重绘是当节点需要更改外观而不会影响布局的，比如改变 color 就称为重绘。</li>
-<li>回流是布局或者几何属性需要改变就称为回流。</li>
-</ul>
-</li>
-<li><p>重绘和回流的区别<br>回流必定发生重绘，重绘不一定会引发回流。回流所需要的成本比重绘高的多，改变深层次的节点很可能导致父的一系列回流。</p>
-</li>
-<li><p>减少重绘和回流</p>
-<ul>
-<li><p>CSS</p>
-<ol>
-<li><p>使用 transform 替代 top</p>
-</li>
-<li><p>使用 visibility 替换 display: none ，因为前者只会引起重绘，后者会引发回流（改变了布局）</p>
-</li>
-<li><p>避免使用 table 布局，可能很小的一个小改动会造成整个 table 的重新布局。</p>
-</li>
-<li><p>尽可能在 DOM 树的最末端改变 class，回流是不可避免的，但可以减少其影响。尽可能在 DOM 树的最末端改变 class，可以限制了回流的范围，使其影响尽可能少的节点。</p>
-</li>
-<li><p>避免设置多层内联样式，CSS 选择符从右往左匹配查找，避免节点层级过多。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span>&gt;</span> <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">  <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: red;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css">  <span class="selector-tag">div</span> &gt; <span class="selector-tag">a</span> &gt; <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: red;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>对于第一种设置样式的方式来说，浏览器只需要找到页面中所有的 span 标签然后设置颜色，但是对于第二种设置样式的方式来说，浏览器首先需要找到所有的 span 标签，然后找到 span 标签上的 a 标签，最后再去找到 div 标签，然后给符合这种条件的 span 标签设置颜色，这样的递归过程就很复杂。所以我们应该尽可能的避免写过于具体的 CSS 选择器，然后对于 HTML 来说也尽量少的添加无意义标签，保证层级扁平。</p>
-</li>
-<li><p>将动画效果应用到 position 属性为 absolute 或 fixed 的元素上，避免影响其他元素的布局，这样只是一个重绘，而不是回流，同时，控制动画速度可以选择 requestAnimationFrame。</p>
-</li>
-<li><p>避免使用 CSS 表达式(expression())，可能会引发回流。</p>
-</li>
-<li><p>将频繁重绘或者回流的节点设置为图层，图层能够阻止该节点的渲染行为影响别的节点，例如 will-change、video、iframe 等标签，浏览器会自动将该节点变为图层。</p>
-</li>
-<li><p>CSS3 硬件加速（GPU 加速），使用 css3 硬件加速，可以让 transform、opacity、filters 这些动画不会引起回流重绘 。但是对于动画的其它属性，比如 background-color 这些，还是会引起回流重绘的，不过它还是可以提升这些动画的性能。</p>
-</li>
-</ol>
-</li>
-<li><p>JavaScript</p>
-<ol>
-<li>避免频繁操作样式，最好一次性重写 style 属性，或者将样式列表定义为 class 并一次性更改 class 属性。</li>
-<li>避免频繁操作 DOM，创建一个 documentFragment，在它上面应用所有 DOM 操作，最后再把它添加到文档中。</li>
-<li>避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。</li>
-<li>对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流。</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81/" data-id="ckt9fd0ug0016ccw91jg16dik" data-title="重绘和回流" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -958,6 +938,14 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/">css选择器的解析过程</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/">css优化，提高性能</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/07/%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/">纯css创建一个三角形的原理是什么</a>
           </li>
         
@@ -967,14 +955,6 @@
         
           <li>
             <a href="/blog/2021/09/07/display%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC/">display有哪些值</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/07/%E9%80%89%E6%8B%A9%E5%99%A8/">选择器</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/07/14/%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/">溢出显示省略号</a>
           </li>
         
       </ul>
