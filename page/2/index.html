@@ -71,6 +71,111 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-css优化，提高性能" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" class="article-date">
+  <time class="dt-published" datetime="2021-09-07T02:46:20.000Z" itemprop="datePublished">2021-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/">css优化，提高性能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>首推的是合并 css 文件，如果页面加载 10 个 css 文件，每个文件 1k，那么也要比只加载一个 100k 的 css 文件慢。</p>
+</li>
+<li><p>减少 css 嵌套，最好不要套三层以上。</p>
+</li>
+<li><p>不要在 ID 选择器前面进行嵌套，ID 本来就是唯一的而且人家权值那么大，嵌套完全是浪费性能。</p>
+</li>
+<li><p>建立公共样式类，把相同样式提取出来作为公共类使用，比如我们常用的清除浮动等。</p>
+</li>
+<li><p>减少通配符*或者类似[hidden=”true”]这类选择器的使用，挨个查找所有…这性能能好吗？当然重置样式这些必须 的东西是不能少的。</p>
+</li>
+<li><p>巧妙运用 css 的继承机制，如果父节点定义了，子节点就无需定义。</p>
+</li>
+<li><p>拆分出公共 css 文件，对于比较大的项目我们可以将大部分页面的公共结构的样式提取出来放到单独 css 文件里， 这样一次下载后就放到缓存里，当然这种做法会增加请求，具体做法应以实际情况而定。</p>
+</li>
+<li><p>不用 css 表达式，表达式只是让你的代码显得更加炫酷，但是他对性能的浪费可能是超乎你的想象的。</p>
+</li>
+<li><p>cssSprite，合成所有 icon 图片，用宽高加上 bacgroud-position 的背景图方式显现出我们要的 icon 图，这是一种 十分实用的技巧，极大减少了 http 请求。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" data-id="ckta2lgz30006ucw9gkmobyzy" data-title="css优化，提高性能" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-纯css创建一个三角形的原理是什么" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/07/%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/" class="article-date">
+  <time class="dt-published" datetime="2021-09-07T01:49:09.000Z" itemprop="datePublished">2021-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/07/%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/">纯css创建一个三角形的原理是什么</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="comment">/* 首先将宽高设置为 0，然后再设置边框样式 */</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">50px</span> solid red;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">50px</span> solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/" data-id="ckta2lh1a001fucw98l4taww6" data-title="纯css创建一个三角形的原理是什么" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-css3有哪些新特性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/07/css3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7/" class="article-date">
@@ -112,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/css3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="ckt9fd0sh0005ccw97z144tlu" data-title="css3有哪些新特性" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/css3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="ckta2lgyz0005ucw91s1vby84" data-title="css3有哪些新特性" class="article-share-link">Share</a>
       
       
       
@@ -186,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/display%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC/" data-id="ckt9fd0sp0009ccw9a2bwapnp" data-title="display有哪些值" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/display%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC/" data-id="ckta2lgz50007ucw91iz01gax" data-title="display有哪些值" class="article-share-link">Share</a>
       
       
       
@@ -233,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E9%80%89%E6%8B%A9%E5%99%A8/" data-id="ckt9fd0uc0012ccw91vc5b37o" data-title="选择器" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E9%80%89%E6%8B%A9%E5%99%A8/" data-id="ckta2lh1v001oucw9gi78gos9" data-title="选择器" class="article-share-link">Share</a>
       
       
       
@@ -277,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/" data-id="ckt9fd0u6000zccw915r92y03" data-title="溢出显示省略号" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/" data-id="ckta2lh17001ducw9hamv16bc" data-title="溢出显示省略号" class="article-share-link">Share</a>
       
       
       
@@ -341,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/" data-id="ckt9fd0sw000dccw95i9ud51i" data-title="visibility、opacity、display" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/" data-id="ckta2lh01000oucw9g1h1ebwi" data-title="visibility、opacity、display" class="article-share-link">Share</a>
       
       
       
@@ -433,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" data-id="ckt9fd0tj000pccw95skvf5vb" data-title="水平垂直居中" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" data-id="ckta2lh15001bucw93p5yhiax" data-title="水平垂直居中" class="article-share-link">Share</a>
       
       
       
@@ -511,7 +616,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" data-id="ckt9fd0sy000fccw925ecgiwb" data-title="原型对象" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" data-id="ckta2lh0o0013ucw91rzc4hqs" data-title="原型对象" class="article-share-link">Share</a>
       
       
       
@@ -584,156 +689,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckt9fd0s90003ccw9aqi07cud" data-title="call、bind、apply" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-HTTP状态码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" class="article-date">
-  <time class="dt-published" datetime="2021-07-12T04:26:15.000Z" itemprop="datePublished">2021-07-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/">HTTP状态码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>常见的状态码<ul>
-<li>200 请求成功</li>
-<li>301 资源(网页等)被永久转移到其它 URL</li>
-<li>304 如果客户端发送了一个带条件的GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个304状态码。简单的表达就是：服务端已经执行了GET，但文件未变化。</li>
-<li>404 请求的资源(网页等)不存在</li>
-<li>500 内部服务器错误</li>
-</ul>
-</li>
-<li>状态码分类<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>分类描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1**</td>
-<td>信息，服务器收到请求，需要请求者继续执行操作</td>
-</tr>
-<tr>
-<td>2**</td>
-<td>成功，操作被成功接收并处理</td>
-</tr>
-<tr>
-<td>3**</td>
-<td>重定向，需要进一步的操作以完成请求</td>
-</tr>
-<tr>
-<td>4**</td>
-<td>客户端错误，请求包含语法错误或无法完成请求</td>
-</tr>
-<tr>
-<td>5**</td>
-<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckt9fd0rw0001ccw93vwwbe3f" data-title="HTTP状态码" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-get请求与post请求" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" class="article-date">
-  <time class="dt-published" datetime="2021-07-12T04:20:52.000Z" itemprop="datePublished">2021-07-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/">get请求与post请求</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>基本区别</p>
-<ul>
-<li>GET 在浏览器回退时是无害的，而 POST 会再次提交请求。</li>
-<li>GET 产生的 URL 地址可以被 Bookmark，而 POST 不可以。</li>
-<li>GET 请求会被浏览器主动 cache，而 POST 不会，除非手动设置。</li>
-<li>GET 请求只能进行 url 编码，而 POST 支持多种编码方式。</li>
-<li>GET 请求参数会被完整保留在浏览器历史记录里，而 POST 中的参数不会被保留。</li>
-<li>GET 请求在 URL 中传送的参数是有长度限制的，而 POST 么有。(有争议)</li>
-<li>对参数的数据类型，GET 只接受 ASCII 字符，而 POST 没有限制。</li>
-<li>GET 比 POST 更不安全，因为参数直接暴露在 URL 上，所以不能用来传递敏感信息。</li>
-<li>GET 参数通过 URL 传递，POST 放在 Request body 中。</li>
-</ul>
-</li>
-<li><p>重点：</p>
-<ul>
-<li><p>GET 产生一个 TCP 数据包；POST 产生两个 TCP 数据包。</p>
-<p>对于 GET 方式的请求，浏览器会把 http header 和 data 一并发送出去，服务器响应 200（返回数据）；</p>
-<p>而对于 POST，浏览器先发送 header，服务器响应 100 continue，浏览器再发送 data，服务器响应 200 ok（返回数据）。</p>
-</li>
-<li><p>get 类似于查找的过程，用户获取数据可以不用每次都与数据库连接，所以可以使用缓存。</p>
-<p>post 不同，post 做的一般是修改和删除的工作，所以必须与数据库交互，所以不能使用缓存。</p>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckt9fd0sk0006ccw96j2zezyp" data-title="get请求与post请求" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckta2lgyq0003ucw9gqw413ui" data-title="call、bind、apply" class="article-share-link">Share</a>
       
       
       
@@ -788,6 +744,14 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/07/let%E3%80%81const%E3%80%81var/">let、const、var</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/07/%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1/">宏任务与微任务</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/07/this%E7%9A%84%E6%8C%87%E5%90%91/">this的指向</a>
           </li>
         
@@ -797,14 +761,6 @@
         
           <li>
             <a href="/blog/2021/09/07/%E5%8D%A0%E6%BB%A1%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/">占满剩余空间</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/07/li%E4%B8%8Eli%E4%B9%8B%E9%97%B4%E7%9A%84%E7%A9%BA%E7%99%BD%E9%97%B4%E9%9A%94/">li与li之间的空白间隔</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/07/%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0/">伪类与伪元素</a>
           </li>
         
       </ul>

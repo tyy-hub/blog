@@ -71,6 +71,147 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-let、const、var" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/07/let%E3%80%81const%E3%80%81var/" class="article-date">
+  <time class="dt-published" datetime="2021-09-07T12:35:33.000Z" itemprop="datePublished">2021-09-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/07/let%E3%80%81const%E3%80%81var/">let、const、var</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>let<ul>
+<li>自带块级作用域，外部不可访问 {}代表块</li>
+<li>没有变量声明提升</li>
+<li>不允许重复声明(规范角度来说)</li>
+</ul>
+</li>
+<li>var<ul>
+<li>外部可访问到</li>
+<li>可先使用后声明，此时值为 undefined</li>
+<li>可重复声明</li>
+</ul>
+</li>
+<li>const<ul>
+<li>定义常量，不可修改</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/let%E3%80%81const%E3%80%81var/" data-id="ckta2lgzg000ducw940a7a017" data-title="let、const、var" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-宏任务与微任务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/07/%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1/" class="article-date">
+  <time class="dt-published" datetime="2021-09-07T12:17:14.000Z" itemprop="datePublished">2021-09-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/07/%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1/">宏任务与微任务</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>什么是宏任务与微任务</strong></p>
+<ul>
+<li>宏任务：由宿主发起的</li>
+<li>微任务：由 JavaScript 自身发起</li>
+</ul>
+<p>在 ES3 以及以前的版本中，JavaScript 本身没有发起异步请求的能力，也就没有微任务的存在。在 ES5 之后，JavaScript 引入了 Promise，这样，不需要浏览器，JavaScript 引擎自身也能够发起异步任务了。</p>
+<p>Event Loop 中，每一次循环称为 tick，每一次 tick 的任务如下：</p>
+<ul>
+<li>执行栈选择最先进入队列的宏任务（一般都是 script），执行其同步代码直至结束；</li>
+<li>检查是否存在微任务，有则会执行至微任务队列为空；</li>
+<li>如果宿主为浏览器，可能会渲染页面；</li>
+<li>开始下一轮 tick，执行宏任务中的异步代码（setTimeout 等回调）。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>宏任务(macrotask)</th>
+<th>微任务(microtask)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>谁发起的</td>
+<td>宿主(Node、浏览器)</td>
+<td>JS 引擎</td>
+</tr>
+<tr>
+<td>具体事件</td>
+<td>script (可以理解为外层同步代码)、setTimeout/setInterval、UI rendering/UI 事件、postMessage，MessageChannel、setImmediate，I/O（Node.js）</td>
+<td>Promise、 MutaionObserver、Object.observe（已废弃；Proxy 对象替代）、process.nextTick（Node.js）</td>
+</tr>
+<tr>
+<td>谁先运行</td>
+<td>后运行</td>
+<td>先运行</td>
+</tr>
+<tr>
+<td>会触发新一轮 Tick 吗</td>
+<td>会</td>
+<td>不会</td>
+</tr>
+</tbody></table>
+<p><strong>练习</strong></p>
+<ul>
+<li><p>例 1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;async1 start&quot;</span>);</span><br><span class="line">  <span class="keyword">await</span> async2();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;async1 end&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;async2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;script start&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;setTimeout&quot;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">async1();</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;promise1&quot;</span>);</span><br><span class="line">  resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;promise2&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;script end&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// script start</span></span><br><span class="line"><span class="comment">// async1 start</span></span><br><span class="line"><span class="comment">// async2</span></span><br><span class="line"><span class="comment">// promise1</span></span><br><span class="line"><span class="comment">// script end</span></span><br><span class="line"><span class="comment">// async1 end</span></span><br><span class="line"><span class="comment">// promise2</span></span><br><span class="line"><span class="comment">// setTimeout</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1/" data-id="ckta2lh120019ucw90j001rz1" data-title="宏任务与微任务" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-this的指向" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/07/this%E7%9A%84%E6%8C%87%E5%90%91/" class="article-date">
@@ -107,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/this%E7%9A%84%E6%8C%87%E5%90%91/" data-id="ckta0vo9n0001asw9e3h5e3gg" data-title="this的指向" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/this%E7%9A%84%E6%8C%87%E5%90%91/" data-id="ckta2lgzu000jucw99zy64weg" data-title="this的指向" class="article-share-link">Share</a>
       
       
       
@@ -162,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/new%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" data-id="ckta0vo920000asw9aw3h8pko" data-title="new一个函数的时候发生了什么" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/new%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" data-id="ckta2lgzp000hucw9ctl04s7i" data-title="new一个函数的时候发生了什么" class="article-share-link">Share</a>
       
       
       
@@ -214,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E5%8D%A0%E6%BB%A1%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/" data-id="ckt9x9lfd000190w9977dagfs" data-title="占满剩余空间" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E5%8D%A0%E6%BB%A1%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/" data-id="ckta2lh0j000zucw9bc4817gw" data-title="占满剩余空间" class="article-share-link">Share</a>
       
       
       
@@ -264,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/li%E4%B8%8Eli%E4%B9%8B%E9%97%B4%E7%9A%84%E7%A9%BA%E7%99%BD%E9%97%B4%E9%9A%94/" data-id="ckt9x9lev000090w95s2f3o48" data-title="li与li之间的空白间隔" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/li%E4%B8%8Eli%E4%B9%8B%E9%97%B4%E7%9A%84%E7%A9%BA%E7%99%BD%E9%97%B4%E9%9A%94/" data-id="ckta2lgzj000eucw97pzd1d48" data-title="li与li之间的空白间隔" class="article-share-link">Share</a>
       
       
       
@@ -309,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0/" data-id="ckt9uky190000ekw9cl932nvt" data-title="伪类与伪元素" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0/" data-id="ckta2lh0d000vucw91une1wwd" data-title="伪类与伪元素" class="article-share-link">Share</a>
       
       
       
@@ -451,7 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1/" data-id="ckt9uky1q0001ekw9dxc327aq" data-title="响应式设计" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1/" data-id="ckta2lh28001wucw92zkbguba" data-title="响应式设计" class="article-share-link">Share</a>
       
       
       
@@ -500,7 +641,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E5%85%83%E7%B4%A0%E7%AB%96%E5%90%91%E7%9A%84%E7%99%BE%E5%88%86%E6%AF%94%E8%AE%BE%E5%AE%9A%E6%98%AF%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E9%AB%98%E5%BA%A6%E5%90%97/" data-id="ckt9ho60d0000h4w95ra901p1" data-title="元素竖向的百分比设定是相对于父元素的高度吗" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E5%85%83%E7%B4%A0%E7%AB%96%E5%90%91%E7%9A%84%E7%99%BE%E5%88%86%E6%AF%94%E8%AE%BE%E5%AE%9A%E6%98%AF%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E9%AB%98%E5%BA%A6%E5%90%97/" data-id="ckta2lh0g000xucw9b5ji9ujk" data-title="元素竖向的百分比设定是相对于父元素的高度吗" class="article-share-link">Share</a>
       
       
       
@@ -543,112 +684,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/" data-id="ckt9h8oh50001ksw949r1hav8" data-title="css选择器的解析过程" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-css优化，提高性能" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" class="article-date">
-  <time class="dt-published" datetime="2021-09-07T02:46:20.000Z" itemprop="datePublished">2021-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/">css优化，提高性能</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>首推的是合并 css 文件，如果页面加载 10 个 css 文件，每个文件 1k，那么也要比只加载一个 100k 的 css 文件慢。</p>
-</li>
-<li><p>减少 css 嵌套，最好不要套三层以上。</p>
-</li>
-<li><p>不要在 ID 选择器前面进行嵌套，ID 本来就是唯一的而且人家权值那么大，嵌套完全是浪费性能。</p>
-</li>
-<li><p>建立公共样式类，把相同样式提取出来作为公共类使用，比如我们常用的清除浮动等。</p>
-</li>
-<li><p>减少通配符*或者类似[hidden=”true”]这类选择器的使用，挨个查找所有…这性能能好吗？当然重置样式这些必须 的东西是不能少的。</p>
-</li>
-<li><p>巧妙运用 css 的继承机制，如果父节点定义了，子节点就无需定义。</p>
-</li>
-<li><p>拆分出公共 css 文件，对于比较大的项目我们可以将大部分页面的公共结构的样式提取出来放到单独 css 文件里， 这样一次下载后就放到缓存里，当然这种做法会增加请求，具体做法应以实际情况而定。</p>
-</li>
-<li><p>不用 css 表达式，表达式只是让你的代码显得更加炫酷，但是他对性能的浪费可能是超乎你的想象的。</p>
-</li>
-<li><p>cssSprite，合成所有 icon 图片，用宽高加上 bacgroud-position 的背景图方式显现出我们要的 icon 图，这是一种 十分实用的技巧，极大减少了 http 请求。</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" data-id="ckt9h8ogs0000ksw9cj9f8fl1" data-title="css优化，提高性能" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-纯css创建一个三角形的原理是什么" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/07/%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/" class="article-date">
-  <time class="dt-published" datetime="2021-09-07T01:49:09.000Z" itemprop="datePublished">2021-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/07/%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/">纯css创建一个三角形的原理是什么</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="comment">/* 首先将宽高设置为 0，然后再设置边框样式 */</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">50px</span> solid red;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">50px</span> solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/" data-id="ckt9fd0u70010ccw9bq5j061b" data-title="纯css创建一个三角形的原理是什么" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/" data-id="ckta2lgz90009ucw9f0hbe4b2" data-title="css选择器的解析过程" class="article-share-link">Share</a>
       
       
       
@@ -703,6 +739,14 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/07/let%E3%80%81const%E3%80%81var/">let、const、var</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/07/%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1/">宏任务与微任务</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/07/this%E7%9A%84%E6%8C%87%E5%90%91/">this的指向</a>
           </li>
         
@@ -712,14 +756,6 @@
         
           <li>
             <a href="/blog/2021/09/07/%E5%8D%A0%E6%BB%A1%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/">占满剩余空间</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/07/li%E4%B8%8Eli%E4%B9%8B%E9%97%B4%E7%9A%84%E7%A9%BA%E7%99%BD%E9%97%B4%E9%9A%94/">li与li之间的空白间隔</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/07/%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0/">伪类与伪元素</a>
           </li>
         
       </ul>
