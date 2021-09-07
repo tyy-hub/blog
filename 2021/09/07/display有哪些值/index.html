@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>跨域 | Note</title>
+  <title>display有哪些值 | Note</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="什么是跨域当一个请求 url 的协议、域名、端口三者之间任意一个与当前页面 url 不同即为跨域    当前页面 url 被请求页面 url 是否跨域 原因    http:&#x2F;&#x2F;www.test.com&#x2F; http:&#x2F;&#x2F;www.test.com&#x2F;index.html 否 同源（协议、域名、端口号相同）   http:&#x2F;&#x2F;www.test.com&#x2F; https:&#x2F;&#x2F;www.test.com&#x2F;ind">
+  <meta name="description" content="display 有哪些值  inline(默认) —— 行内元素 block —— 块状元素 inline-block —— 行内块状元素 none —— 隐藏 table —— 表格显示 list-item —— 项目列表  inline、block、inline-block 的区别  行内元素 设置宽高无效，大小是由内容撑起来的 margin、padding 在左右方向有效，上下无效 不会自动">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跨域">
-<meta property="og:url" content="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/index.html">
+<meta property="og:title" content="display有哪些值">
+<meta property="og:url" content="http://tyy-hub.github.io/blog/2021/09/07/display%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC/index.html">
 <meta property="og:site_name" content="Note">
-<meta property="og:description" content="什么是跨域当一个请求 url 的协议、域名、端口三者之间任意一个与当前页面 url 不同即为跨域    当前页面 url 被请求页面 url 是否跨域 原因    http:&#x2F;&#x2F;www.test.com&#x2F; http:&#x2F;&#x2F;www.test.com&#x2F;index.html 否 同源（协议、域名、端口号相同）   http:&#x2F;&#x2F;www.test.com&#x2F; https:&#x2F;&#x2F;www.test.com&#x2F;ind">
+<meta property="og:description" content="display 有哪些值  inline(默认) —— 行内元素 block —— 块状元素 inline-block —— 行内块状元素 none —— 隐藏 table —— 表格显示 list-item —— 项目列表  inline、block、inline-block 的区别  行内元素 设置宽高无效，大小是由内容撑起来的 margin、padding 在左右方向有效，上下无效 不会自动">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-07-12T04:19:20.000Z">
-<meta property="article:modified_time" content="2021-07-12T14:37:19.245Z">
+<meta property="article:published_time" content="2021-09-07T01:08:30.000Z">
+<meta property="article:modified_time" content="2021-09-07T01:25:07.565Z">
 <meta property="article:author" content="Tyy">
 <meta name="twitter:card" content="summary">
   
@@ -73,14 +73,14 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-跨域" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-display有哪些值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" class="article-date">
-  <time class="dt-published" datetime="2021-07-12T04:19:20.000Z" itemprop="datePublished">2021-07-12</time>
+    <a href="/blog/2021/09/07/display%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC/" class="article-date">
+  <time class="dt-published" datetime="2021-09-07T01:08:30.000Z" itemprop="datePublished">2021-09-07</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      跨域
+      display有哪些值
     </h1>
   
 
@@ -99,62 +99,43 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>什么是跨域<br>当一个请求 url 的协议、域名、端口三者之间任意一个与当前页面 url 不同即为跨域</p>
-<table>
-<thead>
-<tr>
-<th>当前页面 url</th>
-<th>被请求页面 url</th>
-<th>是否跨域</th>
-<th>原因</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
-<td><a target="_blank" rel="noopener" href="http://www.test.com/index.html">http://www.test.com/index.html</a></td>
-<td>否</td>
-<td>同源（协议、域名、端口号相同）</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
-<td><a target="_blank" rel="noopener" href="https://www.test.com/index.html">https://www.test.com/index.html</a></td>
-<td>跨域</td>
-<td>协议不同（http/https）</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
-<td><a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com/</a></td>
-<td>跨域</td>
-<td>主域名不同（test/baidu）</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
-<td><a target="_blank" rel="noopener" href="http://blog.test.com/">http://blog.test.com/</a></td>
-<td>跨域</td>
-<td>子域名不同（www/blog）</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="http://www.test.com:8080/">http://www.test.com:8080/</a></td>
-<td><a target="_blank" rel="noopener" href="http://www.test.com:7001/">http://www.test.com:7001/</a></td>
-<td>跨域</td>
-<td>端口号不同（8080/7001）</td>
-</tr>
-</tbody></table>
+        <p><strong>display 有哪些值</strong></p>
+<ul>
+<li>inline(默认) —— 行内元素</li>
+<li>block —— 块状元素</li>
+<li>inline-block —— 行内块状元素</li>
+<li>none —— 隐藏</li>
+<li>table —— 表格显示</li>
+<li>list-item —— 项目列表</li>
+</ul>
+<p><strong>inline、block、inline-block 的区别</strong></p>
+<ul>
+<li>行内元素<ul>
+<li>设置宽高无效，大小是由内容撑起来的</li>
+<li>margin、padding 在左右方向有效，上下无效</li>
+<li>不会自动换行</li>
+</ul>
 </li>
-<li><p>为什么会产生跨域</p>
-<p>它是由浏览器的同源策略造成的，是浏览器对 javascript 施加的安全限制。</p>
-<p>(同源策略/SOP（Same origin policy）是一种约定，由 Netscape 公司 1995 年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到 XSS、CSFR 等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个 ip 地址，也非同源。)</p>
-<p>例如：a 页面想获取 b 页面资源，如果 a、b 页面的协议、域名、端口、子域名不同，所进行的访问行动都是跨域的，而浏览器为了安全问题一般都限制了跨域访问，也就是不允许跨域请求资源。注意：跨域限制访问，其实是浏览器的限制。理解这一点很重要！！！</p>
+<li>块状元素<ul>
+<li>宽高均有效</li>
+<li>margin、padding 的上下左右均对其有效</li>
+<li>独占一行，可自动换行</li>
+<li>多个块状元素标签写在一起，默认排列方式为从上至下</li>
+</ul>
 </li>
-<li><p>解决方法<br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011145364">https://segmentfault.com/a/1190000011145364</a></p>
+<li>行内块状元素<ul>
+<li>不会自动换行</li>
+<li>能识别宽高</li>
+<li>margin、padding 上下左右均有效</li>
+<li>默认排列方式为从左至右</li>
+</ul>
 </li>
-</ol>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckt9fd0ua0011ccw91i188bdh" data-title="跨域" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/display%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC/" data-id="ckt9fd0sp0009ccw9a2bwapnp" data-title="display有哪些值" class="article-share-link">Share</a>
       
       
       
@@ -164,19 +145,19 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2021/09/07/css3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          get请求与post请求
+          css3有哪些新特性
         
       </div>
     </a>
   
   
-    <a href="/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/2021/09/07/%E9%80%89%E6%8B%A9%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">本地缓存机制</div>
+      <div class="article-nav-title">选择器</div>
     </a>
   
 </nav>
