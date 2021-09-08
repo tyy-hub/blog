@@ -71,6 +71,131 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-选择器优先级" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" class="article-date">
+  <time class="dt-published" datetime="2021-07-12T03:43:09.000Z" itemprop="datePublished">2021-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/HTML/">HTML</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/">选择器优先级</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>优先级<ol>
+<li>在属性后面使用 !important 会覆盖页面内任何位置定义的元素样式。</li>
+<li>作为 style 属性写在元素内的样式，内连样式 优先级 1000</li>
+<li>id 选择器 优先级 100</li>
+<li>类选择器 优先级 10</li>
+<li>标签选择器 优先级 1</li>
+<li>通配符选择器 优先级 0</li>
+<li>继承的样式优先级没有</li>
+</ol>
+</li>
+<li>注<ol>
+<li>如果是两种相同优先级 为同一个元素 同一个属性设置 的话，是哪个写在代码靠后 最终就按那个的样式</li>
+<li>交集选择器的优先级 所有优先级 加起来 运算 然后比较</li>
+<li>并集的话 就是各算各的。</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7/" data-id="ckta2lh1z001qucw920ryh1f0" data-title="选择器优先级" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-防抖与节流" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" class="article-date">
+  <time class="dt-published" datetime="2021-07-12T02:06:43.000Z" itemprop="datePublished">2021-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>防抖</p>
+<p><strong>用户触发事件过于频繁，只要最后一次事件的操作</strong></p>
+<ul>
+<li><p>基本操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> inp = <span class="built_in">document</span>.querySelector(<span class="string">&quot;input&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> t = <span class="literal">null</span>;</span><br><span class="line">inp.oninput = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (t !== <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">clearTimeout</span>(t);</span><br><span class="line">    <span class="comment">// 将之前的操作清除掉</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 只留下最后一次操作</span></span><br><span class="line">  t = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.value);</span><br><span class="line">  &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在 input 中只要输入就会触发该函数，为防止不必要的操作可利用计时器来实现防抖操作</p>
+</li>
+<li><p>借助闭包实现防抖</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> inp = <span class="built_in">document</span>.querySelector(<span class="string">&quot;input&quot;</span>);</span><br><span class="line"></span><br><span class="line">inp.oninput = debounce(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.value);</span><br><span class="line">  <span class="comment">// 此处的 this 指向 Window, 需要借助 call 改变 this 指向</span></span><br><span class="line">&#125;, <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> t = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (t !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(t);</span><br><span class="line">    &#125;</span><br><span class="line">    t = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.call(<span class="built_in">this</span>);</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>节流</p>
+<p><strong>控制调频事件执行次数</strong></p>
+<ul>
+<li><p>基本操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flag = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">      flag = <span class="literal">true</span>;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  flag = <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>封装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onscroll = throttle(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">&#125;, <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> flag = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        fn();</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">      &#125;, <span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    flag = <span class="literal">false</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckta2lh26001uucw916edasu6" data-title="防抖与节流" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-清除浮动" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" class="article-date">
@@ -669,6 +794,14 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/08/Ajax%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/">Ajax解决浏览器缓存问题</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/08/js%E4%B8%AD%E5%90%84%E7%A7%8D%E9%AB%98%E5%BA%A6/">js中各种高度</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/08/mouseover%E5%92%8Cmouseenter%E7%9A%84%E5%8C%BA%E5%88%AB/">mouseover和mouseenter的区别</a>
           </li>
         
@@ -678,14 +811,6 @@
         
           <li>
             <a href="/blog/2021/09/08/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1/">异步回调地狱</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/08/instanceof%E4%B8%8Etypeof/">instanceof与typeof</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/07/let%E3%80%81const%E3%80%81var/">let、const、var</a>
           </li>
         
       </ul>
