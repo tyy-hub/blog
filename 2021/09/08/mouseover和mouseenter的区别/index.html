@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>let、const、var | Note</title>
+  <title>mouseover和mouseenter的区别 | Note</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="let 自带块级作用域，外部不可访问 {}代表块 没有变量声明提升 不允许重复声明(规范角度来说)   var 外部可访问到 可先使用后声明，此时值为 undefined 可重复声明   const 定义常量，不可修改">
+  <meta name="description" content="mouseover：当鼠标移入元素或其子元素都会触发，支持事件冒泡，对应 mouseout mouseenter：当鼠标移入元素(不包含其子元素)时触发，不支持事件冒泡，对应 mouseleave">
 <meta property="og:type" content="article">
-<meta property="og:title" content="let、const、var">
-<meta property="og:url" content="http://tyy-hub.github.io/blog/2021/09/07/let%E3%80%81const%E3%80%81var/index.html">
+<meta property="og:title" content="mouseover和mouseenter的区别">
+<meta property="og:url" content="http://tyy-hub.github.io/blog/2021/09/08/mouseover%E5%92%8Cmouseenter%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="Note">
-<meta property="og:description" content="let 自带块级作用域，外部不可访问 {}代表块 没有变量声明提升 不允许重复声明(规范角度来说)   var 外部可访问到 可先使用后声明，此时值为 undefined 可重复声明   const 定义常量，不可修改">
+<meta property="og:description" content="mouseover：当鼠标移入元素或其子元素都会触发，支持事件冒泡，对应 mouseout mouseenter：当鼠标移入元素(不包含其子元素)时触发，不支持事件冒泡，对应 mouseleave">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-09-07T12:35:33.000Z">
-<meta property="article:modified_time" content="2021-09-07T12:41:42.384Z">
+<meta property="article:published_time" content="2021-09-08T13:03:37.000Z">
+<meta property="article:modified_time" content="2021-09-08T13:18:45.144Z">
 <meta property="article:author" content="Tyy">
 <meta name="twitter:card" content="summary">
   
@@ -73,12 +73,16 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-let、const、var" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-mouseover和mouseenter的区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/09/07/let%E3%80%81const%E3%80%81var/" class="article-date">
-  <time class="dt-published" datetime="2021-09-07T12:35:33.000Z" itemprop="datePublished">2021-09-07</time>
+    <a href="/blog/2021/09/08/mouseover%E5%92%8Cmouseenter%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time class="dt-published" datetime="2021-09-08T13:03:37.000Z" itemprop="datePublished">2021-09-08</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -87,7 +91,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      let、const、var
+      mouseover和mouseenter的区别
     </h1>
   
 
@@ -96,28 +100,14 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <ul>
-<li>let<ul>
-<li>自带块级作用域，外部不可访问 {}代表块</li>
-<li>没有变量声明提升</li>
-<li>不允许重复声明(规范角度来说)</li>
-</ul>
-</li>
-<li>var<ul>
-<li>外部可访问到</li>
-<li>可先使用后声明，此时值为 undefined</li>
-<li>可重复声明</li>
-</ul>
-</li>
-<li>const<ul>
-<li>定义常量，不可修改</li>
-</ul>
-</li>
+<li>mouseover：当鼠标移入元素或其子元素都会触发，支持事件冒泡，对应 mouseout</li>
+<li>mouseenter：当鼠标移入元素(不包含其子元素)时触发，不支持事件冒泡，对应 mouseleave</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/let%E3%80%81const%E3%80%81var/" data-id="ckta2lgzg000ducw940a7a017" data-title="let、const、var" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/08/mouseover%E5%92%8Cmouseenter%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cktbj2qrf0001skw90v8z3lwq" data-title="mouseover和mouseenter的区别" class="article-share-link">Share</a>
       
       
       
@@ -127,19 +117,10 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2021/09/08/instanceof%E4%B8%8Etypeof/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          instanceof与typeof
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2021/09/07/%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/2021/09/08/%E5%9B%BE%E7%89%87%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">宏任务与微任务</div>
+      <div class="article-nav-title">图片的懒加载和预加载</div>
     </a>
   
 </nav>
