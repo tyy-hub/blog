@@ -71,6 +71,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-css选择器的解析过程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2021-09-07T02:50:04.000Z" itemprop="datePublished">2021-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/">css选择器的解析过程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>CSS 选择器的解析是从右向左解析的。若从左向右的匹配，发现不符合规则，需要进行回溯，会损失很多性能。若从右向左匹配，先找到所有的最右节点，对于每一个节点，向上寻找其父节点直到找到根元素或满足条件的匹配规则，则结束这个分支的遍历。两种匹配规则的性能差别很大，是因为从右向左的匹配在第一步就筛选掉了大量的不符合条件的最右节点（叶子节点），而从左向右的匹配规则的性能都浪费在了失败的查找上面。<br>而在 CSS 解析完毕后，需要将解析的结果与 DOM Tree 的内容一起进行分析建立一棵 Render Tree，最终用来进行绘图。在建立 Render Tree 时，浏览器就要为每个 DOM Tree 中的元素根据 CSS 的解析结果（Style Rules）来确定生成怎样的 Render Tree。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/" data-id="ckta2lgz90009ucw9f0hbe4b2" data-title="css选择器的解析过程" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-css优化，提高性能" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/07/css%E4%BC%98%E5%8C%96%EF%BC%8C%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" class="article-date">
@@ -628,79 +671,6 @@
 
 
   
-    <article id="post-call、bind、apply" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" class="article-date">
-  <time class="dt-published" datetime="2021-07-13T03:01:08.000Z" itemprop="datePublished">2021-07-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/">call、bind、apply</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>相似处</p>
-<ul>
-<li>都是用来改变 this 指向的</li>
-<li>call 、bind 、 apply 这三个函数的第一个参数都是 this 的指向对象</li>
-</ul>
-</li>
-<li><p>不同处</p>
-<ul>
-<li>call 的参数是直接放进去的，第二第三第 n 个参数全都用逗号分隔，直接放到后面 obj.myFun.call(db,’成都’, … ,’string’ )。</li>
-<li>apply 的所有参数都必须放在一个数组里面传进去 obj.myFun.apply(db,[‘成都’, …, ‘string’ ])。</li>
-<li>bind 除了返回是函数以外，它 的参数和 call 一样。</li>
-</ul>
-</li>
-<li><p>举例</p>
-<ul>
-<li><p><strong>call</strong></p>
-<ul>
-<li><p>基本使用</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 指向小 cat</span></span><br><span class="line">  <span class="built_in">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;喵&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 指向小 cat</span></span><br><span class="line">  Animal.call(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line">cat.say();</span><br></pre></td></tr></table></figure></li>
-<li><p>传参</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;旺财&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我是&quot;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params">food1, food2</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;喜欢吃&quot;</span> + food1 + food2); <span class="comment">// 喵喵喜欢吃鱼肉</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">dog.eat.call(cat, <span class="string">&quot;鱼&quot;</span>, <span class="string">&quot;肉&quot;</span>);</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>apply</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;旺财&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我是&quot;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params">food1, food2</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我喜欢吃&quot;</span> + food1 + food2);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">dog.eat.apply(cat, [<span class="string">&quot;鱼&quot;</span>, <span class="string">&quot;肉&quot;</span>]);</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>bind</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;旺财&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我是&quot;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params">food1, food2</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;我喜欢吃&quot;</span> + food1 + food2);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;喵喵&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bind 会返回一个函数, 可多次调用</span></span><br><span class="line"><span class="keyword">let</span> res = dog.eat.bind(cat, <span class="string">&quot;鱼&quot;</span>, <span class="string">&quot;肉&quot;</span>);</span><br><span class="line">res();</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckta2lgyq0003ucw9gqw413ui" data-title="call、bind、apply" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -744,6 +714,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/08/instanceof%E4%B8%8Etypeof/">instanceof与typeof</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/07/let%E3%80%81const%E3%80%81var/">let、const、var</a>
           </li>
         
@@ -757,10 +731,6 @@
         
           <li>
             <a href="/blog/2021/09/07/new%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">new一个函数的时候发生了什么</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/07/%E5%8D%A0%E6%BB%A1%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/">占满剩余空间</a>
           </li>
         
       </ul>
