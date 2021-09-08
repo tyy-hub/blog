@@ -14,7 +14,7 @@
 <meta property="og:description" content="前言在了解“回调地狱”之前先了解两个概念  回调函数当一个函数作为参数传入另一个参数中，并且它不会立即执行，只有当满足一定条件后该函数才可以执行，这种函数就称为回调函数。我们熟悉的定时器和 Ajax 中就存在有回调函数： 123setTimeout(function () &amp;#123;  console.log(&quot;执行了回调函数&quot;);&amp;#125;, 3000);  123456">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-08T11:45:08.000Z">
-<meta property="article:modified_time" content="2021-09-08T12:17:29.901Z">
+<meta property="article:modified_time" content="2021-09-08T12:20:35.275Z">
 <meta property="article:author" content="Tyy">
 <meta name="twitter:card" content="summary">
   
@@ -116,7 +116,9 @@
 
 我必须要这样操作，才能保证顺序正确：
 
+
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="comment">//第一层</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;武林要以和为贵&quot;</span>);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//第二程</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;要讲武德&quot;</span>);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//第三层</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;不要搞窝里斗&quot;</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;, <span class="number">3000</span>);</span><br><span class="line"><span class="comment">// 武林要以和为贵</span></span><br><span class="line"><span class="comment">// 要讲武德</span></span><br><span class="line"><span class="comment">// 不要搞窝里斗</span></span><br></pre></td></tr></table></figure>
+
 
 可以看到，代码中的回调函数套回调函数，居然套了 3 层，这种回调函数中嵌套回调函数的情况就叫做回调地狱。
 
