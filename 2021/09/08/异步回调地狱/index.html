@@ -14,7 +14,7 @@
 <meta property="og:description" content="前言在了解“回调地狱”之前先了解两个概念  回调函数当一个函数作为参数传入另一个参数中，并且它不会立即执行，只有当满足一定条件后该函数才可以执行，这种函数就称为回调函数。我们熟悉的定时器和 Ajax 中就存在有回调函数： 123setTimeout(function () &amp;#123;  console.log(&quot;执行了回调函数&quot;);&amp;#125;, 3000);  123456">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-08T11:45:08.000Z">
-<meta property="article:modified_time" content="2021-09-08T12:20:35.275Z">
+<meta property="article:modified_time" content="2021-09-08T12:32:00.743Z">
 <meta property="article:author" content="Tyy">
 <meta name="twitter:card" content="summary">
   
@@ -111,8 +111,10 @@
 <p>这种不阻塞后面任务执行的任务就叫做异步任务。</p>
 </li>
 </ul>
-<p><strong>1. 什么是回调地狱</strong><br>根据前面我们可以得出一个结论：存在异步任务的代码，不能保证能按照顺序执行，那如果我们非要代码顺序执行呢？</p>
-<pre><code>比如我要说一句话，语序必须是下面这样的：武林要以和为贵，要讲武德，不要搞窝里斗。
+<p><strong>1. 什么是回调地狱</strong></p>
+<pre><code>根据前面我们可以得出一个结论：存在异步任务的代码，不能保证能按照顺序执行，那如果我们非要代码顺序执行呢？
+
+比如我要说一句话，语序必须是下面这样的：武林要以和为贵，要讲武德，不要搞窝里斗。
 
 我必须要这样操作，才能保证顺序正确：
 
