@@ -71,6 +71,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-new一个函数的时候发生了什么" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/07/new%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" class="article-date">
+  <time class="dt-published" datetime="2021-09-07T10:46:17.000Z" itemprop="datePublished">2021-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/07/new%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">new一个函数的时候发生了什么</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>创建一个新的空对象，开僻一块内存空间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>将实例的原型指向构造函数的 prototype 属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, <span class="title">constructor</span>.<span class="title">prototype</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>构造函数被执行，执行过程中的 this 被绑定在新的对象上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">constructor</span>.<span class="title">call</span>(<span class="params">obj</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>返回该对象，如果该函数没有返回对象则返回 this</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> obj;</span><br></pre></td></tr></table></figure>
+
+<p>完整案例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newOperator</span>(<span class="params">constructor</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 1. 创建一个新的空对象，开僻一块内存空间</span></span><br><span class="line">  <span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">  <span class="comment">// 2. 将实例的原型指向构造函数的 prototype 属性</span></span><br><span class="line">  <span class="built_in">Object</span>.setPrototypeOf(obj, <span class="title">constructor</span>.<span class="title">prototype</span>);</span><br><span class="line">  <span class="comment">// 3. 构造函数被执行，执行过程中的this被绑定在新的对象上</span></span><br><span class="line">  <span class="title">constructor</span>.<span class="title">call</span>(<span class="params">obj</span>);</span><br><span class="line">  <span class="comment">// 4. 返回该对象，如果该函数没有返回对象则返回this</span></span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person1 = newOperator(Person);</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/new%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" data-id="ckta2lgzp000hucw9ctl04s7i" data-title="new一个函数的时候发生了什么" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-占满剩余空间" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/07/%E5%8D%A0%E6%BB%A1%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/" class="article-date">
@@ -610,80 +665,6 @@
 
 
   
-    <article id="post-display有哪些值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/07/display%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC/" class="article-date">
-  <time class="dt-published" datetime="2021-09-07T01:08:30.000Z" itemprop="datePublished">2021-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/07/display%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC/">display有哪些值</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>display 有哪些值</strong></p>
-<ul>
-<li>inline(默认) —— 行内元素</li>
-<li>block —— 块状元素</li>
-<li>inline-block —— 行内块状元素</li>
-<li>none —— 隐藏</li>
-<li>table —— 表格显示</li>
-<li>list-item —— 项目列表</li>
-</ul>
-<p><strong>inline、block、inline-block 的区别</strong></p>
-<ul>
-<li>行内元素<ul>
-<li>设置宽高无效，大小是由内容撑起来的</li>
-<li>margin、padding 在左右方向有效，上下无效</li>
-<li>不会自动换行</li>
-</ul>
-</li>
-<li>块状元素<ul>
-<li>宽高均有效</li>
-<li>margin、padding 的上下左右均对其有效</li>
-<li>独占一行，可自动换行</li>
-<li>多个块状元素标签写在一起，默认排列方式为从上至下</li>
-</ul>
-</li>
-<li>行内块状元素<ul>
-<li>不会自动换行</li>
-<li>能识别宽高</li>
-<li>margin、padding 上下左右均有效</li>
-<li>默认排列方式为从左至右</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/display%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC/" data-id="ckta2lgz50007ucw91iz01gax" data-title="display有哪些值" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -727,6 +708,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/09/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">js垃圾回收机制</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/08/Ajax%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/">Ajax解决浏览器缓存问题</a>
           </li>
         
@@ -740,10 +725,6 @@
         
           <li>
             <a href="/blog/2021/09/08/%E5%9B%BE%E7%89%87%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD/">图片的懒加载和预加载</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/08/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1/">异步回调地狱</a>
           </li>
         
       </ul>
