@@ -71,6 +71,116 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-异步回调地狱" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/08/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1/" class="article-date">
+  <time class="dt-published" datetime="2021-09-08T11:45:08.000Z" itemprop="datePublished">2021-09-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/08/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1/">异步回调地狱</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>前言</strong><br>在了解“回调地狱”之前先了解两个概念</p>
+<ul>
+<li><p>回调函数<br>当一个函数作为参数传入另一个参数中，并且它不会立即执行，只有当满足一定条件后该函数才可以执行，这种函数就称为回调函数。我们熟悉的定时器和 Ajax 中就存在有回调函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;执行了回调函数&quot;</span>);</span><br><span class="line">&#125;, <span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.创建异步对象</span></span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="comment">//2.绑定监听事件(接收请求)</span></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//此方法会被调用4次</span></span><br><span class="line">  <span class="comment">//最后一次，readyState==4</span></span><br><span class="line">  <span class="comment">//并且响应状态码为200时，才是我们要的响应结果 xhr.status==200</span></span><br><span class="line">  <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="comment">//把响应数据存储到变量result中</span></span><br><span class="line">    <span class="keyword">var</span> result = xhr.responseText;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//3.打开链接（创建请求）</span></span><br><span class="line">xhr.open(<span class="string">&quot;get&quot;</span>, <span class="string">&quot;/demo/ajaxDemo&quot;</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">//4.发送请求</span></span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure></li>
+<li><p>异步任务<br>与之相对应的概念是“同步任务”，同步任务在主线程上排队执行，只有前一个任务执行完毕，才能执行下一个任务。异步任务不进入主线程，而是进入异步队列，前一个任务是否执行完毕不影响下一个任务的执行。同样，还拿定时器作为异步任务举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;执行了回调函数&quot;</span>);</span><br><span class="line">&#125;, <span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;先执行&quot;</span>);</span><br><span class="line"><span class="comment">// 先执行</span></span><br><span class="line"><span class="comment">// 执行了回调函数</span></span><br></pre></td></tr></table></figure>
+
+<p>这种不阻塞后面任务执行的任务就叫做异步任务。</p>
+</li>
+</ul>
+<p><strong>1. 什么是回调地狱</strong></p>
+<pre><code>根据前面我们可以得出一个结论：存在异步任务的代码，不能保证能按照顺序执行，那如果我们非要代码顺序执行呢？
+
+比如我要说一句话，语序必须是下面这样的：武林要以和为贵，要讲武德，不要搞窝里斗。
+
+我必须要这样操作，才能保证顺序正确：
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="comment">//第一层</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;武林要以和为贵&quot;</span>);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//第二程</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;要讲武德&quot;</span>);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//第三层</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;不要搞窝里斗&quot;</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;, <span class="number">3000</span>);</span><br><span class="line"><span class="comment">// 武林要以和为贵</span></span><br><span class="line"><span class="comment">// 要讲武德</span></span><br><span class="line"><span class="comment">// 不要搞窝里斗</span></span><br></pre></td></tr></table></figure>
+
+
+可以看到，代码中的回调函数套回调函数，居然套了 3 层，这种回调函数中嵌套回调函数的情况就叫做回调地狱。
+
+总结一下，回调地狱就是为是实现代码顺序执行而出现的一种操作，它会造成我们的代码可读性非常差，后期不好维护。
+
+那该如何解决回调地狱呢？
+</code></pre>
+<p><strong>2. 如何解决回调地狱</strong></p>
+<ul>
+<li><p>Promise<br>Promise 是 js 中的一个原生对象，是一种异步编程的解决方案，可以替换掉传统的回调函数解决方案。</p>
+<ul>
+<li><p>Promise 构造函数接收一个函数作为参数，我们需要处理的异步任务就卸载该函数体内，该函数的两个参数是 resolve，reject。异步任务执行成功时调用 resolve 函数返回结果，反之调用 reject。</p>
+</li>
+<li><p>Promise 对象的 then 方法用来接收处理成功时响应的数据，catch 方法用来接收处理失败时相应的数据。</p>
+</li>
+<li><p>Promise 的链式编程可以保证代码的执行顺序，前提是每一次在 then 做完处理后，一定要 return 一个 Promise 对象，这样才能在下一次 then 时接收到数据。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//处理异步任务</span></span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        resolve(str);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">&quot;操作失败&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn(<span class="string">&quot;武林要以和为贵&quot;</span>)</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">    <span class="keyword">return</span> fn(<span class="string">&quot;要讲武德&quot;</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">    <span class="keyword">return</span> fn(<span class="string">&quot;不要搞窝里斗&quot;</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>但是 Promise 最大的问题就是代码冗余，原来的异步任务被 Promise 封装一下，不管什么操作都用 then，就会导致一眼看过去全是 then…then…then…,这样也是不利于代码维护的。</p>
+<p>所以下面的 async/await 可以时代码看起来更像同步代码。</p>
+</li>
+<li><p>async/await<br>首先我们看 async 关键字，他作为一个关键字放到声明函数前面，表示该函数为一个异步任务，不会阻塞后面函数的执行：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;不讲武德&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(fn());</span><br><span class="line"><span class="comment">// Promise &#123;&lt;fulfilled&gt;: &quot;不讲武德&quot;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到 async 函数返回数据时自动封装为一个 Promise 对象。</p>
+<p>和 Promise 对象一样，处理异步任务时也可以按照成功和失败来返回不同的数据，处理成功时用 than 方法来接收，失败时用 catch 方法来接收数据：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;不讲武德&quot;</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&quot;处理失败&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;先执行我，表明async声明的函数是异步的&quot;</span>);</span><br><span class="line"><span class="comment">// 先执行我，表明async声明的函数是异步的</span></span><br><span class="line"><span class="comment">// 不讲武德&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>async 关键字说完了，我们看看 await 关键字</p>
+<ul>
+<li>await 关键字只能在使用 async 定义的函数中使用</li>
+<li>await 后面可以直接跟一个 Promise 实例对象（可以跟任何表达式，- 更多的是跟一个返回 Promise 对象的表达式）</li>
+<li>await 函数不能单独使用</li>
+<li>await 可以直接拿到 Promise 中 resolve 中的数据。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//封装一个返回promise的异步任务</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        resolve(str);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">&quot;处理失败&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//封装一个执行上述异步任务的async函数</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> res1 = <span class="keyword">await</span> fn(<span class="string">&quot;武林要以和为贵&quot;</span>); <span class="comment">//await直接拿到fn()返回的promise的数据，并且赋值给res</span></span><br><span class="line">  <span class="keyword">var</span> res2 = <span class="keyword">await</span> fn(<span class="string">&quot;要讲武德&quot;</span>);</span><br><span class="line">  <span class="keyword">var</span> res3 = <span class="keyword">await</span> fn(<span class="string">&quot;不要搞窝里斗&quot;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(res1, res2, res3);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//执行函数</span></span><br><span class="line">test();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 武林要以和为贵</span></span><br><span class="line"><span class="comment">// 要讲武德</span></span><br><span class="line"><span class="comment">// 不要搞窝里斗</span></span><br></pre></td></tr></table></figure>
+
+<p>为什么叫 await 等待呢，因为当代码执行到 async 函数中的 await 时，代码就在此处等待不继续往下执行，直到 await 拿到 Promise 对象中 resolve 的数据，才继续往下执行，这样就保证了代码的执行顺序，而且使异步代码看起来更像同步代码。</p>
+<p>async 里如果有多个 await 函数的时候，如果其中任一一个抛出异常或者报错了，都会导致函数停止执行，直接 reject;<br>怎么处理呢，可以用 try/catch，遇到函数的时候，可以将错误抛出，并且继续往下执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> last;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">throwError</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="built_in">Promise</span>.reject(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">    last = <span class="keyword">await</span> <span class="string">&quot;没有执行&quot;</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;has Error stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">throwError()</span><br><span class="line">  .then(<span class="function">(<span class="params">success</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&quot;成功&quot;</span>, last))</span><br><span class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&quot;失败&quot;</span>, last));</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>总结</strong><br>总结一下，当我们写代码遇到异步回调时，我们想让异步代码按照我们想要的顺序执行，如果按照传统的嵌套方式，就会出现回调地狱，这样的代码不利于维护，我们可以通过 Promise 对象进行链式编程来解决，这样尽管可以解决问题，但是 ES7 给我们提供了更加舒适的 async/await 语法糖，可以使得异步代码看起来更像是同步代码。</p>
+<p><strong>练习</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testSometing</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;testSomething&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;return testSomething&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">testAsync</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;testAsync&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(<span class="string">&quot;hello async&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;test start...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> testFn1 = <span class="keyword">await</span> testSometing();</span><br><span class="line">  <span class="built_in">console</span>.log(testFn1);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> testFn2 = <span class="keyword">await</span> testAsync();</span><br><span class="line">  <span class="built_in">console</span>.log(testFn2);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;test end...&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> promiseFn = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;promise START...&quot;</span>);</span><br><span class="line">  resolve(<span class="string">&quot;promise RESOLVE&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promiseFn.then(<span class="function">(<span class="params">val</span>) =&gt;</span> <span class="built_in">console</span>.log(val));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;===END===&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// test start...</span></span><br><span class="line"><span class="comment">//  testSomething</span></span><br><span class="line"><span class="comment">// promise START...</span></span><br><span class="line"><span class="comment">// === END ===</span></span><br><span class="line"><span class="comment">// return testSomething</span></span><br><span class="line"><span class="comment">// testAsync</span></span><br><span class="line"><span class="comment">// promise RESOLVE</span></span><br><span class="line"><span class="comment">// hello async</span></span><br><span class="line"><span class="comment">// test end...</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/08/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1/" data-id="cktbgwcm0000014w9cmxy7l7r" data-title="异步回调地狱" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-instanceof与typeof" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/08/instanceof%E4%B8%8Etypeof/" class="article-date">
@@ -670,55 +780,6 @@
 
 
   
-    <article id="post-元素竖向的百分比设定是相对于父元素的高度吗" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/07/%E5%85%83%E7%B4%A0%E7%AB%96%E5%90%91%E7%9A%84%E7%99%BE%E5%88%86%E6%AF%94%E8%AE%BE%E5%AE%9A%E6%98%AF%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E9%AB%98%E5%BA%A6%E5%90%97/" class="article-date">
-  <time class="dt-published" datetime="2021-09-07T03:00:32.000Z" itemprop="datePublished">2021-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/07/%E5%85%83%E7%B4%A0%E7%AB%96%E5%90%91%E7%9A%84%E7%99%BE%E5%88%86%E6%AF%94%E8%AE%BE%E5%AE%9A%E6%98%AF%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E9%AB%98%E5%BA%A6%E5%90%97/">元素竖向的百分比设定是相对于父元素的高度吗</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>元素竖向的百分比设定是相对于容器的高度吗？</strong></p>
-<p>一般而言，子元素的百分比设定都是以父元素为依据，子元素的宽度百分比依赖父元素的宽度百分比，子元素的高度百分比依赖父元素的高度百分比。那么 margin ，padding 这些属性也是如此吗？</p>
-<p>不是的。</p>
-<p><strong>总结</strong></p>
-<p>对于竖直方向的 margin 和 padding，参照父元素的宽度。<br>对于水平方向的 margin 和 padding，也是参照父元素的宽度。</p>
-<p><strong>为什么这么设置？</strong></p>
-<p>不知道</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/%E5%85%83%E7%B4%A0%E7%AB%96%E5%90%91%E7%9A%84%E7%99%BE%E5%88%86%E6%AF%94%E8%AE%BE%E5%AE%9A%E6%98%AF%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E9%AB%98%E5%BA%A6%E5%90%97/" data-id="ckta2lh0g000xucw9b5ji9ujk" data-title="元素竖向的百分比设定是相对于父元素的高度吗" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -762,6 +823,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/09/js%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">js数组去重</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/09/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8Fprocess-nextTick%E3%80%81promise%E3%80%81setTimeout/">代码执行顺序process.nextTick、promise、setTimeout</a>
           </li>
         
@@ -775,10 +840,6 @@
         
           <li>
             <a href="/blog/2021/09/09/eval/">eval</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/09/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">js垃圾回收机制</a>
           </li>
         
       </ul>
