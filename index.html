@@ -71,6 +71,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-eval" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/09/eval/" class="article-date">
+  <time class="dt-published" datetime="2021-09-09T11:32:17.000Z" itemprop="datePublished">2021-09-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/09/eval/">eval</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p><strong>简单解释</strong><br>其功能就是把对应的字符串解析成 JS 代码并运行</p>
+</li>
+<li><p><strong>举例</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayhello</span>(<span class="params"></span>)</span>&#123;……&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saygoodbye</span>(<span class="params"></span>)</span>&#123;……&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f=<span class="string">&quot;sayhello&quot;</span>;</span><br><span class="line"><span class="built_in">eval</span>(f+<span class="string">&#x27;()&#x27;</span>);<span class="comment">//运行sayhello();</span></span><br><span class="line"></span><br><span class="line">f=<span class="string">&#x27;saygoodbye&#x27;</span>;</span><br><span class="line"><span class="built_in">eval</span>(f+<span class="string">&#x27;()&#x27;</span>);<span class="comment">//运行saygoodbye();</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/eval/" data-id="cktcv3n2k0000jkw921yi6x27" data-title="eval" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-js垃圾回收机制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/09/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" class="article-date">
@@ -643,54 +691,6 @@
 
 
   
-    <article id="post-this的指向" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/07/this%E7%9A%84%E6%8C%87%E5%90%91/" class="article-date">
-  <time class="dt-published" datetime="2021-09-07T11:38:30.000Z" itemprop="datePublished">2021-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/07/this%E7%9A%84%E6%8C%87%E5%90%91/">this的指向</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>作为普通函数直接调用，this 指向 window</li>
-<li>作为对象方法去调用，this 指向调用它的这个对象</li>
-<li>箭头函数中没有 this，this 取决于外层离它最近的非箭头函数的 this</li>
-<li>构造函数的 this 指向创建这个构造函数的实例对象</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/this%E7%9A%84%E6%8C%87%E5%90%91/" data-id="ckta2lgzu000jucw99zy64weg" data-title="this的指向" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -734,6 +734,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/09/eval/">eval</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/09/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">js垃圾回收机制</a>
           </li>
         
@@ -747,10 +751,6 @@
         
           <li>
             <a href="/blog/2021/09/08/mouseover%E5%92%8Cmouseenter%E7%9A%84%E5%8C%BA%E5%88%AB/">mouseover和mouseenter的区别</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/08/%E5%9B%BE%E7%89%87%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD/">图片的懒加载和预加载</a>
           </li>
         
       </ul>
