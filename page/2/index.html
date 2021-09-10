@@ -71,6 +71,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js垃圾回收机制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/09/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" class="article-date">
+  <time class="dt-published" datetime="2021-09-09T11:12:29.000Z" itemprop="datePublished">2021-09-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/09/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">js垃圾回收机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p><strong>必要性</strong></p>
+<p>由于字符串、对象和数组没有固定大小，所有当他们的大小已知时，才能对他们进行动态的存储分配。JavaScript 程序每次创建字串、数组或对象时，解释器都必须分配内存来存储那个实体。只要像这样动态地分配了内存，最终都要释放这些内存以便他们能够被再用，否则,JavaScript 的解释器将会消耗完系统中所有可用的内存，造成系统崩溃。<br>这段话解释了为什么需要系统需要垃圾回收，JS 不像 C/C++，他有自己的一套垃圾回收机制（Garbage Collection）。JavaScript 的解释器可以检测到何时程序不再使用一个对象了，当他确定了一个对象是无用的时候，他就知道不再需要这个对象，可以把它所占用的内存释放掉了。</p>
+</li>
+<li><p><strong>垃圾回收方法</strong></p>
+<ul>
+<li><p>标记清除法<br>这是最常见的垃圾回收方式，当变量进入环境时，就标记这个变量为”进入环境“,从逻辑上讲，永远不能释放进入环境的变量所占的内存，永远不能释放进入环境变量所占用的内存，只要执行流程进入相应的环境，就可能用到他们。当离开环境时，就标记为离开环境。<br>垃圾回收器在运行的时候会给存储在内存中的变量都加上标记（所有都加），然后去掉环境变量中的变量，以及被环境变量中的变量所引用的变量（条件性去除标记），删除所有被标记的变量，删除的变量无法在环境变量中被访问所以会被删除，最后垃圾回收器，完成了内存的清除工作，并回收他们所占用的内存。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">0</span>; <span class="comment">// 进入环境</span></span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 离开环境</span></span><br></pre></td></tr></table></figure></li>
+<li><p>引用计数法<br>另一种不太常见的方法就是引用计数法，引用计数法的意思就是每个值没引用的次数，当声明了一个变量，并用一个引用类型的值赋值给该变量，则这个值的引用次数为 1,；相反的，如果包含了对这个值引用的变量又取得了另外一个值，则原先的引用值引用次数就减 1，当这个值的引用次数为 0 的时候，说明没有办法再访问这个值了，因此就把所占的内存给回收进来，这样垃圾收集器再次运行的时候，就会释放引用次数为 0 的这些值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">// a 的引用次数为1</span></span><br><span class="line">  <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">// b 的引用次数为1</span></span><br><span class="line"></span><br><span class="line">  a.prop = b; <span class="comment">// b 的引用次数为2</span></span><br><span class="line">  b.prop = a; <span class="comment">// a 的引用次数为2</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 用引用计数法会存在内存泄露，所以需要在不用该变量时将其释放</span></span><br><span class="line">  a = <span class="literal">null</span>;</span><br><span class="line">  b = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" data-id="ckte90vfj000m7ow9ashr92in" data-title="js垃圾回收机制" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Ajax解决浏览器缓存问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/08/Ajax%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/" class="article-date">
@@ -636,61 +691,6 @@
 
 
   
-    <article id="post-new一个函数的时候发生了什么" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/07/new%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" class="article-date">
-  <time class="dt-published" datetime="2021-09-07T10:46:17.000Z" itemprop="datePublished">2021-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/07/new%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">new一个函数的时候发生了什么</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>创建一个新的空对象，开僻一块内存空间</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br></pre></td></tr></table></figure></li>
-<li><p>将实例的原型指向构造函数的 prototype 属性</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, <span class="title">constructor</span>.<span class="title">prototype</span>);</span><br></pre></td></tr></table></figure></li>
-<li><p>构造函数被执行，执行过程中的 this 被绑定在新的对象上</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">constructor</span>.<span class="title">call</span>(<span class="params">obj</span>);</span><br></pre></td></tr></table></figure></li>
-<li><p>返回该对象，如果该函数没有返回对象则返回 this</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> obj;</span><br></pre></td></tr></table></figure>
-
-<p>完整案例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newOperator</span>(<span class="params">constructor</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 1. 创建一个新的空对象，开僻一块内存空间</span></span><br><span class="line">  <span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">  <span class="comment">// 2. 将实例的原型指向构造函数的 prototype 属性</span></span><br><span class="line">  <span class="built_in">Object</span>.setPrototypeOf(obj, <span class="title">constructor</span>.<span class="title">prototype</span>);</span><br><span class="line">  <span class="comment">// 3. 构造函数被执行，执行过程中的this被绑定在新的对象上</span></span><br><span class="line">  <span class="title">constructor</span>.<span class="title">call</span>(<span class="params">obj</span>);</span><br><span class="line">  <span class="comment">// 4. 返回该对象，如果该函数没有返回对象则返回this</span></span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person1 = newOperator(Person);</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/07/new%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" data-id="ckte90vgf00157ow996t9erm9" data-title="new一个函数的时候发生了什么" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -734,6 +734,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/10/v-on%E7%9B%91%E5%90%AC%E5%A4%9A%E4%B8%AA%E6%96%B9%E6%B3%95/">v-on监听多个方法</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/10/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9C%89%E5%93%AA%E4%BA%9B/">开发中常用的指令有哪些</a>
           </li>
         
@@ -747,10 +751,6 @@
         
           <li>
             <a href="/blog/2021/09/10/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Vue的生命周期</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/09/js%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">js数组去重</a>
           </li>
         
       </ul>
