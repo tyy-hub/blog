@@ -71,6 +71,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-watch与计算属性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" class="article-date">
+  <time class="dt-published" datetime="2021-09-10T10:49:41.000Z" itemprop="datePublished">2021-09-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">watch与计算属性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p><strong>计算属性 computed</strong></p>
+<ul>
+<li><p>支援缓存，只有依赖数据发生改变，才会重新进行计算</p>
+</li>
+<li><p>不支持异步</p>
+</li>
+<li><p>如果一个属性是由其他属性计算而来的，这个属性依赖其他属性，是一个多对一或者一对一，一般用 computed</p>
+</li>
+<li><p>如果 computed 属性属性值是函数那么默认会走 get 方法；函数的返回值就是属性的属性值；在 computed 中的属性都有一个 get 和 set 方法，当数据变化时，调用 set 方法</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  <span class="attr">fullName</span>: &#123;</span><br><span class="line">    <span class="function"><span class="title">get</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>.firstName + <span class="built_in">this</span>.lastName;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// set 当直接修改计算属性的时候 计算的源数据也要跟着改变</span></span><br><span class="line">    <span class="function"><span class="title">set</span>(<span class="params">newValue</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> nameArr = newValue.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">      <span class="comment">// 把一个字符串分割成字符串数组</span></span><br><span class="line">      <span class="built_in">this</span>.firstName = nameArr[<span class="number">0</span>];</span><br><span class="line">      <span class="built_in">this</span>.lastName = nameArr[<span class="number">1</span>];</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>侦听属性 watch</strong></p>
+<ul>
+<li><p>不支持缓存，只要数据变就直接触发相应的操作</p>
+</li>
+<li><p>watch 支持异步</p>
+</li>
+<li><p>监听的函数接收两个参数，第一个参数是最新的值，第二个参数是之前的值</p>
+</li>
+<li><p>监听数据必须是 data 中声明过或者父组件传递过来的 props 中的数据，当数据变化时，触发其他操作，函数有两个参数：</p>
+<p>immediate：组件加载立即触发回调函数执行</p>
+<p>deep: 深度监听，为了发现对象内部值的变化，复杂类型的数据时使用，例如数组中的对象内容的改变，注意监听数组的变动不需要这么做。注意：deep 无法监听到数组的变动和对象的新增，参考 vue 数组变异,只有以响应式的方式触发才会被监听到。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  <span class="comment">// 监听 question data</span></span><br><span class="line">  <span class="function"><span class="title">question</span>(<span class="params">newValue, oldValue</span>)</span> &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.answer = newValue.length &gt; <span class="number">5</span> ? <span class="string">&quot;是&quot;</span> : <span class="string">&quot;不是&quot;</span>;</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法二</span></span><br><span class="line"><span class="attr">question</span>: &#123;</span><br><span class="line">  <span class="function"><span class="title">handler</span>(<span class="params">newValue</span>)</span> &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.answer = newValue.length &gt; <span class="number">5</span> ? <span class="string">&quot;是&quot;</span> : <span class="string">&quot;不是&quot;</span>;</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 当监听的数据是对象类型时，想要监听其属性的改变，就需要加deep</span></span><br><span class="line">  <span class="attr">deep</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 当组件出现的时候就需要监听数据更新对应数据加 immediate</span></span><br><span class="line">  <span class="attr">immediate</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" data-id="ckte90vgy001d7ow9474fcl4b" data-title="watch与计算属性" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Vue的生命周期" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/10/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="article-date">
@@ -134,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="ckte77c860000k0w9g5m208fa" data-title="Vue的生命周期" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="ckte90veo00097ow94s7y34ao" data-title="Vue的生命周期" class="article-share-link">Share</a>
       
       
       
@@ -190,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" data-id="cktcxygbx0000mkw923nsanjq" data-title="js数组去重" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" data-id="ckte90vfv000t7ow97a0sb4ja" data-title="js数组去重" class="article-share-link">Share</a>
       
       
       
@@ -240,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8Fprocess-nextTick%E3%80%81promise%E3%80%81setTimeout/" data-id="cktcwt2ss0001w8w9ga1j0nk9" data-title="代码执行顺序process.nextTick、promise、setTimeout" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8Fprocess-nextTick%E3%80%81promise%E3%80%81setTimeout/" data-id="ckte90vh1001f7ow98mzibfn3" data-title="代码执行顺序process.nextTick、promise、setTimeout" class="article-share-link">Share</a>
       
       
       
@@ -282,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E6%8E%A7%E5%88%B6%E4%B8%80%E6%AC%A1%E5%8A%A0%E8%BD%BD%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%EF%BC%8C%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E5%86%8D%E5%8A%A0%E8%BD%BD%E4%B8%8B%E4%B8%80%E5%BC%A0/" data-id="cktcwt2sc0000w8w9cc7pd6f9" data-title="js控制一次加载一张图片，加载完成后再加载下一张" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E6%8E%A7%E5%88%B6%E4%B8%80%E6%AC%A1%E5%8A%A0%E8%BD%BD%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%EF%BC%8C%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E5%86%8D%E5%8A%A0%E8%BD%BD%E4%B8%8B%E4%B8%80%E5%BC%A0/" data-id="ckte90vfq000r7ow94xh208iv" data-title="js控制一次加载一张图片，加载完成后再加载下一张" class="article-share-link">Share</a>
       
       
       
@@ -336,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%94%B9%E5%8F%98/" data-id="cktcvfw6u00003sw91awr8r48" data-title="js监听对象属性的改变" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%94%B9%E5%8F%98/" data-id="ckte90vfz000v7ow9cpmp673t" data-title="js监听对象属性的改变" class="article-share-link">Share</a>
       
       
       
@@ -384,7 +454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/eval/" data-id="cktcv3n2k0000jkw921yi6x27" data-title="eval" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/eval/" data-id="ckte90vf0000f7ow90rmke8na" data-title="eval" class="article-share-link">Share</a>
       
       
       
@@ -439,7 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" data-id="cktcul9da0000w8w9b1ud86vw" data-title="js垃圾回收机制" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" data-id="ckte90vfj000m7ow9ashr92in" data-title="js垃圾回收机制" class="article-share-link">Share</a>
       
       
       
@@ -488,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/08/Ajax%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/" data-id="cktbjd3q00000w0w99mag3nrw" data-title="Ajax解决浏览器缓存问题" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/08/Ajax%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/" data-id="ckte90vdq00017ow96yob0z75" data-title="Ajax解决浏览器缓存问题" class="article-share-link">Share</a>
       
       
       
@@ -537,53 +607,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/08/js%E4%B8%AD%E5%90%84%E7%A7%8D%E9%AB%98%E5%BA%A6/" data-id="cktbjd3qe0001w0w93nw6ccvw" data-title="js中各种高度" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-mouseover和mouseenter的区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/08/mouseover%E5%92%8Cmouseenter%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
-  <time class="dt-published" datetime="2021-09-08T13:03:37.000Z" itemprop="datePublished">2021-09-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/08/mouseover%E5%92%8Cmouseenter%E7%9A%84%E5%8C%BA%E5%88%AB/">mouseover和mouseenter的区别</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>mouseover：当鼠标移入元素或其子元素都会触发，支持事件冒泡，对应 mouseout</li>
-<li>mouseenter：当鼠标移入元素(不包含其子元素)时触发，不支持事件冒泡，对应 mouseleave</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/08/mouseover%E5%92%8Cmouseenter%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cktbj2qrf0001skw90v8z3lwq" data-title="mouseover和mouseenter的区别" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/08/js%E4%B8%AD%E5%90%84%E7%A7%8D%E9%AB%98%E5%BA%A6/" data-id="ckte90vfm000o7ow9gboleuuz" data-title="js中各种高度" class="article-share-link">Share</a>
       
       
       
@@ -638,6 +662,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">watch与计算属性</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/10/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Vue的生命周期</a>
           </li>
         
@@ -651,10 +679,6 @@
         
           <li>
             <a href="/blog/2021/09/09/js%E6%8E%A7%E5%88%B6%E4%B8%80%E6%AC%A1%E5%8A%A0%E8%BD%BD%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%EF%BC%8C%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E5%86%8D%E5%8A%A0%E8%BD%BD%E4%B8%8B%E4%B8%80%E5%BC%A0/">js控制一次加载一张图片，加载完成后再加载下一张</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/09/js%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%94%B9%E5%8F%98/">js监听对象属性的改变</a>
           </li>
         
       </ul>

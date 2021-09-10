@@ -71,6 +71,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-visibility、opacity、display" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/" class="article-date">
+  <time class="dt-published" datetime="2021-07-14T08:07:51.000Z" itemprop="datePublished">2021-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/">visibility、opacity、display</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p><strong>display: none</strong></p>
+<ul>
+<li>会让元素完全从页面中消失，但 dom 节点依然存在, 不能点击</li>
+<li>是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示</li>
+<li>修改元素会造成文档回流,读屏器不会读取 display: none 元素内容，性能消耗较大</li>
+</ul>
+</li>
+<li><p><strong>visibility: hidden</strong></p>
+<ul>
+<li>不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，不能点击</li>
+<li>是继承属性，子孙节点消失由于继承了 hidden，通过设置 visibility: visible;可以让子孙节点显式。</li>
+<li>修改元素只会造成本元素的重绘,性能消耗较少</li>
+</ul>
+</li>
+<li><p><strong>opacity: 0</strong></p>
+<ul>
+<li>不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，可以点击</li>
+<li>修改元素会造成重绘，性能消耗较少</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/visibility%E3%80%81opacity%E3%80%81display/" data-id="ckte90vgs00197ow997mdguim" data-title="visibility、opacity、display" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-水平垂直居中" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" class="article-date">
@@ -151,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" data-id="ckta2lh15001bucw93p5yhiax" data-title="水平垂直居中" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/14/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" data-id="ckte90vi600237ow94nnhhe45" data-title="水平垂直居中" class="article-share-link">Share</a>
       
       
       
@@ -229,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" data-id="ckta2lh0o0013ucw91rzc4hqs" data-title="原型对象" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/" data-id="ckte90vhd001l7ow9gse852yz" data-title="原型对象" class="article-share-link">Share</a>
       
       
       
@@ -302,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckta2lgyq0003ucw9gqw413ui" data-title="call、bind、apply" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/13/call%E3%80%81bind%E3%80%81apply/" data-id="ckte90veg00067ow9fqw6aqc9" data-title="call、bind、apply" class="article-share-link">Share</a>
       
       
       
@@ -383,7 +447,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckta2lgye0001ucw9fnyedkw0" data-title="HTTP状态码" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="ckte90ve300037ow9gu861dym" data-title="HTTP状态码" class="article-share-link">Share</a>
       
       
       
@@ -451,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckta2lgzc000aucw9go6vhv7h" data-title="get请求与post请求" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckte90vf7000i7ow91h2f7izp" data-title="get请求与post请求" class="article-share-link">Share</a>
       
       
       
@@ -544,7 +608,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckta2lh1d001hucw9dno74ct0" data-title="跨域" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" data-id="ckte90vip002b7ow9h2v720xw" data-title="跨域" class="article-share-link">Share</a>
       
       
       
@@ -686,7 +750,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckta2lh0l0011ucw99h7m3wrb" data-title="本地缓存机制" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" data-id="ckte90vi0001z7ow9brzk1ekb" data-title="本地缓存机制" class="article-share-link">Share</a>
       
       
       
@@ -751,7 +815,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckta2lh26001uucw916edasu6" data-title="防抖与节流" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" data-id="ckte90vit002e7ow9035x9fv1" data-title="防抖与节流" class="article-share-link">Share</a>
       
       
       
@@ -824,89 +888,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckta2lh0t0017ucw998ii2cik" data-title="清除浮动" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-undefined与null" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/11/undefined%E4%B8%8Enull/" class="article-date">
-  <time class="dt-published" datetime="2021-07-11T11:36:32.000Z" itemprop="datePublished">2021-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/11/undefined%E4%B8%8Enull/">undefined与null</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>相似性<br>在 JavaScript 中，将一个变量赋值为 undefined 或 null，老实说，几乎没区别。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="literal">null</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a == b); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(a === b); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<p>undefined 与 null 转换为布尔值同为 false，相等运算符直接报告两者相等</p>
-</li>
-<li><p>最初设计</p>
-<ul>
-<li>null 转为数值时为 0</li>
-<li>undefined 转为数值时为 NaN</li>
-</ul>
-</li>
-<li><p>目前用法</p>
-<ul>
-<li><p>null 表示”没有对象”，即该处不应该有值，不占内存。典型用法是：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>); <span class="comment">// object</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>作为函数的参数，表示该函数的参数不是对象。</p>
-</li>
-<li><p>作为对象原型链的终点</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="built_in">Object</span>.prototype);</span><br><span class="line"><span class="comment">// null</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>undefined 表示”缺少值”，就是此处应该有一个值，但是还没有定义，占内存。典型用法是：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>); <span class="comment">// object</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>声明未赋值</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i;</span><br><span class="line"><span class="built_in">console</span>.log(i); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></li>
-<li><p>调用函数时，应该提供的参数没有提供，该参数等于 undefined。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line">f(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></li>
-<li><p>对象没有赋值的属性，该属性的值为 undefined。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.p; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></li>
-<li><p>函数没有返回值时，默认返回 undefined。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = f();</span><br><span class="line">x; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/undefined%E4%B8%8Enull/" data-id="ckta2lgzy000mucw9hbm5fd83" data-title="undefined与null" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/11/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" data-id="ckte90vi300217ow931sbd21u" data-title="清除浮动" class="article-share-link">Share</a>
       
       
       
@@ -961,6 +943,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">watch与计算属性</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/10/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Vue的生命周期</a>
           </li>
         
@@ -974,10 +960,6 @@
         
           <li>
             <a href="/blog/2021/09/09/js%E6%8E%A7%E5%88%B6%E4%B8%80%E6%AC%A1%E5%8A%A0%E8%BD%BD%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%EF%BC%8C%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E5%86%8D%E5%8A%A0%E8%BD%BD%E4%B8%8B%E4%B8%80%E5%BC%A0/">js控制一次加载一张图片，加载完成后再加载下一张</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/09/js%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%94%B9%E5%8F%98/">js监听对象属性的改变</a>
           </li>
         
       </ul>
