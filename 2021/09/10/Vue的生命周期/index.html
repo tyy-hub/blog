@@ -14,7 +14,7 @@
 <meta property="og:description" content="1. 创建  beforeCreate数据观测(data observer)和 event&#x2F;watcher 事件配置之前被调用  created(常用)data 设置完成,可以修改了。在此处可以执行修改 data 的操作,也就是以后的异步请求修改数据可以在此生命周期执行。   2. 挂载  beforeMount挂载之前,在此之前虚拟 DOM 已经创建完成,组件的 render 函数首次执行,">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-10T07:58:50.000Z">
-<meta property="article:modified_time" content="2021-09-10T10:08:10.955Z">
+<meta property="article:modified_time" content="2021-09-10T10:35:09.147Z">
 <meta property="article:author" content="Tyy">
 <meta name="twitter:card" content="summary">
   
@@ -79,6 +79,10 @@
   <time class="dt-published" datetime="2021-09-10T07:58:50.000Z" itemprop="datePublished">2021-09-10</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -118,8 +122,10 @@
 </ul>
 <p><strong>4. 销毁</strong></p>
 <ul>
-<li>beforeDestroy<br>组件销毁之前, 手动撤销监听事件，计时器等</li>
-<li>destroyed<br>组件销毁完毕，此时仅存在 Dom 节点，其他东西已自动销毁</li>
+<li><p>beforeDestroy<br>组件销毁之前, 手动撤销监听事件，计时器等</p>
+</li>
+<li><p>destroyed<br>组件销毁完毕，此时仅存在 Dom 节点，其他东西已自动销毁</p>
+</li>
 </ul>
 <p><strong>常用知识点</strong></p>
 <ul>
@@ -160,7 +166,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Js/">Js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Js/">Js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Vue/">Vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
     </div>
   </div>
 
