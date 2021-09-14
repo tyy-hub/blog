@@ -194,17 +194,39 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>v-model：一般用于表达输入(输出框)，轻松的实现表单控件和数据的双向绑定</p>
+<li><p>v-model 多用于表单元素实现双向数据绑定（同 angular 中的 ng-model）</p>
 </li>
 <li><p>v-html：更新元素的 innerHTML</p>
 </li>
-<li><p>v-show 与 v-if：条件渲染</p>
+<li><p>v-show 显示内容 （同 angular 中的 ng-show）</p>
 </li>
-<li><p>v-on:click：可以简写为@click，@绑定一个事件，如果事件触发了，就可以指定事件的处理函数</p>
+<li><p>v-hide 隐藏内容（同 angular 中的 ng-hide）</p>
 </li>
-<li><p>v-bind：当表达式的值改变时，将春产生的连带影响，响应式地作用于 DOM 语法</p>
+<li><p>v-if 显示与隐藏 （dom 元素的删除添加 同 angular 中的 ng-if 默认值为 false）</p>
+</li>
+<li><p>v-on:click：可以简写为@click，@绑定一个事件，如果事件触发了，就可以指定事件的处理函数，函数必须写在 methods 里面</p>
+</li>
+<li><p>v-bind 动态绑定 作用： 及时对页面的数据进行更改</p>
 </li>
 <li><p>v-bind:title=’msg’ 简写：title=’msg’</p>
+</li>
+<li><p>v-bind:class 三种绑定方法 1、对象型 ‘{red:isred}’ 2、三元型 ‘isred?”red”:”blue”‘ 3、数组型 ‘[{red:”isred”},{blue:”isblue”}]’</p>
+</li>
+<li><p>v-for 格式： v-for=”字段名 in(of) 数组 json” 循环数组或 json(同 angular 中的 ng-repeat)</p>
+</li>
+<li><p>v-else-if 必须和 v-if 连用</p>
+</li>
+<li><p>v-else 必须和 v-if 连用 不能单独使用 否则报错 模板编译错误</p>
+</li>
+<li><p>v-text 解析文本</p>
+</li>
+<li><p>v-html 解析 html 标签</p>
+</li>
+<li><p>v-once 进入页面时 只渲染一次 不在进行渲染</p>
+</li>
+<li><p>v-cloak 防止闪烁</p>
+</li>
+<li><p>v-pre 把标签内部的元素原位输出</p>
 </li>
 </ul>
 
