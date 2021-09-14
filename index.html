@@ -71,6 +71,138 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-组件之间的通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" class="article-date">
+  <time class="dt-published" datetime="2021-09-14T11:38:26.000Z" itemprop="datePublished">2021-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/">组件之间的通信</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>vue 组件之间通信的 8 种方式</strong></p>
+<ul>
+<li>props 和$emit(常用)</li>
+<li>.sync</li>
+<li>v-model</li>
+<li>slot</li>
+<li>定义 ref</li>
+<li>vuex</li>
+<li>$parent和$children</li>
+<li>provide 和 inject</li>
+<li>$attrs和$listeners</li>
+</ul>
+<ol>
+<li><p><strong>props 和$emit</strong></p>
+<p> 父组件向子组件传递数据是通过 prop 传递的，子组件传递数据给父组件是通过$emit 触发事件来做到的</p>
+<ul>
+<li><p>props</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;top&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Box</span> <span class="attr">imgTitle</span>=<span class="string">&quot;pic1&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Box</span> <span class="attr">imgTitle</span>=<span class="string">&quot;pic2&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Box</span> <span class="attr">imgTitle</span>=<span class="string">&quot;pic3&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 若传递的为变量则用冒号</span></span><br><span class="line"><span class="comment">&lt;Dialog :visibility=&#x27;visibility&#x27;/&gt; --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;Box&quot;</span>,</span><br><span class="line">  <span class="comment">// 这样imgTitle 就接收父组件传递的相应的数据，这个数据可以认为是一个该组件内的全局变量随意使用。</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// prop 数据的使用</span></span><br><span class="line">  <span class="comment">// 1. 在 template 中直接用，需要遵循 vue 的模板语法</span></span><br><span class="line">  <span class="comment">// 2. 在 script 中需要使用this.xxx</span></span><br><span class="line">  <span class="attr">props</span>: [<span class="string">&quot;imgTitle&quot;</span>],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>$emit</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dialog</span> @<span class="attr">open</span>=<span class="string">&quot;open&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 另一种写法 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;dialog :open=&quot;open&quot; /&gt; --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="function"><span class="title">open</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.visibility = <span class="literal">false</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;open&#x27;)&quot;</span>&gt;</span>确定<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 另一种写法 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- &lt;button @click=&quot;open&quot; class=&quot;btn1&quot;&gt;确定&lt;/button&gt; --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- props: &#123;</span></span><br><span class="line"><span class="comment">  visibility: &#123;</span></span><br><span class="line"><span class="comment">      type: Boolean,</span></span><br><span class="line"><span class="comment">      default: false,</span></span><br><span class="line"><span class="comment">      // 若 default 的值为对象或数组则需要使用箭头函数方式</span></span><br><span class="line"><span class="comment">      // default:()=&gt;[]</span></span><br><span class="line"><span class="comment">  &#125;,</span></span><br><span class="line"><span class="comment">  open: Function,</span></span><br><span class="line"><span class="comment">&#125;, --&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>.sync</strong></p>
+<p> sync 修饰符，与我们平常使用$emit 实现父子组件通信没有区别，只不过是写法上方便一些。</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .sync 不仅传递了自定义事件，还传递了对应的 prop,如有需要子组件需要接收 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- type 为一个 data --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">TodoFooter</span> <span class="attr">:type.sync</span>=<span class="string">&quot;type&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 子 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;update:type&#x27;, &#x27;all&#x27;)&quot;</span>&gt;</span>all<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- .sync 修饰符的用法 不需要在父组件定义修改 data 的方法 --&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>v-model</strong></p>
+<p> 父组件通过 v-model 传递值给子组件时，会自动传递一个 value 的 prop 属性，在子组件中通过 this.$emit(‘input’,val)自动修改 v-model 绑定的值</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ChildrenDemo</span> <span class="attr">v-model</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">text</span>: <span class="string">&quot;123&quot;</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; value &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;input&#x27;, 1000)&quot;</span>&gt;</span>btn<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">props: [<span class="string">&quot;value&quot;</span>];</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>slot</strong></p>
+<p> 父传子</p>
+<ul>
+<li><p>普通插槽</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>展示的内容<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">content</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h2</span>&gt;</span>展示的内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>具名插槽</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 简写 &lt;template #body&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>是否删除？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dialog</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>子</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;dialog-body&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&quot;body&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>定义 ref</strong></p>
+<p> 在父组件调用子组件的时候直接添加 ref 属性, 即可拿到子组件的属性、方法、data 等内容</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Wrap</span> <span class="attr">ref</span>=<span class="string">&quot;wrap&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.$refs.wrap.add())</span><br><span class="line">  <span class="comment">// 调用子组件的 add 方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>vuex</strong></p>
+<p> 如果业务逻辑复杂，很多组件之间需要同时处理一些公共的数据，这个时候才有上面这一些方法可能不利于项目的维护，vuex 的做法就是将这一些公共的数据抽离出来，然后其他组件就可以对这个公共数据进行读写操作，这样达到了解耦的目的。</p>
+</li>
+<li><p><strong>$parent和$children</strong></p>
+<ul>
+<li><p>$parent 可以在子组件内通过 <code>this.$parent.属性名/方法名</code> 取到父组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">handle</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line"><span class="built_in">this</span>.$parent.change(<span class="number">200</span>);</span><br><span class="line"><span class="comment">// change 为父组件的方法，将参数 200 传递给父组件</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li><p>$children 可以在父组件内通过 <code>this.$children.属性名</code> 取到子组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$children[<span class="number">0</span>].number;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>provide 和 inject</strong></p>
+<ul>
+<li>provice<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">provide</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">  <span class="comment">// 传递的时候将 data 以函数方式传递，保证实时更新</span></span><br><span class="line">  <span class="comment">// 必须为箭头函数</span></span><br><span class="line">      <span class="attr">count</span>: <span class="function">() =&gt;</span> <span class="built_in">this</span>.count,</span><br><span class="line">      <span class="attr">changeCount</span>: <span class="built_in">this</span>.changeCount,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="function"><span class="title">changeCount</span>(<span class="params">newCount</span>)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.count = newCount;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li>inject<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 使用的时候函数方式调用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>子子组件使用parent组件的 data :&#123;&#123; count() &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">inject: [<span class="string">&quot;count&quot;</span>, <span class="string">&quot;changeCount&quot;</span>],</span><br><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="function"><span class="title">handler</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.changeCount(<span class="number">500</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>$attrs 和 $listeners</strong></p>
+<ul>
+<li><p>$attrs 获取当前组件的所有 html 属性, 即父组件使用我的时候标签内传递的所有属性(class 除外)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Son</span> <span class="attr">str</span>=<span class="string">&quot;xxx&quot;</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span> <span class="attr">title</span>=<span class="string">&quot;tit&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>.$attrs); <span class="comment">//&#123;str: &quot;xxx&quot;, title: &quot;tit&quot;&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>$listeners 获取当前组件的所有 html 方法, 即父组件使用我的时候标签内传递的所有方法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Son</span></span></span><br><span class="line"><span class="tag">  <span class="attr">str</span>=<span class="string">&quot;xxx&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;son&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">title</span>=<span class="string">&quot;tit&quot;</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">xxx</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">        () =&gt; &#123;</span></span></span><br><span class="line"><span class="string"><span class="tag">        console.log(&#x27;hello&#x27;);</span></span></span><br><span class="line"><span class="string"><span class="tag">        &#125;</span></span></span><br><span class="line"><span class="string"><span class="tag">    &quot;</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>.$listeners); <span class="comment">// &#123;xxx: ƒ&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" data-id="cktk42w6m0000lkw938hk3gh2" data-title="组件之间的通信" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-set的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
@@ -606,65 +738,11 @@
 
 
   
-    <article id="post-js监听对象属性的改变" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/09/js%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%94%B9%E5%8F%98/" class="article-date">
-  <time class="dt-published" datetime="2021-09-09T11:45:37.000Z" itemprop="datePublished">2021-09-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/09/js%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%94%B9%E5%8F%98/">js监听对象属性的改变</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>在 ES5 中可以通过 Object.defineProperty 来实现已有属性的监听</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(user, <span class="string">&quot;name&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">set</span>: <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">    name = value;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;set: name:&quot;</span> + value);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>当需要设置对象中多个属性时，使用 defineProperties()进行监听</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperties(obj,&#123;</span><br><span class="line">  <span class="attr">a</span> : &#123;</span><br><span class="line">          <span class="attr">configurable</span>: <span class="literal">true</span>, <span class="comment">// 设置属性可以更改，默认为false</span></span><br><span class="line">          <span class="attr">set</span> : <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">b</span> : &#123;</span><br><span class="line">      <span class="attr">configurable</span>: <span class="literal">true</span>, <span class="comment">// 设置属性可以更改，默认为false</span></span><br><span class="line">          <span class="attr">set</span> : <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>在 ES6 中可以通过 Proxy 来实现</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">funtion <span class="function"><span class="title">handle</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="comment">// 改写set方法，监听设置</span></span><br><span class="line">  <span class="attr">set</span>: <span class="function"><span class="title">funtion</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">  <span class="attr">get</span>: <span class="function"><span class="title">funtion</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;,handle) <span class="comment">// 第一个参数为监听的对象，第二个参数为改写的方法</span></span><br></pre></td></tr></table></figure>
-
-<p>这样即使有属性在 user 中不存在，通过 user.id 来定义也同样可以这样监听这个属性的变化。</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%94%B9%E5%8F%98/" data-id="ckte90vfz000v7ow9cpmp673t" data-title="js监听对象属性的改变" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/5/">5</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/6/">6</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -703,6 +781,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/">组件之间的通信</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/">set的使用</a>
           </li>
         
@@ -716,10 +798,6 @@
         
           <li>
             <a href="/blog/2021/09/10/v-show%E4%B8%8Ev-if/">v-show与v-if</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">watch与计算属性</a>
           </li>
         
       </ul>

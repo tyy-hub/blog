@@ -71,6 +71,74 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-get请求与post请求" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" class="article-date">
+  <time class="dt-published" datetime="2021-07-12T04:20:52.000Z" itemprop="datePublished">2021-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/">get请求与post请求</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>基本区别</p>
+<ul>
+<li>GET 在浏览器回退时是无害的，而 POST 会再次提交请求。</li>
+<li>GET 产生的 URL 地址可以被 Bookmark，而 POST 不可以。</li>
+<li>GET 请求会被浏览器主动 cache，而 POST 不会，除非手动设置。</li>
+<li>GET 请求只能进行 url 编码，而 POST 支持多种编码方式。</li>
+<li>GET 请求参数会被完整保留在浏览器历史记录里，而 POST 中的参数不会被保留。</li>
+<li>GET 请求在 URL 中传送的参数是有长度限制的，而 POST 么有。(有争议)</li>
+<li>对参数的数据类型，GET 只接受 ASCII 字符，而 POST 没有限制。</li>
+<li>GET 比 POST 更不安全，因为参数直接暴露在 URL 上，所以不能用来传递敏感信息。</li>
+<li>GET 参数通过 URL 传递，POST 放在 Request body 中。</li>
+</ul>
+</li>
+<li><p>重点：</p>
+<ul>
+<li><p>GET 产生一个 TCP 数据包；POST 产生两个 TCP 数据包。</p>
+<p>对于 GET 方式的请求，浏览器会把 http header 和 data 一并发送出去，服务器响应 200（返回数据）；</p>
+<p>而对于 POST，浏览器先发送 header，服务器响应 100 continue，浏览器再发送 data，服务器响应 200 ok（返回数据）。</p>
+</li>
+<li><p>get 类似于查找的过程，用户获取数据可以不用每次都与数据库连接，所以可以使用缓存。</p>
+<p>post 不同，post 做的一般是修改和删除的工作，所以必须与数据库交互，所以不能使用缓存。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/12/get%E8%AF%B7%E6%B1%82%E4%B8%8Epost%E8%AF%B7%E6%B1%82/" data-id="ckte90vf7000i7ow91h2f7izp" data-title="get请求与post请求" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-跨域" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/07/12/%E8%B7%A8%E5%9F%9F/" class="article-date">
@@ -853,84 +921,11 @@
 
 
   
-    <article id="post-事件流" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/" class="article-date">
-  <time class="dt-published" datetime="2021-07-10T14:57:41.000Z" itemprop="datePublished">2021-07-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/">事件流</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>事件: 文档或者浏览器窗口中发生的，特定的交互瞬间。</p>
-<ul>
-<li>事件是用户或浏览器自身执行的某种动作，如 click,load 和 mouseover 都是事件的名字。</li>
-<li>事件是 javaScript 和 DOM 之间交互的桥梁。</li>
-<li>你若触发，我便执行——事件发生，调用它的处理函数执行相应的 JavaScript 代码给出响应。</li>
-<li>典型的例子有：页面加载完毕触发 load 事件；用户单击元素，触发 click 事件。</li>
-</ul>
-</li>
-<li><p>事件流: 描述的是从页面中接收事件的顺序。</p>
-</li>
-<li><p>addEventListener: 这个方法接收 3 个参数: 要处理的事件名、作为事件处理程序的函数和一个布尔值。布尔值若为 true 则表示在捕获阶段调用事件处理程序,布尔值若为 false 则表示在冒泡阶段调用事件处理程序,默认为 false.</p>
-</li>
-</ul>
-<h4 id="事件捕获阶段"><a href="#事件捕获阶段" class="headerlink" title="事件捕获阶段"></a>事件捕获阶段</h4><ul>
-<li><p>自上而下(即由外而内)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grandfather&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grandfather = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.grandfather&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> father = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.father&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> son = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.son&quot;</span>);</span><br><span class="line"></span><br><span class="line">grandfather.addEventListener(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;grandfather&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">father.addEventListener(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;father&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">son.addEventListener(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;son&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// grandfather</span></span><br><span class="line"><span class="comment">// father</span></span><br><span class="line"><span class="comment">// son</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="处于目标阶段"><a href="#处于目标阶段" class="headerlink" title="处于目标阶段"></a>处于目标阶段</h4><h4 id="事件冒泡阶段"><a href="#事件冒泡阶段" class="headerlink" title="事件冒泡阶段"></a>事件冒泡阶段</h4><ul>
-<li><p>自下而上(即由内而外)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grandfather&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grandfather = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.grandfather&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> father = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.father&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> son = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.son&quot;</span>);</span><br><span class="line"></span><br><span class="line">grandfather.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;grandfather&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">father.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;father&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">son.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;son&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出以下内容：</span></span><br><span class="line"><span class="comment">// son</span></span><br><span class="line"><span class="comment">// father</span></span><br><span class="line"><span class="comment">// grandfather</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="如何让事件先冒泡后捕获"><a href="#如何让事件先冒泡后捕获" class="headerlink" title="如何让事件先冒泡后捕获"></a>如何让事件先冒泡后捕获</h4><p>先捕获后冒泡这是机制问题，不可能改变的。可以改变的只有二者的回调函数的执行顺序。<br>或者 setTimeout(fn,0)或者 setImmediate(fn)</p>
-<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grandfather&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grandfather = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.grandfather&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> father = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.father&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> son = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.son&quot;</span>);</span><br><span class="line"></span><br><span class="line">grandfather.addEventListener(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;grandfather&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">father.addEventListener(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;father&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">son.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;son&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出结果为：</span></span><br><span class="line"><span class="comment">// father</span></span><br><span class="line"><span class="comment">// son</span></span><br><span class="line"><span class="comment">// grandfather</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 解释:</span></span><br><span class="line"><span class="comment">// addEventListener 的第三个参数默认为 false, 即冒泡阶段</span></span><br><span class="line"><span class="comment">// 执行顺序为 捕获阶段、目标阶段、冒泡阶段, 即先输出 father</span></span><br><span class="line"><span class="comment">// 又因冒泡机制为由内而外, 所以先输出son 再输出grandfather</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/" data-id="ckte90vh5001h7ow9dn1qarc6" data-title="事件流" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/blog/page/4/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/blog/page/4/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/blog/page/6/">6</a><a class="extend next" rel="next" href="/blog/page/6/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -969,6 +964,10 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/">组件之间的通信</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/">set的使用</a>
           </li>
         
@@ -982,10 +981,6 @@
         
           <li>
             <a href="/blog/2021/09/10/v-show%E4%B8%8Ev-if/">v-show与v-if</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">watch与计算属性</a>
           </li>
         
       </ul>
