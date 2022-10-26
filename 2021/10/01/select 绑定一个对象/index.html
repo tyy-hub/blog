@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>select 的 change 事件传递多个参数 | Note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="单选   12345678&lt;el-select v-model&#x3D;&quot;params.lendingAgency&quot; @change&#x3D;&quot;changeSelect($event, it)&quot; clearable size&#x3D;&quot;small&quot; placeholder&#x3D;&quot;请选择&quot;&gt;  &lt;el-option    v-fo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="select 的 change 事件传递多个参数">
+<meta property="og:url" content="http://tyy-hub.github.io/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="Note">
+<meta property="og:description" content="单选   12345678&lt;el-select v-model&#x3D;&quot;params.lendingAgency&quot; @change&#x3D;&quot;changeSelect($event, it)&quot; clearable size&#x3D;&quot;small&quot; placeholder&#x3D;&quot;请选择&quot;&gt;  &lt;el-option    v-fo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-01T11:23:20.000Z">
+<meta property="article:modified_time" content="2022-10-26T07:01:39.185Z">
+<meta property="article:author" content="Tyy">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Note" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Note</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tyy-hub.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-select 绑定一个对象" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time class="dt-published" datetime="2021-10-01T11:23:20.000Z" itemprop="datePublished">2021-10-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      select 的 change 事件传递多个参数
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>单选</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-select</span> <span class="attr">v-model</span>=<span class="string">&quot;params.lendingAgency&quot;</span> @<span class="attr">change</span>=<span class="string">&quot;changeSelect($event, it)&quot;</span> <span class="attr">clearable</span> <span class="attr">size</span>=<span class="string">&quot;small&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请选择&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-option</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">&quot;item in typeList&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:key</span>=<span class="string">&quot;item.value&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:label</span>=<span class="string">&quot;item.label&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:value</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">el-option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>多选</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;贷款机构名称&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-select</span> <span class="attr">v-model</span>=<span class="string">&quot;loanForm&quot;</span> <span class="attr">multiple</span> @<span class="attr">change</span>=<span class="string">&quot;changeSelect&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 90%;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-option</span> <span class="attr">v-for</span>=<span class="string">&quot;item in orgList&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.id&quot;</span> <span class="attr">:label</span>=<span class="string">&quot;item.label&quot;</span> <span class="attr">:value</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">el-option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">el-select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">loanForm</span>: []</span><br><span class="line"></span><br><span class="line">changeSelect (item) &#123;</span><br><span class="line">  <span class="keyword">const</span> res = item.<span class="title function_">map</span>(<span class="function"><span class="params">it</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">name</span>: it.<span class="property">label</span>,</span><br><span class="line">      <span class="attr">id</span>: it.<span class="property">value</span>,</span><br><span class="line">      <span class="attr">a</span>: <span class="string">&#x27;a&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/" data-id="cl9pbrkrr001kdyp8hqx6fiq5" data-title="select 的 change 事件传递多个参数" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          select 的 change 事件传递多个参数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2021/09/14/Md5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Md5</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Element/">Element</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Js/">Js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Vue/">Vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E6%8F%92%E4%BB%B6/">插件</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">select 的 change 事件传递多个参数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/">select 的 change 事件传递多个参数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/14/Md5/">Md5</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/14/%E9%80%9A%E8%BF%87%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%88%B7%E6%96%B0%E5%8F%82%E6%95%B0%E4%BC%9A%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/">通过路由传递参数，在子组件中刷新参数会丢失的问题</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/">组件之间的通信</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Tyy<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

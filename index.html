@@ -71,6 +71,189 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-select 的 change 事件传递多个参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-10-01T11:23:20.000Z" itemprop="datePublished">2021-10-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">select 的 change 事件传递多个参数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>方法一</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@change=&quot;(name)=&gt;&#123; handleChange(name,id)&#125;&quot;</span><br><span class="line"></span><br><span class="line">name：当前选中的值</span><br><span class="line">id：需要传入其他的参数</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@change=&quot;handleChange($event,id)&#125;&quot;</span><br><span class="line"></span><br><span class="line">$event：当前选中的值</span><br><span class="line">id：需要传入其他的参数</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" data-id="cl9pbrkrq001idyp85vprbtlk" data-title="select 的 change 事件传递多个参数" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-select 绑定一个对象" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time class="dt-published" datetime="2021-10-01T11:23:20.000Z" itemprop="datePublished">2021-10-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/">select 的 change 事件传递多个参数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>单选</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-select</span> <span class="attr">v-model</span>=<span class="string">&quot;params.lendingAgency&quot;</span> @<span class="attr">change</span>=<span class="string">&quot;changeSelect($event, it)&quot;</span> <span class="attr">clearable</span> <span class="attr">size</span>=<span class="string">&quot;small&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请选择&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-option</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">&quot;item in typeList&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:key</span>=<span class="string">&quot;item.value&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:label</span>=<span class="string">&quot;item.label&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:value</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">el-option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>多选</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;贷款机构名称&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-select</span> <span class="attr">v-model</span>=<span class="string">&quot;loanForm&quot;</span> <span class="attr">multiple</span> @<span class="attr">change</span>=<span class="string">&quot;changeSelect&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 90%;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-option</span> <span class="attr">v-for</span>=<span class="string">&quot;item in orgList&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.id&quot;</span> <span class="attr">:label</span>=<span class="string">&quot;item.label&quot;</span> <span class="attr">:value</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">el-option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">el-select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">loanForm</span>: []</span><br><span class="line"></span><br><span class="line">changeSelect (item) &#123;</span><br><span class="line">  <span class="keyword">const</span> res = item.<span class="title function_">map</span>(<span class="function"><span class="params">it</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">name</span>: it.<span class="property">label</span>,</span><br><span class="line">      <span class="attr">id</span>: it.<span class="property">value</span>,</span><br><span class="line">      <span class="attr">a</span>: <span class="string">&#x27;a&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/" data-id="cl9pbrkrr001kdyp8hqx6fiq5" data-title="select 的 change 事件传递多个参数" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Md5" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/14/Md5/" class="article-date">
+  <time class="dt-published" datetime="2021-09-14T13:35:00.000Z" itemprop="datePublished">2021-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E6%8F%92%E4%BB%B6/">插件</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/14/Md5/">Md5</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>1. 安装</strong></p>
+<p>  <code>npm install js-md5</code></p>
+<p><strong>2. 在全局组件中引入</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> md5 <span class="keyword">from</span> <span class="string">&#x27;js-md5&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">CONFIG</span> = &#123;</span><br><span class="line">  <span class="title class_">Md5</span>: md5,</span><br><span class="line">  ...<span class="variable language_">window</span>.<span class="property">CONFIG</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 使用</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">passwordId</span> = id &amp;&amp; <span class="variable language_">window</span>.<span class="property">CONFIG</span>.<span class="title class_">Md5</span>(id)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/Md5/" data-id="cl9pbrkr8000ddyp81d6u9ujs" data-title="Md5" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-通过路由传递参数，在子组件中刷新参数会丢失的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/09/14/%E9%80%9A%E8%BF%87%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%88%B7%E6%96%B0%E5%8F%82%E6%95%B0%E4%BC%9A%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2021-09-14T13:35:00.000Z" itemprop="datePublished">2021-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/09/14/%E9%80%9A%E8%BF%87%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%88%B7%E6%96%B0%E5%8F%82%E6%95%B0%E4%BC%9A%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/">通过路由传递参数，在子组件中刷新参数会丢失的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传递时通过 JSON.stringify</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;<span class="attr">path</span>: <span class="string">&#x27;/a&#x27;</span>, <span class="attr">query</span>: &#123;<span class="attr">row</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(row)&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接收时通过 JSON.parse 解析</span></span><br><span class="line">row () &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">query</span>.<span class="property">row</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/%E9%80%9A%E8%BF%87%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%88%B7%E6%96%B0%E5%8F%82%E6%95%B0%E4%BC%9A%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cl9pbrkss003pdyp8a12wh76m" data-title="通过路由传递参数，在子组件中刷新参数会丢失的问题" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-组件之间的通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" class="article-date">
@@ -202,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" data-id="cl9p8qpmj002hmgp88mzi02fy" data-title="组件之间的通信" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" data-id="cl9pbrksm003cdyp81ucp5bbx" data-title="组件之间的通信" class="article-share-link">Share</a>
       
       
       
@@ -272,7 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cl9p8qpm40015mgp84yydgbl3" data-title="set的使用" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cl9pbrkrr001mdyp83ya95pca" data-title="set的使用" class="article-share-link">Share</a>
       
       
       
@@ -322,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/v-on%E7%9B%91%E5%90%AC%E5%A4%9A%E4%B8%AA%E6%96%B9%E6%B3%95/" data-id="cl9p8qpm8001dmgp8751bfl2y" data-title="v-on监听多个方法" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/v-on%E7%9B%91%E5%90%AC%E5%A4%9A%E4%B8%AA%E6%96%B9%E6%B3%95/" data-id="cl9pbrkrw001sdyp80dm68fyi" data-title="v-on监听多个方法" class="article-share-link">Share</a>
       
       
       
@@ -400,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9C%89%E5%93%AA%E4%BA%9B/" data-id="cl9p8qpmg0021mgp87ckf4k75" data-title="开发中常用的指令有哪些" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9C%89%E5%93%AA%E4%BA%9B/" data-id="cl9pbrksa002wdyp83eqp94qk" data-title="开发中常用的指令有哪些" class="article-share-link">Share</a>
       
       
       
@@ -468,7 +651,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/v-show%E4%B8%8Ev-if/" data-id="cl9p8qpm8001fmgp81fvf9o33" data-title="v-show与v-if" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/v-show%E4%B8%8Ev-if/" data-id="cl9pbrkrw001udyp88i44bj7c" data-title="v-show与v-if" class="article-share-link">Share</a>
       
       
       
@@ -539,265 +722,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" data-id="cl9p8qpm9001jmgp89yim7uhz" data-title="watch与计算属性" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/10/test/" class="article-date">
-  <time class="dt-published" datetime="2021-09-10T10:35:10.000Z" itemprop="datePublished">2021-09-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/10/test/">test1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>1. 创建</strong></p>
-<ul>
-<li><p>beforeCreate<br>数据观测(data observer)和 event&#x2F;watcher 事件配置之前被调用</p>
-</li>
-<li><p>created(常用)<br>data 设置完成,可以修改了。在此处可以执行修改 data 的操作,也就是以后的异步请求修改数据可以在此生命周期执行。</p>
-</li>
-</ul>
-<p><strong>2. 挂载</strong></p>
-<ul>
-<li><p>beforeMount<br>挂载之前,在此之前虚拟 DOM 已经创建完成,组件的 render 函数首次执行,</p>
-</li>
-<li><p>mounted(常用)<br>组件完全渲染到了页面中。可以获取真实的 dom 节点</p>
-</li>
-</ul>
-<p><strong>3. 更新</strong></p>
-<ul>
-<li><p>beforeUpdate<br>数据更新时</p>
-</li>
-<li><p>updated(常用)<br>数据更新完毕执行,页面更新也完毕了。可以获取更新之后的 data 以及真实 dom 节点</p>
-</li>
-</ul>
-<p><strong>4. 销毁</strong></p>
-<ul>
-<li><p>beforeDestroy<br>组件销毁之前, 手动撤销监听事件，计时器等</p>
-</li>
-<li><p>destroyed<br>组件销毁完毕，此时仅存在 Dom 节点，其他东西已自动销毁</p>
-</li>
-</ul>
-<p><strong>常用知识点</strong></p>
-<ul>
-<li>created 里可以通过 setTimeout 异步修改 data，异步修改完之后只有 updated 能够取到,且需要通过 v-if 与页面挂勾</li>
-<li>created 里可以同步修改 data，同步修改完之后 mounted 也可取到(但若写了 v-if 则取不到)</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/test/" data-id="cl9p8qpm60017mgp8bjbj04bw" data-title="test1" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Vue的生命周期" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/10/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="article-date">
-  <time class="dt-published" datetime="2021-09-10T07:58:50.000Z" itemprop="datePublished">2021-09-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/10/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Vue的生命周期</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>1. 创建</strong></p>
-<ul>
-<li><p>beforeCreate<br>数据观测(data observer)和 event&#x2F;watcher 事件配置之前被调用</p>
-</li>
-<li><p>created(常用)<br>data 设置完成,可以修改了。在此处可以执行修改 data 的操作,也就是以后的异步请求修改数据可以在此生命周期执行。</p>
-</li>
-</ul>
-<p><strong>2. 挂载</strong></p>
-<ul>
-<li><p>beforeMount<br>挂载之前,在此之前虚拟 DOM 已经创建完成,组件的 render 函数首次执行,</p>
-</li>
-<li><p>mounted(常用)<br>组件完全渲染到了页面中。可以获取真实的 dom 节点</p>
-</li>
-</ul>
-<p><strong>3. 更新</strong></p>
-<ul>
-<li><p>beforeUpdate<br>数据更新时</p>
-</li>
-<li><p>updated(常用)<br>数据更新完毕执行,页面更新也完毕了。可以获取更新之后的 data 以及真实 dom 节点</p>
-</li>
-</ul>
-<p><strong>4. 销毁</strong></p>
-<ul>
-<li><p>beforeDestroy<br>组件销毁之前, 手动撤销监听事件，计时器等</p>
-</li>
-<li><p>destroyed<br>组件销毁完毕，此时仅存在 Dom 节点，其他东西已自动销毁</p>
-</li>
-</ul>
-<p><strong>常用知识点</strong></p>
-<ul>
-<li>created 里可以通过 setTimeout 异步修改 data，异步修改完之后只有 updated 能够取到,且需要通过 v-if 与页面挂勾</li>
-<li>created 里可以同步修改 data，同步修改完之后 mounted 也可取到(但若写了 v-if 则取不到)</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cl9p8qplm0005mgp8hfog6nyz" data-title="Vue的生命周期" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-js数组去重" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/09/js%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" class="article-date">
-  <time class="dt-published" datetime="2021-09-09T12:45:30.000Z" itemprop="datePublished">2021-09-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/09/js%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">js数组去重</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>ES6 中的 Set 方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">3</span>, <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(...<span class="keyword">new</span> <span class="title class_">Set</span>(arr)); <span class="comment">// [1,0,2,9,8,3]</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">unique</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Array</span>.<span class="title function_">from</span>(<span class="keyword">new</span> <span class="title class_">Set</span>(arr));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unique</span>(arr)); <span class="comment">// 1 0 2 9 8 3</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用双重 for 循环，再利用数组的 splice 方法去重（ES5 常用）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">unique</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = arr.<span class="property">length</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>, len = arr.<span class="property">length</span>; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[i] === arr[j]) &#123;</span><br><span class="line">        arr.<span class="title function_">splice</span>(j, <span class="number">1</span>);</span><br><span class="line">        j--; <span class="comment">// 每删除一个数j的值就减1</span></span><br><span class="line">        len--; <span class="comment">// j值减小时len也要相应减1（减少循环次数，节省性能）</span></span><br><span class="line">        <span class="comment">// console.log(j,len)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unique</span>(arr)); <span class="comment">//  1, 5, 6, 0, 7, 3, 9</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用数组的 indexOf 方法去重<br>注：array.indexOf(item,statt) 返回数组中某个指定的元素的位置，没有则返回-1</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, -<span class="number">5</span>, -<span class="number">4</span>, <span class="number">0</span>, -<span class="number">4</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">unique</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> arr1 = []; <span class="comment">// 新建一个数组来存放arr中的值</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = arr.<span class="property">length</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr1.<span class="title function_">indexOf</span>(arr[i]) === -<span class="number">1</span>) &#123;</span><br><span class="line">      arr1.<span class="title function_">push</span>(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unique</span>(arr)); <span class="comment">// 1, -5, -4, 0, 7, 3</span></span><br></pre></td></tr></table></figure></li>
-<li><p>利用数组的 includes<br>注：arr.includes(指定元素(必填),指定索引值(可选,默认值为 0) )，有值返回 true，没有则返回 false</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">8</span>, -<span class="number">3</span>, -<span class="number">1</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">unique</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> arr1 = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = arr.<span class="property">length</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!arr1.<span class="title function_">includes</span>(arr[i])) &#123;</span><br><span class="line">      <span class="comment">// 检索arr1中是否含有arr中的值</span></span><br><span class="line">      arr1.<span class="title function_">push</span>(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unique</span>(arr)); <span class="comment">//  -1, 0, 8, -3, 5, 7</span></span><br></pre></td></tr></table></figure></li>
-<li><p>利用数组的 sort 方法去重（相邻元素对比法）<br>注：array.sort( function ) 参数必须是函数，可选，默认升序</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr =  [<span class="number">5</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">7</span>];</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">unique</span>(<span class="params"> arr </span>)&#123;</span><br><span class="line">  arr = arr.<span class="title function_">sort</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> arr1 = [arr[<span class="number">0</span>]];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>,len=arr.<span class="property">length</span>;i&lt;len;i++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(arr[i] !== arr[i-<span class="number">1</span>])&#123;</span><br><span class="line">          arr1.<span class="title function_">push</span>(arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unique</span>(arr))l;   <span class="comment">//  1, 1, 3, 4, 5, 7, 7, 8, 8, 9</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/js%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" data-id="cl9p8qpm1000tmgp8bmfcgje9" data-title="js数组去重" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-代码执行顺序process-nextTick、promise、setTimeout" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/09/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8Fprocess-nextTick%E3%80%81promise%E3%80%81setTimeout/" class="article-date">
-  <time class="dt-published" datetime="2021-09-09T12:27:29.000Z" itemprop="datePublished">2021-09-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/09/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8Fprocess-nextTick%E3%80%81promise%E3%80%81setTimeout/">代码执行顺序process.nextTick、promise、setTimeout</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>代码执行顺序</p>
-<p>script(主程序代码)—&gt;process.nextTick—&gt;Promises…——&gt;setTimeout——&gt;setInterval——&gt;setImmediate——&gt; I&#x2F;O——&gt;UI rendering</p>
-<p>前提是同步一定先于异步</p>
-</li>
-<li><p>举例</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">  <span class="title function_">resolve</span>();</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">process.<span class="title function_">nextTick</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 6</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 5</span></span><br><span class="line"><span class="comment">// 1</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/09/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8Fprocess-nextTick%E3%80%81promise%E3%80%81setTimeout/" data-id="cl9p8qpmb001pmgp813vc28tl" data-title="代码执行顺序process.nextTick、promise、setTimeout" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" data-id="cl9pbrkrx001ydyp877lt9ufz" data-title="watch与计算属性" class="article-share-link">Share</a>
       
       
       
@@ -813,7 +738,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/6/">6</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -824,7 +749,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Js/">Js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Vue/">Vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Element/">Element</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Js/">Js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Vue/">Vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E6%8F%92%E4%BB%B6/">插件</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
     </div>
   </div>
 
@@ -839,7 +764,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/07/">July 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/07/">July 2021</a></li></ul>
     </div>
   </div>
 
@@ -852,23 +777,23 @@
       <ul>
         
           <li>
+            <a href="/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">select 的 change 事件传递多个参数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/">select 的 change 事件传递多个参数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/14/Md5/">Md5</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/14/%E9%80%9A%E8%BF%87%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%88%B7%E6%96%B0%E5%8F%82%E6%95%B0%E4%BC%9A%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/">通过路由传递参数，在子组件中刷新参数会丢失的问题</a>
+          </li>
+        
+          <li>
             <a href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/">组件之间的通信</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/">set的使用</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/10/v-on%E7%9B%91%E5%90%AC%E5%A4%9A%E4%B8%AA%E6%96%B9%E6%B3%95/">v-on监听多个方法</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/10/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9C%89%E5%93%AA%E4%BA%9B/">开发中常用的指令有哪些</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2021/09/10/v-show%E4%B8%8Ev-if/">v-show与v-if</a>
           </li>
         
       </ul>
