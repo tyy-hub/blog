@@ -232,12 +232,18 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><strong>1. 安装</strong></p>
+        <ol>
+<li>安装</li>
+</ol>
 <p>  <code>npm install js-md5</code></p>
-<p><strong>2. 在全局组件中引入</strong></p>
+<ol start="2">
+<li>在全局组件中引入</li>
+</ol>
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> md5 <span class="keyword">from</span> <span class="string">&#x27;js-md5&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">CONFIG</span> = &#123;</span><br><span class="line">  <span class="title class_">Md5</span>: md5,</span><br><span class="line">  ...<span class="variable language_">window</span>.<span class="property">CONFIG</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>3. 使用</strong></p>
+<ol start="3">
+<li>使用</li>
+</ol>
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">passwordId</span> = id &amp;&amp; <span class="variable language_">window</span>.<span class="property">CONFIG</span>.<span class="title class_">Md5</span>(id)</span><br></pre></td></tr></table></figure>
       
     </div>
