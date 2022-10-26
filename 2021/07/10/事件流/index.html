@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>事件流 | Note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="事件: 文档或者浏览器窗口中发生的，特定的交互瞬间。  事件是用户或浏览器自身执行的某种动作，如 click,load 和 mouseover 都是事件的名字。 事件是 javaScript 和 DOM 之间交互的桥梁。 你若触发，我便执行——事件发生，调用它的处理函数执行相应的 JavaScript 代码给出响应。 典型的例子有：页面加载完毕触发 load 事件；用户单击元素，触发 click">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件流">
+<meta property="og:url" content="http://tyy-hub.github.io/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/index.html">
+<meta property="og:site_name" content="Note">
+<meta property="og:description" content="事件: 文档或者浏览器窗口中发生的，特定的交互瞬间。  事件是用户或浏览器自身执行的某种动作，如 click,load 和 mouseover 都是事件的名字。 事件是 javaScript 和 DOM 之间交互的桥梁。 你若触发，我便执行——事件发生，调用它的处理函数执行相应的 JavaScript 代码给出响应。 典型的例子有：页面加载完毕触发 load 事件；用户单击元素，触发 click">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-10T14:57:41.000Z">
+<meta property="article:modified_time" content="2021-09-08T12:42:32.000Z">
+<meta property="article:author" content="Tyy">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Note" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Note</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tyy-hub.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-事件流" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/" class="article-date">
+  <time class="dt-published" datetime="2021-07-10T14:57:41.000Z" itemprop="datePublished">2021-07-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Js/">Js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      事件流
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>事件: 文档或者浏览器窗口中发生的，特定的交互瞬间。</p>
+<ul>
+<li>事件是用户或浏览器自身执行的某种动作，如 click,load 和 mouseover 都是事件的名字。</li>
+<li>事件是 javaScript 和 DOM 之间交互的桥梁。</li>
+<li>你若触发，我便执行——事件发生，调用它的处理函数执行相应的 JavaScript 代码给出响应。</li>
+<li>典型的例子有：页面加载完毕触发 load 事件；用户单击元素，触发 click 事件。</li>
+</ul>
+</li>
+<li><p>事件流: 描述的是从页面中接收事件的顺序。</p>
+</li>
+<li><p>addEventListener: 这个方法接收 3 个参数: 要处理的事件名、作为事件处理程序的函数和一个布尔值。布尔值若为 true 则表示在捕获阶段调用事件处理程序,布尔值若为 false 则表示在冒泡阶段调用事件处理程序,默认为 false.</p>
+</li>
+</ul>
+<h4 id="事件捕获阶段"><a href="#事件捕获阶段" class="headerlink" title="事件捕获阶段"></a>事件捕获阶段</h4><ul>
+<li><p>自上而下(即由外而内)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grandfather&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grandfather = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.grandfather&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> father = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.father&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> son = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.son&quot;</span>);</span><br><span class="line"></span><br><span class="line">grandfather.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;grandfather&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">father.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;father&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">son.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;son&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// grandfather</span></span><br><span class="line"><span class="comment">// father</span></span><br><span class="line"><span class="comment">// son</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="处于目标阶段"><a href="#处于目标阶段" class="headerlink" title="处于目标阶段"></a>处于目标阶段</h4><h4 id="事件冒泡阶段"><a href="#事件冒泡阶段" class="headerlink" title="事件冒泡阶段"></a>事件冒泡阶段</h4><ul>
+<li><p>自下而上(即由内而外)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grandfather&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grandfather = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.grandfather&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> father = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.father&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> son = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.son&quot;</span>);</span><br><span class="line"></span><br><span class="line">grandfather.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;grandfather&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">father.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;father&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">son.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;son&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出以下内容：</span></span><br><span class="line"><span class="comment">// son</span></span><br><span class="line"><span class="comment">// father</span></span><br><span class="line"><span class="comment">// grandfather</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="如何让事件先冒泡后捕获"><a href="#如何让事件先冒泡后捕获" class="headerlink" title="如何让事件先冒泡后捕获"></a>如何让事件先冒泡后捕获</h4><p>先捕获后冒泡这是机制问题，不可能改变的。可以改变的只有二者的回调函数的执行顺序。<br>或者 setTimeout(fn,0)或者 setImmediate(fn)</p>
+<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grandfather&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grandfather = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.grandfather&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> father = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.father&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> son = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.son&quot;</span>);</span><br><span class="line"></span><br><span class="line">grandfather.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;grandfather&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">father.<span class="title function_">addEventListener</span>(</span><br><span class="line">  <span class="string">&quot;click&quot;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;father&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">son.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;son&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出结果为：</span></span><br><span class="line"><span class="comment">// father</span></span><br><span class="line"><span class="comment">// son</span></span><br><span class="line"><span class="comment">// grandfather</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 解释:</span></span><br><span class="line"><span class="comment">// addEventListener 的第三个参数默认为 false, 即冒泡阶段</span></span><br><span class="line"><span class="comment">// 执行顺序为 捕获阶段、目标阶段、冒泡阶段, 即先输出 father</span></span><br><span class="line"><span class="comment">// 又因冒泡机制为由内而外, 所以先输出son 再输出grandfather</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2021/07/10/%E4%BA%8B%E4%BB%B6%E6%B5%81/" data-id="cl9p8qpma001nmgp88uvafta1" data-title="事件流" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2021/07/11/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          事件委托
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Js/">Js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Vue/">Vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/">组件之间的通信</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/">set的使用</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/10/v-on%E7%9B%91%E5%90%AC%E5%A4%9A%E4%B8%AA%E6%96%B9%E6%B3%95/">v-on监听多个方法</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/10/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9C%89%E5%93%AA%E4%BA%9B/">开发中常用的指令有哪些</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/09/10/v-show%E4%B8%8Ev-if/">v-show与v-if</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Tyy<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
