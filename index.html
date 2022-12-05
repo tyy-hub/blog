@@ -71,10 +71,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-select 的 change 事件传递多个参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-判断一个数据是否为JSON数据" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2021-10-01T11:23:20.000Z" itemprop="datePublished">2021-10-01</time>
+    <a href="/blog/2022/12/05/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E4%B8%BAJSON%E6%95%B0%E6%8D%AE/" class="article-date">
+  <time class="dt-published" datetime="2022-12-05T06:55:36.000Z" itemprop="datePublished">2022-12-05</time>
 </a>
     
   <div class="article-category">
@@ -89,7 +89,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">select 的 change 事件传递多个参数</a>
+      <a class="p-name article-title" href="/blog/2022/12/05/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E4%B8%BAJSON%E6%95%B0%E6%8D%AE/">判断一个数据是否为JSON数据</a>
     </h1>
   
 
@@ -97,15 +97,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><strong>方法一</strong></p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@change=&quot;(name)=&gt;&#123; handleChange(name,id)&#125;&quot;</span><br><span class="line"></span><br><span class="line">name：当前选中的值</span><br><span class="line">id：需要传入其他的参数</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法二</strong></p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@change=&quot;handleChange($event,id)&#125;&quot;</span><br><span class="line"></span><br><span class="line">$event：当前选中的值</span><br><span class="line">id：需要传入其他的参数</span><br></pre></td></tr></table></figure>
+          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">getItem</span> = key =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="variable language_">window</span>.<span class="property">localStorage</span>.<span class="title function_">getItem</span>(key)</span><br><span class="line">  <span class="comment">// 使用 try catch</span></span><br><span class="line">  <span class="comment">// 直接使用 parse 解析，如果报错了那就将实际数据返回</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">JSON</span>.<span class="title function_">parse</span>(data)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" data-id="cl9pa9out000ovhp8fdhs04zb" data-title="select 的 change 事件传递多个参数" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2022/12/05/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E4%B8%BAJSON%E6%95%B0%E6%8D%AE/" data-id="clbafxe3i002oytp899bvh2xw" data-title="判断一个数据是否为JSON数据" class="article-share-link">Share</a>
       
       
       
@@ -117,10 +113,10 @@
 
 
   
-    <article id="post-select 绑定一个对象" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Mixins" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/" class="article-date">
-  <time class="dt-published" datetime="2021-10-01T11:23:20.000Z" itemprop="datePublished">2021-10-01</time>
+    <a href="/blog/2022/12/05/Mixins/" class="article-date">
+  <time class="dt-published" datetime="2022-12-05T06:54:02.000Z" itemprop="datePublished">2022-12-05</time>
 </a>
     
   <div class="article-category">
@@ -135,7 +131,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/">select 的 change 事件传递多个参数</a>
+      <a class="p-name article-title" href="/blog/2022/12/05/Mixins/">Mixins</a>
     </h1>
   
 
@@ -143,255 +139,118 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><strong>单选</strong></p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-select</span> <span class="attr">v-model</span>=<span class="string">&quot;params.lendingAgency&quot;</span> @<span class="attr">change</span>=<span class="string">&quot;changeSelect($event, it)&quot;</span> <span class="attr">clearable</span> <span class="attr">size</span>=<span class="string">&quot;small&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请选择&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-option</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">&quot;item in typeList&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:key</span>=<span class="string">&quot;item.value&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:label</span>=<span class="string">&quot;item.label&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:value</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">el-option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>多选</strong></p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;贷款机构名称&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-select</span> <span class="attr">v-model</span>=<span class="string">&quot;loanForm&quot;</span> <span class="attr">multiple</span> @<span class="attr">change</span>=<span class="string">&quot;changeSelect&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 90%;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-option</span> <span class="attr">v-for</span>=<span class="string">&quot;item in orgList&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.id&quot;</span> <span class="attr">:label</span>=<span class="string">&quot;item.label&quot;</span> <span class="attr">:value</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">el-option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">el-select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br></pre></td></tr></table></figure>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">loanForm</span>: []</span><br><span class="line"></span><br><span class="line">changeSelect (item) &#123;</span><br><span class="line">  <span class="keyword">const</span> res = item.<span class="title function_">map</span>(<span class="function"><span class="params">it</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">name</span>: it.<span class="property">label</span>,</span><br><span class="line">      <span class="attr">id</span>: it.<span class="property">value</span>,</span><br><span class="line">      <span class="attr">a</span>: <span class="string">&#x27;a&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/" data-id="cl9paci7u000svhp84tlnf4p3" data-title="select 的 change 事件传递多个参数" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-通过路由传递参数，在子组件中刷新参数会丢失的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/14/%E9%80%9A%E8%BF%87%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%88%B7%E6%96%B0%E5%8F%82%E6%95%B0%E4%BC%9A%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2021-09-14T13:35:00.000Z" itemprop="datePublished">2021-09-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/14/%E9%80%9A%E8%BF%87%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%88%B7%E6%96%B0%E5%8F%82%E6%95%B0%E4%BC%9A%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/">通过路由传递参数，在子组件中刷新参数会丢失的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传递时通过 JSON.stringify</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;<span class="attr">path</span>: <span class="string">&#x27;/a&#x27;</span>, <span class="attr">query</span>: &#123;<span class="attr">row</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(row)&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接收时通过 JSON.parse 解析</span></span><br><span class="line">row () &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">query</span>.<span class="property">row</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/%E9%80%9A%E8%BF%87%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%88%B7%E6%96%B0%E5%8F%82%E6%95%B0%E4%BC%9A%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cl9pb2dmv001svhp809egfds3" data-title="通过路由传递参数，在子组件中刷新参数会丢失的问题" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Md5" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/14/Md5/" class="article-date">
-  <time class="dt-published" datetime="2021-09-14T13:35:00.000Z" itemprop="datePublished">2021-09-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/%E6%8F%92%E4%BB%B6/">插件</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/14/Md5/">Md5</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>安装</li>
-</ol>
-<p>  <code>npm install js-md5</code></p>
-<ol start="2">
-<li>在全局组件中引入</li>
-</ol>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> md5 <span class="keyword">from</span> <span class="string">&#x27;js-md5&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">CONFIG</span> = &#123;</span><br><span class="line">  <span class="title class_">Md5</span>: md5,</span><br><span class="line">  ...<span class="variable language_">window</span>.<span class="property">CONFIG</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>使用</li>
-</ol>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">passwordId</span> = id &amp;&amp; <span class="variable language_">window</span>.<span class="property">CONFIG</span>.<span class="title class_">Md5</span>(id)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/Md5/" data-id="cl9pb5m2r001wvhp8hrm0g1a7" data-title="Md5" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-组件之间的通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" class="article-date">
-  <time class="dt-published" datetime="2021-09-14T11:38:26.000Z" itemprop="datePublished">2021-09-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/">组件之间的通信</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>vue 组件之间通信的 9 种方式</strong></p>
-<ul>
-<li>props 和$emit(常用)</li>
-<li>.sync</li>
-<li>v-model</li>
-<li>slot</li>
-<li>定义 ref</li>
-<li>vuex</li>
-<li>$parent和$children</li>
-<li>provide 和 inject</li>
-<li>$attrs和$listeners</li>
-</ul>
-<ol>
-<li><p><strong>props 和$emit</strong></p>
-<p>父组件向子组件传递数据是通过 prop 传递的，子组件传递数据给父组件是通过$emit 触发事件来做到的</p>
-<ul>
-<li><p>props</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;top&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Box</span> <span class="attr">imgTitle</span>=<span class="string">&quot;pic1&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Box</span> <span class="attr">imgTitle</span>=<span class="string">&quot;pic2&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Box</span> <span class="attr">imgTitle</span>=<span class="string">&quot;pic3&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 若传递的为变量则用冒号</span></span><br><span class="line"><span class="comment">&lt;Dialog :visibility=&#x27;visibility&#x27;/&gt; --&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;Box&quot;</span>,</span><br><span class="line">  <span class="comment">// 这样imgTitle 就接收父组件传递的相应的数据，这个数据可以认为是一个该组件内的全局变量随意使用。</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// prop 数据的使用</span></span><br><span class="line">  <span class="comment">// 1. 在 template 中直接用，需要遵循 vue 的模板语法</span></span><br><span class="line">  <span class="comment">// 2. 在 script 中需要使用this.xxx</span></span><br><span class="line">  <span class="attr">props</span>: [<span class="string">&quot;imgTitle&quot;</span>],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <ul>
+<li><p>应用场景</p>
+<p>当我们存在多个组件中的数据或者功能很相近时，我们就可以利用mixins将公共部分提取出来，通过 mixins 封装的函数，组件调用他们是不会改变函数作用域外部的。</p>
 </li>
-<li><p>$emit</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dialog</span> @<span class="attr">open</span>=<span class="string">&quot;open&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 另一种写法 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;dialog :open=&quot;open&quot; /&gt; --&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="title function_">open</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">visibility</span> = <span class="literal">false</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;open&#x27;)&quot;</span>&gt;</span>确定<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 另一种写法 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- &lt;button @click=&quot;open&quot; class=&quot;btn1&quot;&gt;确定&lt;/button&gt; --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- props: &#123;</span></span><br><span class="line"><span class="comment">  visibility: &#123;</span></span><br><span class="line"><span class="comment">      type: Boolean,</span></span><br><span class="line"><span class="comment">      default: false,</span></span><br><span class="line"><span class="comment">      // 若 default 的值为对象或数组则需要使用箭头函数方式</span></span><br><span class="line"><span class="comment">      // default:()=&gt;[]</span></span><br><span class="line"><span class="comment">  &#125;,</span></span><br><span class="line"><span class="comment">  open: Function,</span></span><br><span class="line"><span class="comment">&#125;, --&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>使用方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在src目录下创建一个mixins文件夹，文件夹下新建一个myMixins.js文件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> myMixins = &#123;</span><br><span class="line">  <span class="attr">components</span>: &#123;&#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created () &#123;&#125;,</span><br><span class="line">  mounted () &#123;&#125;,</span><br><span class="line">  <span class="attr">computed</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在需要调用的组件中引入myMixins.js文件，然后在export default 中引入你需要的对象即可</span></span><br><span class="line"><span class="keyword">import</span> &#123; myMixins&#125; <span class="keyword">from</span> <span class="string">&#x27;@/mixins/myMixins.js&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">mixins</span>: [myMixins]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意事项</p>
+<ul>
+<li>值为对象(components、methods 、computed、data)的选项，混入组件时选项会被合并，键冲突时优先组件，组件中的键会覆盖混入对象的</li>
+<li>值为函数(created、mounted)的选项，混入组件时选项会被合并调用，混合对象里的钩子函数在组件里的钩子函数之前调用</li>
 </ul>
 </li>
-<li><p><strong>.sync</strong></p>
-<p>sync 修饰符，与我们平常使用$emit 实现父子组件通信没有区别，只不过是写法上方便一些。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .sync 不仅传递了自定义事件，还传递了对应的 prop,如有需要子组件需要接收 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- type 为一个 data --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">TodoFooter</span> <span class="attr">:type.sync</span>=<span class="string">&quot;type&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 子 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;update:type&#x27;, &#x27;all&#x27;)&quot;</span>&gt;</span>all<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- .sync 修饰符的用法 不需要在父组件定义修改 data 的方法 --&gt;</span></span><br></pre></td></tr></table></figure>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2022/12/05/Mixins/" data-id="clbafxe2e0006ytp81ram3dsd" data-title="Mixins" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-组件之间通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2022/12/05/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1/" class="article-date">
+  <time class="dt-published" datetime="2022-12-05T06:49:29.000Z" itemprop="datePublished">2022-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Vue3/">Vue3</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2022/12/05/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1/">组件之间通信</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>调用父组件的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在父组件中同 vue2 一样向下传</span></span><br><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">const</span> emit = <span class="title function_">defineEmits</span>([<span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;closeDialog&#x27;</span>])</span><br><span class="line"><span class="title function_">emit</span>(<span class="string">&#x27;test&#x27;</span>) <span class="comment">// 在子组件的方法中调用</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>v-model</strong></p>
-<p>父组件通过 v-model 传递值给子组件时，会自动传递一个 value 的 prop 属性，在子组件中通过 this.$emit(‘input’,val)自动修改 v-model 绑定的值</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ChildrenDemo</span> <span class="attr">v-model</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">text</span>: <span class="string">&quot;123&quot;</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; value &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;input&#x27;, 1000)&quot;</span>&gt;</span>btn<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">props</span>: [<span class="string">&quot;value&quot;</span>];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>slot</strong></p>
-<p>父传子</p>
+<li><p>v-model</p>
 <ul>
-<li><p>普通插槽</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>展示的内容<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">content</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h2</span>&gt;</span>展示的内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>绑定一个值</p>
+<ul>
+<li><p>方法一</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在父组件中定义好之后正常下向传递</span></span><br><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">const</span> props = <span class="title function_">defineProps</span>([</span><br><span class="line">  <span class="string">&#x27;modelValue&#x27;</span> <span class="comment">// 接收父组件使用 v-model 传进来的值，必须用 modelValue 这个名字来接收</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> emit = <span class="title function_">defineEmits</span>([<span class="string">&#x27;update:modelValue&#x27;</span>]) <span class="comment">// 必须用 update:modelValue 这个名字来通知父组件修改值, 而且不能有空格</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">changeModelValue</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="title function_">emit</span>(<span class="string">&#x27;update:modelValue&#x27;</span>, <span class="string">&#x27;123&#x27;</span>) <span class="comment">// 参数1：通知父组件修改值的方法   参数2：要修改的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>方法二</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="comment">// 1. 通过 props 接收， 无需定义 emit</span></span><br><span class="line"><span class="keyword">const</span> props = <span class="title function_">defineProps</span>([</span><br><span class="line">  <span class="string">&#x27;modelValue&#x27;</span> <span class="comment">// 接收父组件使用 v-model 传进来的值，必须用 modelValue 这个名字来接收</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 直接在 template 中修改</span></span><br><span class="line">&lt;view @click=<span class="string">&quot;$emit(&#x27;update:modelValue&#x27;, &#x27;123&#x27;)&quot;</span>&gt;子组件：&#123;&#123; modelValue &#125;&#125;&lt;/view&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>绑定多个值</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">rd-form</span> <span class="attr">v-model:msg1</span>=<span class="string">&quot;msg1&quot;</span> <span class="attr">v-model:msg2</span>=<span class="string">&quot;msg2&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">const</span> props = <span class="title function_">defineProps</span>([</span><br><span class="line">  <span class="string">&#x27;msg1&#x27;</span>, <span class="string">&#x27;msg2&#x27;</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> emit = <span class="title function_">defineEmits</span>([<span class="string">&#x27;update:msg1&#x27;</span>, <span class="string">&#x27;update:msg2&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">changeMsg1</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="title function_">emit</span>(<span class="string">&#x27;update:msg1&#x27;</span>, <span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">changeMsg2</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="title function_">emit</span>(<span class="string">&#x27;update:msg2&#x27;</span>, <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;view @click=<span class="string">&quot;changeMsg1&quot;</span>&gt;子组件：&#123;&#123; msg1 &#125;&#125;&lt;/view&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">view</span> @<span class="attr">click</span>=<span class="string">&quot;changeMsg2&quot;</span>&gt;</span>子组件：&#123;&#123; msg2 &#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>provide inject</p>
+<ul>
+<li><p>向下传递变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; provide &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">const</span> pro1 = <span class="title function_">ref</span>(<span class="string">&#x27;pro1&#x27;</span>)</span><br><span class="line"><span class="title function_">provide</span>(<span class="string">&#x27;pro1&#x27;</span>, pro1)</span><br><span class="line"><span class="comment">// provide(&#x27;pro1&#x27;, readonly(pro1)) 如果加了 readonly() 则子组件不可以更改向下传递变量的值，如果想更改可以通过传递方法实现</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; inject &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">const</span> pro1 = <span class="title function_">inject</span>(<span class="string">&#x27;pro1&#x27;</span>, <span class="string">&#x27;hello&#x27;</span>) <span class="comment">// 如果传过来的值为空那么默认值为 hello</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">changePro1</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  pro1.<span class="property">value</span> = <span class="string">&#x27;修改过后的值&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向下传递方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; provide &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="comment">// 先将变量向下传递</span></span><br><span class="line"><span class="keyword">const</span> pro2 = <span class="title function_">ref</span>(<span class="string">&#x27;pro2&#x27;</span>)</span><br><span class="line"><span class="title function_">provide</span>(<span class="string">&#x27;pro2&#x27;</span>, <span class="title function_">readonly</span>(pro2))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 再将修改的方法向下传递，由子组件调用，从而实现修改值</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">changePro2</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  pro2.<span class="property">value</span> = <span class="string">&#x27;修改pro2&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">provide</span>(<span class="string">&#x27;changePro2&#x27;</span>, changePro2)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; inject &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="comment">// 先接收父组件传递过来的变量进行显示</span></span><br><span class="line"><span class="keyword">const</span> pro2 = <span class="title function_">inject</span>(<span class="string">&#x27;pro2&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 再接收传递过来的方法，调用该方法实现修改值</span></span><br><span class="line"><span class="keyword">const</span> changePro2 = <span class="title function_">inject</span>(<span class="string">&#x27;changePro2&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">changeProvide2</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="title function_">changePro2</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>getCurrentInstance() 获取组件的实例</p>
+<ul>
+<li><p>应用场景：从子组件取得父组件的属性或方法。</p>
+</li>
+<li><p>获取组件的实例（子组件）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; getCurrentInstance &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">const</span> currentIns = <span class="title function_">getCurrentInstance</span>()</span><br><span class="line"><span class="comment">// currentIns.proxy 对应的是当前组件的实例</span></span><br><span class="line"><span class="comment">// currentIns.proxy.$parent 对应的是父组件的实例</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在子组件中调用父组件的方法  前提是在父组件中已经将其暴露</span></span><br><span class="line"><span class="comment">// 1. 在 js 中调用</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">test</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  currentIns.<span class="property">proxy</span>.<span class="property">$parent</span>.<span class="title function_">changeCount</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2. 在 template 中调用</span></span><br><span class="line">&lt;button @click=<span class="string">&quot;$parent.changeCount()&quot;</span>&gt;test&lt;/button&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123;($parent as any).count&#125;&#125;&lt;/text</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>暴露当前组件的属性方法 defineExpose()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineExpose &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="title function_">defineExpose</span>(&#123;</span><br><span class="line">  count, <span class="comment">// 变量</span></span><br><span class="line">  changeCount <span class="comment">// 方法</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 将变量与方法暴露出去，在子组件中可以通过currentIns.proxy.$parent.changeCount() 访问到</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>插槽</p>
+<ul>
 <li><p>具名插槽</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 简写 &lt;template #body&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>是否删除？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dialog</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;dialog-body&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&quot;body&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>我是header<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&quot;header&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p><strong>定义 ref</strong></p>
-<p>在父组件调用子组件的时候直接添加 ref 属性, 即可拿到子组件的属性、方法、data 等内容</p>
-<pre><code><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Wrap</span> <span class="attr">ref</span>=<span class="string">&quot;wrap&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="title function_">mounted</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">wrap</span>.<span class="title function_">add</span>())</span><br><span class="line"><span class="comment">// 调用子组件的 add 方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-<li><p><strong>vuex</strong></p>
-<p>如果业务逻辑复杂，很多组件之间需要同时处理一些公共的数据，这个时候才有上面这一些方法可能不利于项目的维护，vuex 的做法就是将这一些公共的数据抽离出来，然后其他组件就可以对这个公共数据进行读写操作，这样达到了解耦的目的。</p>
-</li>
-<li><p><strong>$parent和$children</strong></p>
-<ul>
-<li><p>$parent 可以在子组件内通过 <code>this.$parent.属性名/方法名</code> 取到父组件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">handle</span>(<span class="params"></span>) &#123;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$parent</span>.<span class="title function_">change</span>(<span class="number">200</span>);</span><br><span class="line"><span class="comment">// change 为父组件的方法，将参数 200 传递给父组件</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$children 可以在父组件内通过 <code>this.$children.属性名</code> 取到子组件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$children</span>[<span class="number">0</span>].<span class="property">number</span>;</span><br></pre></td></tr></table></figure></li>
 </ul>
-</li>
-<li><p><strong>provide 和 inject</strong></p>
-<ul>
-<li><p>provice</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">provide</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">  <span class="comment">// 传递的时候将 data 以函数方式传递，保证实时更新</span></span><br><span class="line">  <span class="comment">// 必须为箭头函数</span></span><br><span class="line">      <span class="attr">count</span>: <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="property">count</span>,</span><br><span class="line">      <span class="attr">changeCount</span>: <span class="variable language_">this</span>.<span class="property">changeCount</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="title function_">changeCount</span>(<span class="params">newCount</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span> = newCount;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>inject</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 使用的时候函数方式调用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>子子组件使用parent组件的 data :&#123;&#123; count() &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">inject</span>: [<span class="string">&quot;count&quot;</span>, <span class="string">&quot;changeCount&quot;</span>],</span><br><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="title function_">handler</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">changeCount</span>(<span class="number">500</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>$attrs 和 $listeners</strong></p>
-<ul>
-<li><p>$attrs 获取当前组件的所有 html 属性, 即父组件使用我的时候标签内传递的所有属性(class 除外)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Son</span> <span class="attr">str</span>=<span class="string">&quot;xxx&quot;</span> <span class="attr">class</span>=<span class="string">&quot;son&quot;</span> <span class="attr">title</span>=<span class="string">&quot;tit&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">$attrs</span>); <span class="comment">//&#123;str: &quot;xxx&quot;, title: &quot;tit&quot;&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$listeners 获取当前组件的所有 html 方法, 即父组件使用我的时候标签内传递的所有方法</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Son</span></span></span><br><span class="line"><span class="tag">  <span class="attr">str</span>=<span class="string">&quot;xxx&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;son&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">title</span>=<span class="string">&quot;tit&quot;</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">xxx</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">        () =&gt; &#123;</span></span></span><br><span class="line"><span class="string"><span class="tag">        console.log(&#x27;hello&#x27;);</span></span></span><br><span class="line"><span class="string"><span class="tag">        &#125;</span></span></span><br><span class="line"><span class="string"><span class="tag">    &quot;</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">$listeners</span>); <span class="comment">// &#123;xxx: ƒ&#125;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" data-id="cl9p8qpmj002hmgp88mzi02fy" data-title="组件之间的通信" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2022/12/05/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1/" data-id="clbafxe43003yytp8czihdkaw" data-title="组件之间通信" class="article-share-link">Share</a>
       
       
       
@@ -403,14 +262,14 @@
 
 
   
-    <article id="post-set的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-清空数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2021-09-14T07:48:11.000Z" itemprop="datePublished">2021-09-14</time>
+    <a href="/blog/2022/12/05/%E6%B8%85%E7%A9%BA%E6%95%B0%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2022-12-05T06:48:30.000Z" itemprop="datePublished">2022-12-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+    <a class="article-category-link" href="/blog/categories/Vue3/">Vue3</a>
   </div>
 
   </div>
@@ -421,7 +280,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/">set的使用</a>
+      <a class="p-name article-title" href="/blog/2022/12/05/%E6%B8%85%E7%A9%BA%E6%95%B0%E7%BB%84/">清空数组</a>
     </h1>
   
 
@@ -429,39 +288,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><strong>Vue 中 $set 的使用</strong></p>
-<ul>
-<li><p>由于 JavaScript 的限制，Vue 不能检测以下变动的数组：</p>
-<ul>
-<li>当利用索引直接设置一个项时，例如：this.items[index] &#x3D; value</li>
-<li>当修改数组的长度时，例如：vm.items.length &#x3D; newLength</li>
+        <ul>
+<li><p>ref 定义的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.<span class="property">value</span> = []</span><br></pre></td></tr></table></figure></li>
+<li><p>reactive 定义的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list.<span class="property">length</span> = <span class="number">0</span></span><br><span class="line"><span class="comment">// 如果是对象里面的数组，可以直接使用 obj.list = [], 因为 obj 已经被响应式了</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-</li>
-<li><p>由于 JavaScript 的限制，Vue 不能检测对象属性的添加或删除。</p>
-</li>
-</ul>
-<p><strong>数组为例：</strong></p>
-<ul>
-<li><p>不使用$set</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">items</span>: [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="title function_">handler</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">items</span>[<span class="number">1</span>] = <span class="string">&quot;x&quot;</span>; <span class="comment">// 不是响应性的</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 $set</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">items</span>: [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="title function_">handler</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.$set(<span class="variable language_">this</span>.<span class="property">items</span>, <span class="number">1</span>, <span class="string">&quot;x&quot;</span>); <span class="comment">// 是响应性的</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><strong>对象为例：</strong></p>
-<ul>
-<li>不使用 $set<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对象</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">item</span>: &#123;</span><br><span class="line">        <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="title function_">handler</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">item</span>.<span class="property">b</span> = <span class="number">2</span>; <span class="comment">// 不是响应性的</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
-<li>使用 $set<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对象</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">item</span>: &#123;</span><br><span class="line">        <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="title function_">handler</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.$set(<span class="variable language_">this</span>.<span class="property">item</span>, <span class="string">&quot;b&quot;</span>, <span class="number">2</span>); <span class="comment">// 是响应性的</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>另外，数组的以下方法，都是可以触发视图更新的，也就是响应性的：</p>
-<p>push()、pop()、shift()、unshift()、splice()、sort()、reverse()。</p>
-<p>还有一种小技巧，就是先 copy 一个数组，然后通过 index 修改后，再把原数组整个替换，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">handler () &#123;</span><br><span class="line">  <span class="keyword">const</span> data = [...<span class="variable language_">this</span>.<span class="property">items</span>];</span><br><span class="line">  data[<span class="number">1</span>] = <span class="string">&#x27;x&#x27;</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">items</span> = data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/14/set%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cl9p8qpm40015mgp84yydgbl3" data-title="set的使用" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2022/12/05/%E6%B8%85%E7%A9%BA%E6%95%B0%E7%BB%84/" data-id="clbafxe3w003mytp8bdpu4lm4" data-title="清空数组" class="article-share-link">Share</a>
       
       
       
@@ -473,14 +310,14 @@
 
 
   
-    <article id="post-v-on监听多个方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-defineProps" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/09/10/v-on%E7%9B%91%E5%90%AC%E5%A4%9A%E4%B8%AA%E6%96%B9%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2021-09-10T13:28:37.000Z" itemprop="datePublished">2021-09-10</time>
+    <a href="/blog/2022/12/05/defineProps/" class="article-date">
+  <time class="dt-published" datetime="2022-12-05T06:47:41.000Z" itemprop="datePublished">2022-12-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+    <a class="article-category-link" href="/blog/categories/Vue3/">Vue3</a>
   </div>
 
   </div>
@@ -491,7 +328,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/10/v-on%E7%9B%91%E5%90%AC%E5%A4%9A%E4%B8%AA%E6%96%B9%E6%B3%95/">v-on监听多个方法</a>
+      <a class="p-name article-title" href="/blog/2022/12/05/defineProps/">defineProps</a>
     </h1>
   
 
@@ -499,19 +336,81 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>一个元素绑定多个事件的写法有两种：</p>
+          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineProps &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">const</span> props = <span class="title function_">defineProps</span>(&#123;</span><br><span class="line">  <span class="attr">title</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">String</span>,</span><br><span class="line">    <span class="attr">required</span>: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 template 中使用 props 直接使用即可 &lt;view&gt;&#123;&#123;title&#125;&#125;&lt;/view&gt;</span></span><br><span class="line"><span class="comment">// 在 script 中使用 console.log(props.title)</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2022/12/05/defineProps/" data-id="clbafxe2h000hytp83rxn76dm" data-title="defineProps" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-watch监听" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2022/12/05/watch%E7%9B%91%E5%90%AC/" class="article-date">
+  <time class="dt-published" datetime="2022-12-05T06:45:44.000Z" itemprop="datePublished">2022-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Vue3/">Vue3</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2022/12/05/watch%E7%9B%91%E5%90%AC/">watch监听</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>监听 ref 类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="title function_">watch</span>(count, </span><br><span class="line">  <span class="function">(<span class="params">newValue, oldValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(newValue)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; <span class="attr">deep</span>: <span class="literal">true</span> &#125; <span class="comment">// 深度监听</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监听 reactive 类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="title function_">watch</span>(</span><br><span class="line">  <span class="function">() =&gt;</span> state.<span class="property">name</span>, <span class="comment">// 只监听 state 对象中的 name, 此时可以监听到新值与旧值。若需要监听整个对象, () =&gt; state，此时只能获取到新值</span></span><br><span class="line">  <span class="function">(<span class="params">newValue, oldValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(newValue)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; <span class="attr">immediate</span>: <span class="literal">true</span> &#125;</span><br><span class="line">  <span class="comment">// reactive的数据，用不用deep：true是没有影响的, state 中的一个属性发生了变化，都能被监听到，继而执行回调函数</span></span><br><span class="line">  <span class="comment">// 若想监听 ref 定义的对象，则需要使用 deep:true</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监听多个数据源</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">const</span> double = <span class="title function_">ref</span>(<span class="number">2</span>)</span><br><span class="line"><span class="title function_">watch</span>(</span><br><span class="line">  [count, double],</span><br><span class="line">  <span class="comment">// [() =&gt; state.name, () =&gt; state.age]</span></span><br><span class="line">  <span class="function">(<span class="params">newValue, oldValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(newValue)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; <span class="attr">deep</span>: <span class="literal">true</span>, <span class="attr">immediate</span>: <span class="literal">true</span> &#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 有一个值发生了变更，则会触发watch，如果两个值同时发生变更，同样只是触发一次watch的回调函数</span></span><br><span class="line"><span class="comment">// 如果想变更一次数据就触发一次回调，可以在两个数据变更中间加下nextTick</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>总结</p>
+<ul>
+<li><p>当使用 ref 创建的响应式数据</p>
 <ol>
-<li><p>修饰符的使用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on</span>=<span class="string">&quot;&#123; click: DoSomething, mouseleave: MouseLeave &#125;&quot;</span>&gt;</span>doSomething<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 method 方法里分别写两个事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;a(), b()&quot;</span>&gt;</span>btn<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>基本数据类型：可以直接监听，可以获取新旧值</li>
+<li>引用数据类型：需要使用 deep:true 深度监听，但是只有获取新值。要想获取新旧值，需要监听目标数据的深拷贝</li>
 </ol>
+</li>
+<li><p>当使用 reactive 创建的响应式数据</p>
+<ol>
+<li>基本数据类型：可以直接指定某个属性进行监听，可以获取到新旧值</li>
+<li>引用数据类型：直接监听创建的 reactive 对象，无需使用 deep: true, 但是只能获取到新值（有待尝试）</li>
+<li>reactive 创建的响应式数据，deep: true是无效的</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/v-on%E7%9B%91%E5%90%AC%E5%A4%9A%E4%B8%AA%E6%96%B9%E6%B3%95/" data-id="cl9p8qpm8001dmgp8751bfl2y" data-title="v-on监听多个方法" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2022/12/05/watch%E7%9B%91%E5%90%AC/" data-id="clbafxe3b0028ytp8ah3uglql" data-title="watch监听" class="article-share-link">Share</a>
       
       
       
@@ -523,14 +422,14 @@
 
 
   
-    <article id="post-开发中常用的指令有哪些" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-定义变量" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/09/10/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9C%89%E5%93%AA%E4%BA%9B/" class="article-date">
-  <time class="dt-published" datetime="2021-09-10T13:16:49.000Z" itemprop="datePublished">2021-09-10</time>
+    <a href="/blog/2022/12/05/%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/" class="article-date">
+  <time class="dt-published" datetime="2022-12-05T06:44:16.000Z" itemprop="datePublished">2022-12-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+    <a class="article-category-link" href="/blog/categories/Vue3/">Vue3</a>
   </div>
 
   </div>
@@ -541,7 +440,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/10/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9C%89%E5%93%AA%E4%BA%9B/">开发中常用的指令有哪些</a>
+      <a class="p-name article-title" href="/blog/2022/12/05/%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/">定义变量</a>
     </h1>
   
 
@@ -550,46 +449,16 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>v-model 多用于表单元素实现双向数据绑定（同 angular 中的 ng-model）</p>
-</li>
-<li><p>v-html：更新元素的 innerHTML</p>
-</li>
-<li><p>v-show 显示内容 （同 angular 中的 ng-show）</p>
-</li>
-<li><p>v-hide 隐藏内容（同 angular 中的 ng-hide）</p>
-</li>
-<li><p>v-if 显示与隐藏 （dom 元素的删除添加 同 angular 中的 ng-if 默认值为 false）</p>
-</li>
-<li><p>v-on:click：可以简写为@click，@绑定一个事件，如果事件触发了，就可以指定事件的处理函数，函数必须写在 methods 里面</p>
-</li>
-<li><p>v-bind 动态绑定 作用： 及时对页面的数据进行更改</p>
-</li>
-<li><p>v-bind:title&#x3D;’msg’ 简写：title&#x3D;’msg’</p>
-</li>
-<li><p>v-bind:class 三种绑定方法 1、对象型 ‘{red:isred}’ 2、三元型 ‘isred?”red”:”blue”‘ 3、数组型 ‘[{red:”isred”},{blue:”isblue”}]’</p>
-</li>
-<li><p>v-for 格式： v-for&#x3D;”字段名 in(of) 数组 json” 循环数组或 json(同 angular 中的 ng-repeat)</p>
-</li>
-<li><p>v-else-if 必须和 v-if 连用</p>
-</li>
-<li><p>v-else 必须和 v-if 连用 不能单独使用 否则报错 模板编译错误</p>
-</li>
-<li><p>v-text 解析文本</p>
-</li>
-<li><p>v-html 解析 html 标签</p>
-</li>
-<li><p>v-once 进入页面时 只渲染一次 不在进行渲染</p>
-</li>
-<li><p>v-cloak 防止闪烁</p>
-</li>
-<li><p>v-pre 把标签内部的元素原位输出</p>
-</li>
+<li><p>ref 一般处理是基础数据类型生成的响应式对象获取值或者更改值需要使用value才能获取到对应的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="comment">// 通过 ref 定义的无论是基础数据类型还是复杂数据类型都需要通过 value 获取</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">1</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(count.<span class="property">value</span>)  <span class="comment">// 14</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">ref</span>(&#123;</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;)</span><br><span class="line">state.<span class="property">value</span>.<span class="property">age</span> = <span class="number">20</span></span><br></pre></td></tr></table></figure></li>
+<li><p>reactive 一般处理的是复杂数据类型，生成的响应式对象获取值则可以直接使用和修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; reactive &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">reactive</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(state.<span class="property">name</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9C%89%E5%93%AA%E4%BA%9B/" data-id="cl9p8qpmg0021mgp87ckf4k75" data-title="开发中常用的指令有哪些" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2022/12/05/%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/" data-id="clbafxe3n003aytp86wzt5yls" data-title="定义变量" class="article-share-link">Share</a>
       
       
       
@@ -601,10 +470,10 @@
 
 
   
-    <article id="post-v-show与v-if" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-回车实现登录功能" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/09/10/v-show%E4%B8%8Ev-if/" class="article-date">
-  <time class="dt-published" datetime="2021-09-10T13:08:02.000Z" itemprop="datePublished">2021-09-10</time>
+    <a href="/blog/2022/11/10/%E5%9B%9E%E8%BD%A6%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" class="article-date">
+  <time class="dt-published" datetime="2022-11-10T02:43:21.000Z" itemprop="datePublished">2022-11-10</time>
 </a>
     
   <div class="article-category">
@@ -619,7 +488,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/10/v-show%E4%B8%8Ev-if/">v-show与v-if</a>
+      <a class="p-name article-title" href="/blog/2022/11/10/%E5%9B%9E%E8%BD%A6%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">回车实现登录功能</a>
     </h1>
   
 
@@ -627,37 +496,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><strong>v-show</strong></p>
-<ul>
-<li><p>v-show 是通过设置 DOM 元素的 display 样式属性控制显隐</p>
-</li>
-<li><p>v-show 只是简单的基于 css 切换</p>
-</li>
-<li><p>在任何条件下（首次条件是否为真）都被编译，然后被缓存，而且 DOM 元素保留</p>
-</li>
-<li><p>v-show 有更高的初始渲染消耗</p>
-</li>
-<li><p>v-show 适合频繁切换</p>
-</li>
-</ul>
-<p><strong>v-if</strong></p>
-<ul>
-<li><p>v-if 是动态的向 DOM 树内添加或者删除 DOM 元素</p>
-</li>
-<li><p>v-if 切换有一个局部编译&#x2F;卸载的过程，切换过程中合适地销毁和重建内部的事件监听和子组件</p>
-</li>
-<li><p>v-if 是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译（编译被缓存？编译被缓存后，然后再切换的时候进行局部卸载)</p>
-</li>
-<li><p>v-if 有更高的切换消耗</p>
-</li>
-<li><p>v-if 适合运营条件不大可能改变时</p>
-</li>
-</ul>
-
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">click</span>=<span class="string">&quot;submitForm(&#x27;ruleForm&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">keyup.enter</span>=<span class="string">&quot;keyUp(e)&quot;</span>&gt;</span></span><br><span class="line">  登录</span><br><span class="line"><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mounted () &#123;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;keyup&#x27;</span>, <span class="variable language_">this</span>.<span class="property">keyUp</span>)</span><br><span class="line">&#125;,</span><br><span class="line">destroyed () &#123;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="title function_">removeEventListener</span>(<span class="string">&#x27;keyup&#x27;</span>, <span class="variable language_">this</span>.<span class="property">keyUp</span>, <span class="literal">false</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">keyUp (e) &#123;</span><br><span class="line">  <span class="keyword">if</span> (e.<span class="property">keyCode</span> === <span class="number">13</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">submitForm</span>(<span class="string">&#x27;ruleForm&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/v-show%E4%B8%8Ev-if/" data-id="cl9p8qpm8001fmgp81fvf9o33" data-title="v-show与v-if" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2022/11/10/%E5%9B%9E%E8%BD%A6%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" data-id="clbafxe3l0030ytp897q9g0lt" data-title="回车实现登录功能" class="article-share-link">Share</a>
       
       
       
@@ -669,14 +513,14 @@
 
 
   
-    <article id="post-watch与计算属性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-路由跳转" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" class="article-date">
-  <time class="dt-published" datetime="2021-09-10T10:49:41.000Z" itemprop="datePublished">2021-09-10</time>
+    <a href="/blog/2022/11/07/%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC/" class="article-date">
+  <time class="dt-published" datetime="2022-11-07T02:41:32.000Z" itemprop="datePublished">2022-11-07</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Vue/">Vue</a>
+    <a class="article-category-link" href="/blog/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>
   </div>
 
   </div>
@@ -687,7 +531,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">watch与计算属性</a>
+      <a class="p-name article-title" href="/blog/2022/11/07/%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC/">路由跳转</a>
     </h1>
   
 
@@ -695,40 +539,142 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p><strong>计算属性 computed</strong></p>
+        <p><strong>1. wx.switchTab (跳转主页)</strong></p>
 <ul>
-<li><p>支援缓存，只有依赖数据发生改变，才会重新进行计算</p>
+<li><p>跳转到tabBar页面，并关闭其他所有非tabBar页面，用于跳转到主页。</p>
 </li>
-<li><p>不支持异步</p>
+<li><p>属性：</p>
+<ul>
+<li>url：需要跳转的tabBar路径，不能带参数</li>
+<li>success：接口调用成功的回调函数</li>
+<li>fail：接口调用失败的回调函数</li>
+<li>complete：接口调用结束的回调函数（调用成功、失败都会执行）</li>
+</ul>
 </li>
-<li><p>如果一个属性是由其他属性计算而来的，这个属性依赖其他属性，是一个多对一或者一对一，一般用 computed</p>
+<li><p>示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">switchTab</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;/index&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>2. wx.reLaunch (关闭所有页面跳转)</strong></p>
+<ul>
+<li><p>关闭所有页面，打开到应用内的某个页面。</p>
 </li>
-<li><p>如果 computed 属性属性值是函数那么默认会走 get 方法；函数的返回值就是属性的属性值；在 computed 中的属性都有一个 get 和 set 方法，当数据变化时，调用 set 方法</p>
+<li><p>属性：</p>
+<ul>
+<li>url：需要跳转的应用内页面路径，可以带参数</li>
+<li>success：接口调用成功的回调函数</li>
+<li>fail：接口调用失败的回调函数</li>
+<li>complete：接口调用结束的回调函数（调用成功、失败都会执行）</li>
+</ul>
+</li>
+<li><p>示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">reLaunch</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;test?id=1&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>3. wx.redirectTo (关闭当前页面跳转)</strong></p>
+<ul>
+<li><p>关闭当前页面，跳转到应用内的某个页面，但不允许跳转到tabBar页面。</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li>url：需要跳转的应用内页面路径，可以带参数</li>
+<li>success：接口调用成功的回调函数</li>
+<li>fail：接口调用失败的回调函数</li>
+<li>complete：接口调用结束的回调函数（调用成功、失败都会执行）</li>
+</ul>
 </li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line">  <span class="attr">fullName</span>: &#123;</span><br><span class="line">    <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">firstName</span> + <span class="variable language_">this</span>.<span class="property">lastName</span>;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// set 当直接修改计算属性的时候 计算的源数据也要跟着改变</span></span><br><span class="line">    <span class="title function_">set</span>(<span class="params">newValue</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> nameArr = newValue.<span class="title function_">split</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">      <span class="comment">// 把一个字符串分割成字符串数组</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">firstName</span> = nameArr[<span class="number">0</span>];</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">lastName</span> = nameArr[<span class="number">1</span>];</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>侦听属性 watch</strong></p>
+<p><strong>4. wx.navigateTo (保留页面跳转)</strong></p>
 <ul>
-<li><p>不支持缓存，只要数据变就直接触发相应的操作</p>
+<li><p>保留当前页面，跳转到应用内的某个页面，但是不能跳转到tabbar页面。<br>navigateTo 类似书本向前翻页，虽然从第一页翻到第二页，但是第一页还是存在的，未销毁；如果想返回上一页，可以使用 wx.navigateBack可以返回到原页面，对应使用。</p>
 </li>
-<li><p>watch 支持异步</p>
+<li><p>属性：</p>
+<ul>
+<li><p>url：需要跳转的应用内页面路径，可以带参数</p>
 </li>
-<li><p>监听的函数接收两个参数，第一个参数是最新的值，第二个参数是之前的值</p>
+<li><p>events：页面间通信接口，用于监听被打开页面发送到当前页面的数据</p>
 </li>
-<li><p>监听数据必须是 data 中声明过或者父组件传递过来的 props 中的数据，当数据变化时，触发其他操作，函数有两个参数：</p>
-<p>immediate：组件加载立即触发回调函数执行</p>
-<p>deep: 深度监听，为了发现对象内部值的变化，复杂类型的数据时使用，例如数组中的对象内容的改变，注意监听数组的变动不需要这么做。注意：deep 无法监听到数组的变动和对象的新增，参考 vue 数组变异,只有以响应式的方式触发才会被监听到。</p>
+<li><p>success：接口调用成功的回调函数</p>
+</li>
+<li><p>fail：接口调用失败的回调函数</p>
+</li>
+<li><p>complete：接口调用结束的回调函数（调用成功、失败都会执行）</p>
+</li>
+<li><p>示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">navigateTo</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;test?id=1&#x27;</span>,</span><br><span class="line">  <span class="attr">events</span>: &#123;</span><br><span class="line">    <span class="comment">// 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据</span></span><br><span class="line">    acceptDataFromOpenedPage (data) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  success (res) &#123;</span><br><span class="line">    <span class="comment">// 通过 eventChannel 向被打开页面传送数据</span></span><br><span class="line">    res.<span class="property">eventChannel</span>.<span class="title function_">emit</span>(<span class="string">&#x27;acceptDataFromOpenedPage&#x27;</span>, &#123;<span class="attr">data</span>: <span class="string">&#x27;test&#x27;</span>&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
 </li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">watch</span>: &#123;</span><br><span class="line">  <span class="comment">// 监听 question data</span></span><br><span class="line">  <span class="title function_">question</span>(<span class="params">newValue, oldValue</span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">answer</span> = newValue.<span class="property">length</span> &gt; <span class="number">5</span> ? <span class="string">&quot;是&quot;</span> : <span class="string">&quot;不是&quot;</span>;</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法二</span></span><br><span class="line"><span class="attr">question</span>: &#123;</span><br><span class="line">  <span class="title function_">handler</span>(<span class="params">newValue</span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">answer</span> = newValue.<span class="property">length</span> &gt; <span class="number">5</span> ? <span class="string">&quot;是&quot;</span> : <span class="string">&quot;不是&quot;</span>;</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 当监听的数据是对象类型时，想要监听其属性的改变，就需要加deep</span></span><br><span class="line">  <span class="attr">deep</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 当组件出现的时候就需要监听数据更新对应数据加 immediate</span></span><br><span class="line">  <span class="attr">immediate</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<p><strong>4. wx.navigateBack (页面返回)</strong></p>
+<ul>
+<li><p>关闭当前页面，返回上一页面或多级页面。可通过 getCurrentPages 获取当前的页面栈，决定需要返回几层。</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li><p>delta：默认值为1，返回的页面数，如果 delta 大于现有页面数，则返回到首页</p>
+</li>
+<li><p>success：接口调用成功的回调函数</p>
+</li>
+<li><p>fail：接口调用失败的回调函数</p>
+</li>
+<li><p>complete：接口调用结束的回调函数（调用成功、失败都会执行）</p>
+</li>
+<li><p>示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A页面</span></span><br><span class="line">wx.<span class="title function_">navigateTo</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;B?id=1&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// B页面</span></span><br><span class="line">wx.<span class="title function_">navigateTo</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;C?id=1&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在C页面内 navigateBack, 返回A页面</span></span><br><span class="line">wx.<span class="title function_">navigateBack</span>(&#123;</span><br><span class="line">  <span class="attr">delta</span>: <span class="number">2</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyy-hub.github.io/blog/2021/09/10/watch%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" data-id="cl9p8qpm9001jmgp89yim7uhz" data-title="watch与计算属性" class="article-share-link">Share</a>
+      <a data-url="http://tyy-hub.github.io/blog/2022/11/07/%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC/" data-id="clbafxe450046ytp82l0c0dbj" data-title="路由跳转" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-小程序初体验" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2022/10/28/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/" class="article-date">
+  <time class="dt-published" datetime="2022-10-28T01:59:25.000Z" itemprop="datePublished">2022-10-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2022/10/28/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/">小程序初体验</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>1. for 循环的使用</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;student&#125;&#125;&quot;</span>&gt;</span>&#123;&#123;item.name&#125;&#125; &#123;&#123;item.age&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;student&#125;&#125;&quot;</span> <span class="attr">wx:for-index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">wx:for-item</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 事件绑定</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span>当前计数为：&#123;&#123;counter&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">size</span>=<span class="string">&quot;mini&quot;</span> <span class="attr">bindtap</span>=<span class="string">&quot;changeCounter&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">changeCounter () &#123;</span><br><span class="line">  <span class="comment">// 1. 错误做法：界面不会刷新，但值确实有变</span></span><br><span class="line">  <span class="comment">// this.data.counter += 1</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2. 正确做法</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">    <span class="attr">counter</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">counter</span> + <span class="number">1</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://tyy-hub.github.io/blog/2022/10/28/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/" data-id="clbafxe3o003eytp87pyf6fyz" data-title="小程序初体验" class="article-share-link">Share</a>
       
       
       
@@ -744,7 +690,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/8/">8</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -755,7 +701,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Element/">Element</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Js/">Js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Vue/">Vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E6%8F%92%E4%BB%B6/">插件</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Element/">Element</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Js/">Js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Vue/">Vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Vue3/">Vue3</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E6%8F%92%E4%BB%B6/">插件</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a></li></ul>
     </div>
   </div>
 
@@ -770,7 +716,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/07/">July 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/07/">July 2021</a></li></ul>
     </div>
   </div>
 
@@ -783,23 +729,23 @@
       <ul>
         
           <li>
-            <a href="/blog/2021/10/01/select%20%E7%9A%84%20change%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">select 的 change 事件传递多个参数</a>
+            <a href="/blog/2022/12/05/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E4%B8%BAJSON%E6%95%B0%E6%8D%AE/">判断一个数据是否为JSON数据</a>
           </li>
         
           <li>
-            <a href="/blog/2021/10/01/select%20%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1/">select 的 change 事件传递多个参数</a>
+            <a href="/blog/2022/12/05/Mixins/">Mixins</a>
           </li>
         
           <li>
-            <a href="/blog/2021/09/14/%E9%80%9A%E8%BF%87%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%88%B7%E6%96%B0%E5%8F%82%E6%95%B0%E4%BC%9A%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/">通过路由传递参数，在子组件中刷新参数会丢失的问题</a>
+            <a href="/blog/2022/12/05/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1/">组件之间通信</a>
           </li>
         
           <li>
-            <a href="/blog/2021/09/14/Md5/">Md5</a>
+            <a href="/blog/2022/12/05/%E6%B8%85%E7%A9%BA%E6%95%B0%E7%BB%84/">清空数组</a>
           </li>
         
           <li>
-            <a href="/blog/2021/09/14/%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/">组件之间的通信</a>
+            <a href="/blog/2022/12/05/defineProps/">defineProps</a>
           </li>
         
       </ul>
